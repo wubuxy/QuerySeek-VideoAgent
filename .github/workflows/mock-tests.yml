@@ -29,3 +29,4 @@ jobs:
           tests/test_export.py tests/test_output_paths.py tests/test_cli.py
           tests/test_agent_budget.py tests/test_search_policy.py
           tests/test_anchored_policy.py tests/test_agent_graph.py
+          tests/test_grounded_qa.py tests/test_grounded_qa_baseline.py

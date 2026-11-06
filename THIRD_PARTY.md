@@ -66,4 +66,9 @@ Versions below describe recorded environments, not a promise of the newest versi
 - **VTS**: https://github.com/CeeZh/VTS, reference commit `184310c5eec2193060a5c95bbda4ad443dae4e25`, MIT. Navigation/detour supervision reference; no official code or checkpoint bundled. Code license does not determine checkpoint or source-video permissions.
 - **VideoAgent**: https://arxiv.org/abs/2403.10517. Read for the future roadmap; no source or assets copied.
 
+## Grounded QA metric references (2026-11-06)
+
+- CG-Bench: https://github.com/CG-Bench/CG-Bench, commit `f826608752443a13b21f214c2d9c4156c526f030`. Read `run/stat_with_key.py` for the acc@IoU definition; no code copied or modified. The code repository has no separate license file in the inspected tree. The dataset card declares MIT with separate research-use terms for source videos. No benchmark media or annotations are distributed here.
+- VLMEvalKit: https://github.com/open-compass/VLMEvalKit, commit `3c192143007e4eb3f5c1a36558a4f8c1451980cb`, Apache-2.0; original notice in upstream `LICENSE`. Read the interval-set IoU definition and threshold convention in `vlmeval/dataset/utils/cgbench.py`; no upstream code copied or executed. Our evaluation glue uses strict seconds/JSON and keeps failed items in its denominator. See `docs/EVAL_GROUNDED_QA_R1.md`.
+
 Upstream source additions require an updated URL, revision, license, modification description and preserved copyright/license location before publication.

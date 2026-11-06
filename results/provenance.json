@@ -250,12 +250,24 @@
     "configs/univtg_input_transfer_v1.json": "6d57f3f3d4579b2222c8a5877d8b6462a83a0765747582958c62e3074612772c",
     "configs/univtg_source_audit_v1.json": "30853c0098e45c2edf3834239c342ca7e214d68f8f2c04e6f6a3481dbbea117a",
     "pyproject.toml": "af6630ade31589f588c6fd08727b4a91ce7a79827367b2fe65fb8047f0b5ce80",
-    ".env.example": "43a608a619e57fa94072443f1636768b11d3e64f33bee54251dcd1ded94813a8"
+    ".env.example": "43a608a619e57fa94072443f1636768b11d3e64f33bee54251dcd1ded94813a8",
+    "queryseek/eval/grounded_qa.py": "bae0f86e57073ccfde268b945d346dd388bef77962f242a4ec53d8537e5aae57",
+    "scripts/prepare_grounded_qa.py": "cccb15b328da75c5e190fc4fff4001c6bcfdf10f50e51de5a6c27c121df1f4ca",
+    "scripts/run_grounded_qa_baseline.py": "ec5b5814d159ba2f27203c47ef044957746ba15bcb4a10466d0f443a2005fefb",
+    "tests/test_grounded_qa.py": "38e49895ab890d3ca9fbb21c0d3d0345fb1ab8e286baf7cc45c2e9e99c471c3d",
+    "tests/test_grounded_qa_baseline.py": "47a464732be44212f38350ea88876246533530afce5069c1e7d28ce8348e9f26",
+    "configs/grounded_qa_r1_v1.json": "023c894f7820592fdc81056d413052636e62c44279a50f3994c60cb987a67f61"
   },
   "publication_changes": {
     "pyproject.toml": {
       "reason": "Include vendored UniVTG LICENSE in built distributions",
       "published_sha256": "a34306bfb7805ebde1f0ce521b7dfe040f113066a1889a91930c5a200e0d6461"
     }
+  },
+  "grounded_qa_extension": {
+    "date": "2026-11-06",
+    "new_model_inference": false,
+    "validation": "18 passed; local CPU/FFmpeg synthetic tests",
+    "annotation_geometry": "8 previously frozen development sources; no media inference"
   }
 }
