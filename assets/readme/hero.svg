@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="460" viewBox="0 0 1280 460" role="img" aria-labelledby="title desc">
+  <title id="title">QuerySeek-VideoAgent</title>
+  <desc id="desc">Find the moment. Follow the evidence. A schematic timeline connects video retrieval, observation and temporal evidence.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#080f21"/><stop offset="1" stop-color="#17203b"/></linearGradient>
+    <linearGradient id="accent"><stop stop-color="#39d9e8"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <radialGradient id="halo"><stop stop-color="#7956df" stop-opacity=".28"/><stop offset="1" stop-color="#7956df" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#687ead" stroke-opacity=".09"/></pattern>
+  </defs>
+  <rect width="1280" height="460" rx="22" fill="url(#bg)"/>
+  <rect width="1280" height="460" rx="22" fill="url(#grid)"/>
+  <ellipse cx="1030" cy="210" rx="360" ry="300" fill="url(#halo)"/>
+  <g font-family="Segoe UI,Arial,sans-serif">
+    <rect x="56" y="48" width="282" height="30" rx="15" fill="#12313f" stroke="#2b6474"/>
+    <circle cx="73" cy="63" r="4" fill="#5eead4"/>
+    <text x="88" y="68" fill="#a5f3fc" font-size="12" letter-spacing="2">VIDEO RETRIEVAL × AGENT</text>
+    <text x="52" y="157" fill="#f8fafc" font-size="66" font-weight="750" letter-spacing="-2">QuerySeek</text>
+    <text x="56" y="204" fill="url(#accent)" font-size="32" font-weight="600" letter-spacing="1">VideoAgent</text>
+    <text x="57" y="253" fill="#e2e8f0" font-size="23">Find the moment. Follow the evidence.</text>
+    <text x="57" y="286" fill="#8fa5c8" font-size="15">Multimodal retrieval · Trainable search · Temporal grounding</text>
+    <g font-size="12" font-weight="600" fill="#cbd5e1">
+      <rect x="56" y="321" width="136" height="30" rx="6" fill="#18283f" stroke="#334864"/>
+      <text x="72" y="341">Qwen3-VL + QLoRA</text>
+      <rect x="204" y="321" width="120" height="30" rx="6" fill="#18283f" stroke="#334864"/>
+      <text x="223" y="341">Evidence traces</text>
+      <rect x="336" y="321" width="108" height="30" rx="6" fill="#18283f" stroke="#334864"/>
+      <text x="355" y="341">Offline Mock</text>
+    </g>
+    <text x="57" y="411" fill="#597396" font-size="11" letter-spacing="3">RETRIEVE / OBSERVE / GROUND</text>
+    <g transform="translate(714 66)">
+      <rect width="510" height="312" rx="18" fill="#0a1429" fill-opacity=".85" stroke="#31415f"/>
+      <circle cx="22" cy="22" r="4" fill="#475569"/><circle cx="36" cy="22" r="4" fill="#475569"/><circle cx="50" cy="22" r="4" fill="#475569"/>
+      <text x="78" y="26" font-size="11" fill="#91a5c4" letter-spacing="1">QUERY → TEMPORAL EVIDENCE</text>
+      <rect x="24" y="51" width="462" height="41" rx="8" fill="#16243e" stroke="#354d6b"/>
+      <circle cx="44" cy="70" r="6" fill="none" stroke="#67e8f9" stroke-width="2"/><path d="M49 75l5 5" stroke="#67e8f9" stroke-width="2"/>
+      <text x="66" y="77" font-size="14" fill="#dbeafe">Locate the moment described by the query.</text>
+      <g transform="translate(24 114)" fill="#17283f" stroke="#344560">
+        <rect width="101" height="67" rx="7"/><rect x="120" width="101" height="67" rx="7"/>
+        <rect x="240" width="101" height="67" rx="7" fill="#15414c" stroke="#4ddace" stroke-width="2"/>
+        <rect x="360" width="101" height="67" rx="7"/>
+        <path d="M13 53l22-24 18 16 17-26 19 34M133 53l20-32 23 29 18-16 13 19M253 53l19-24 17 11 23-25 17 38M373 53l22-29 20 23 22-13 12 19" fill="none" stroke="#6d829e" stroke-width="2"/>
+        <circle cx="78" cy="17" r="5" fill="#54708e" stroke="none"/><circle cx="198" cy="17" r="5" fill="#54708e" stroke="none"/><circle cx="318" cy="17" r="5" fill="#5eead4" stroke="none"/><circle cx="438" cy="17" r="5" fill="#54708e" stroke="none"/>
+      </g>
+      <path d="M40 217H469" stroke="#334966" stroke-width="3" stroke-linecap="round"/>
+      <path d="M273 217H352" stroke="url(#accent)" stroke-width="7" stroke-linecap="round"/>
+      <g fill="#6b829f"><circle cx="40" cy="217" r="5"/><circle cx="160" cy="217" r="5"/><circle cx="469" cy="217" r="5"/></g>
+      <circle cx="291" cy="217" r="9" fill="#5eead4" stroke="#0a1429" stroke-width="3"/>
+      <path d="M291 185v22" stroke="#5eead4" stroke-dasharray="3 4"/>
+      <text x="26" y="245" fill="#7b91b1" font-size="11">SOURCE TIMELINE</text>
+      <rect x="247" y="233" width="119" height="24" rx="12" fill="#0e393b"/>
+      <text x="261" y="249" fill="#99f6e4" font-size="11">[start_sec, end_sec)</text>
+      <text x="25" y="290" font-size="10" fill="#657d9e" letter-spacing="1">SCHEMATIC · SOURCE TIMESTAMPS · EXECUTION TRACE</text>
+    </g>
+  </g>
+</svg>
