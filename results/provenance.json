@@ -269,5 +269,13 @@
     "new_model_inference": false,
     "validation": "18 passed; local CPU/FFmpeg synthetic tests",
     "annotation_geometry": "8 previously frozen development sources; no media inference"
+  },
+  "grounded_qa_pilot": {
+    "date": "2026-11-06",
+    "new_model_inference": true,
+    "new_training": false,
+    "aggregate": "results/grounded_qa_pilot_20261106.json",
+    "archive_sha256": "ef77a1641f0280909521622bf1ba8cb189d7f4727800b4ab117695a5ead92a2c",
+    "source_commit": "4d45834ffc462bd78cb2f75fb0ffdc8f384dc1c8"
   }
 }

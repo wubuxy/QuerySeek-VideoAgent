@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-06",
+  "scope": "Eight frozen development sources; single-run pipeline/bottleneck pilot, not confirmatory benchmark",
+  "method": "Full-video uniform 16 frames, one call",
+  "model": "Qwen3-VL-8B-Instruct NF4",
+  "inference_commit": "4d45834ffc462bd78cb2f75fb0ffdc8f384dc1c8",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "metrics": {
+    "qa_correct": 0.25,
+    "interval_set_iou": 0.0,
+    "acc_at_iou": 0.0,
+    "joint_at_05": 0.0,
+    "n": 8,
+    "valid_outputs": 8,
+    "missing_outputs": 0
+  },
+  "cost": {
+    "calls": 8,
+    "image_presentations": 128,
+    "input_tokens": 13323,
+    "output_tokens": 470,
+    "query_elapsed_sec_total": 54.29347807600004,
+    "query_elapsed_sec_median": 4.728753162000004,
+    "peak_allocated_bytes": 7796065792
+  },
+  "model_load_sec": 85.37371299899999,
+  "latency_scope": "Single sequential run, warm frame cache; excludes initial extraction and model load",
+  "actual_pts_any_clue_hit_sources": 1,
+  "sources": 8,
+  "media_bytes": 3759694103,
+  "source_sha256": {
+    "uniform16/evaluation.json": "1f7b9afc288b687181fcd5716bb87eade5a4904963e22e394eee36e55285c76f",
+    "uniform16/predictions.jsonl": "672508eb0e3a96fc09cdf143a979805d5bbc3bf94d5671c3a1bcc75d1bc38574",
+    "uniform16/run_manifest.json": "1da2fafb8a0ea13130141b4063b9f2c7754554ab60d624a23f58f6d17568ad30",
+    "media_audit/media_records.json": "ae6c982ae1167e8fa453418c747d9cd58d91a46806d73944a6c90135178acb03"
+  },
+  "archive_sha256": "ef77a1641f0280909521622bf1ba8cb189d7f4727800b4ab117695a5ead92a2c",
+  "validation": {
+    "backup_files_verified": 10,
+    "media_hashes_verified": 8,
+    "local_metrics_and_cost_replay_exact": true,
+    "ubuntu_qa_tests": "18 passed"
+  },
+  "interpretation": "Development pilot only. Coverage gaps do not isolate the cause of grounding failures. No method improvement or generalization claim.",
+  "new_training": false
+}
