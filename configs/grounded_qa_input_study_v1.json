@@ -1,0 +1,28 @@
+{
+  "version": "grounded-qa-input-study-v1",
+  "date": "2026-11-07",
+  "scope": "Eight frozen development sources; input and evidence diagnostics only",
+  "requests_sha256": "a4ff948561a333b8cab132205b17edb396422a8815150022a3f6715663cd3426",
+  "labels_sha256": "7963f3a55adb2c6cf6ad6f61376aa5c0cdc60489fd575979f857c879f0edfa18",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "max_output_tokens": 512,
+  "max_generations": 64,
+  "max_retries": 0,
+  "seed": 12,
+  "temperature": 0,
+  "conditions": [
+    {"name": "no_video", "scope": "prior_diagnostic", "input": "text", "frames": 0, "pixels": 65536, "output": "answer"},
+    {"name": "oracle_images16", "scope": "oracle_diagnostic", "input": "images", "frames": 16, "pixels": 65536, "output": "answer"},
+    {"name": "oracle_video16", "scope": "oracle_diagnostic", "input": "video", "frames": 16, "pixels": 65536, "output": "answer"},
+    {"name": "oracle_video16_high", "scope": "oracle_diagnostic", "input": "video", "frames": 16, "pixels": 262144, "output": "answer"},
+    {"name": "global_video16", "scope": "global_baseline", "input": "video", "frames": 16, "pixels": 65536, "output": "grounded"},
+    {"name": "global_video32", "scope": "global_baseline", "input": "video", "frames": 32, "pixels": 65536, "output": "grounded"},
+    {"name": "global_video64", "scope": "global_baseline", "input": "video", "frames": 64, "pixels": 65536, "output": "grounded"},
+    {"name": "global_images64", "scope": "global_baseline", "input": "images", "frames": 64, "pixels": 65536, "output": "grounded"}
+  ],
+  "oracle_sampling": "16 bin centers in union of annotated clue intervals; no padding; answer-only diagnostic, not grounding performance",
+  "video_metadata": "Explicit source PTS encoded as integer microsecond ticks divided by 1000000; internal metadata only, not physical frame indices or media FPS",
+  "new_training": false,
+  "audio": false,
+  "subtitle": false
+}

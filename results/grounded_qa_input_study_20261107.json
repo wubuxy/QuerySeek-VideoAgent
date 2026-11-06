@@ -1,0 +1,290 @@
+{
+  "date": "2026-11-07",
+  "scope": "Eight frozen development sources; no confirmatory/generalization claim",
+  "new_training": false,
+  "model": "Qwen3-VL-8B-Instruct NF4",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "conditions": {
+    "no_video": {
+      "metrics": {
+        "qa_correct": 0.125,
+        "n": 8,
+        "valid_outputs": 8,
+        "interval_set_iou": null,
+        "acc_at_iou": null,
+        "joint_at_05": null
+      },
+      "scope": "prior_diagnostic",
+      "cost": {
+        "backend_calls": 8,
+        "input_tokens": 1022,
+        "output_tokens": 56,
+        "visual_tokens": 0,
+        "image_presentations": 0,
+        "query_elapsed_sec": 8.136126321000177,
+        "median_query_sec": 0.4012080975000174,
+        "peak_allocated_bytes": 7383103488
+      }
+    },
+    "oracle_images16": {
+      "metrics": {
+        "qa_correct": 0.125,
+        "n": 8,
+        "valid_outputs": 8,
+        "interval_set_iou": null,
+        "acc_at_iou": null,
+        "joint_at_05": null
+      },
+      "scope": "oracle_diagnostic",
+      "cost": {
+        "backend_calls": 8,
+        "input_tokens": 12575,
+        "output_tokens": 56,
+        "visual_tokens": 7600,
+        "image_presentations": 128,
+        "query_elapsed_sec": 15.388355882999804,
+        "median_query_sec": 0.918274607499967,
+        "peak_allocated_bytes": 7781914624
+      },
+      "pts_any_clue_hit_sources": 8
+    },
+    "oracle_video16": {
+      "metrics": {
+        "qa_correct": 0.25,
+        "n": 8,
+        "valid_outputs": 8,
+        "interval_set_iou": null,
+        "acc_at_iou": null,
+        "joint_at_05": null
+      },
+      "scope": "oracle_diagnostic",
+      "cost": {
+        "backend_calls": 8,
+        "input_tokens": 5462,
+        "output_tokens": 56,
+        "visual_tokens": 3800,
+        "image_presentations": 128,
+        "query_elapsed_sec": 5.098876459000053,
+        "median_query_sec": 0.6417282755000144,
+        "peak_allocated_bytes": 7544230400
+      },
+      "pts_any_clue_hit_sources": 8
+    },
+    "oracle_video16_high": {
+      "metrics": {
+        "qa_correct": 0.25,
+        "n": 8,
+        "valid_outputs": 8,
+        "interval_set_iou": null,
+        "acc_at_iou": null,
+        "joint_at_05": null
+      },
+      "scope": "oracle_diagnostic",
+      "cost": {
+        "backend_calls": 8,
+        "input_tokens": 17710,
+        "output_tokens": 56,
+        "visual_tokens": 16048,
+        "image_presentations": 128,
+        "query_elapsed_sec": 9.688406793000127,
+        "median_query_sec": 1.237901406500015,
+        "peak_allocated_bytes": 7982272000
+      },
+      "pts_any_clue_hit_sources": 8
+    },
+    "global_video16": {
+      "metrics": {
+        "qa_correct": 0.25,
+        "interval_set_iou": 0.09352216188410568,
+        "acc_at_iou": 0.0,
+        "joint_at_05": 0.0,
+        "n": 8,
+        "valid_outputs": 8,
+        "missing_outputs": 0
+      },
+      "scope": "global_baseline",
+      "cost": {
+        "backend_calls": 8,
+        "input_tokens": 5974,
+        "output_tokens": 291,
+        "visual_tokens": 3800,
+        "image_presentations": 128,
+        "query_elapsed_sec": 20.28942230000007,
+        "median_query_sec": 2.5189349450000407,
+        "peak_allocated_bytes": 7556190208
+      },
+      "pts_any_clue_hit_sources": 1
+    },
+    "global_video32": {
+      "metrics": {
+        "qa_correct": 0.25,
+        "interval_set_iou": 0.01326186861722608,
+        "acc_at_iou": 0.0,
+        "joint_at_05": 0.0,
+        "n": 8,
+        "valid_outputs": 8,
+        "missing_outputs": 0
+      },
+      "scope": "global_baseline",
+      "cost": {
+        "backend_calls": 8,
+        "input_tokens": 10438,
+        "output_tokens": 364,
+        "visual_tokens": 7600,
+        "image_presentations": 256,
+        "query_elapsed_sec": 23.514201985,
+        "median_query_sec": 2.682861396500016,
+        "peak_allocated_bytes": 7712822272
+      },
+      "pts_any_clue_hit_sources": 4
+    },
+    "global_video64": {
+      "metrics": {
+        "qa_correct": 0.25,
+        "interval_set_iou": 0.0,
+        "acc_at_iou": 0.0,
+        "joint_at_05": 0.0,
+        "n": 8,
+        "valid_outputs": 8,
+        "missing_outputs": 0
+      },
+      "scope": "global_baseline",
+      "cost": {
+        "backend_calls": 8,
+        "input_tokens": 19364,
+        "output_tokens": 391,
+        "visual_tokens": 15200,
+        "image_presentations": 512,
+        "query_elapsed_sec": 28.463509557999885,
+        "median_query_sec": 3.62456275400001,
+        "peak_allocated_bytes": 8025056768
+      },
+      "pts_any_clue_hit_sources": 4
+    },
+    "global_images64": {
+      "metrics": {
+        "qa_correct": 0.25,
+        "interval_set_iou": 0.035385535899880055,
+        "acc_at_iou": 0.0,
+        "joint_at_05": 0.0,
+        "n": 8,
+        "valid_outputs": 8,
+        "missing_outputs": 0
+      },
+      "scope": "global_baseline",
+      "cost": {
+        "backend_calls": 8,
+        "input_tokens": 49175,
+        "output_tokens": 468,
+        "visual_tokens": 30400,
+        "image_presentations": 512,
+        "query_elapsed_sec": 41.55394722600005,
+        "median_query_sec": 4.939095601500014,
+        "peak_allocated_bytes": 9059371008
+      },
+      "pts_any_clue_hit_sources": 4
+    },
+    "historical_global_images16": {
+      "metrics": {
+        "qa_correct": 0.25,
+        "interval_set_iou": 0.0,
+        "acc_at_iou": 0.0,
+        "joint_at_05": 0.0,
+        "n": 8,
+        "valid_outputs": 8,
+        "missing_outputs": 0
+      }
+    }
+  },
+  "run_summary": {
+    "scheduled": 64,
+    "completed": 64,
+    "failed": 0,
+    "mock": false,
+    "model_load_sec": 85.359882744,
+    "backend_calls": 64,
+    "accuracy": null
+  },
+  "total_cost": {
+    "backend_calls": 64,
+    "input_tokens": 121720,
+    "output_tokens": 1738,
+    "visual_tokens": 84448,
+    "image_presentations": 1792,
+    "query_elapsed_sec": 152.13284652500016,
+    "peak_allocated_bytes": 9059371008
+  },
+  "successful_prepare": {
+    "config_sha256": "aba071cc3baf6d8595d71bd7188a08af915f0cf27c6f4f1fba39d295e68c9705",
+    "requests_sha256": "a4ff948561a333b8cab132205b17edb396422a8815150022a3f6715663cd3426",
+    "labels_sha256": "7963f3a55adb2c6cf6ad6f61376aa5c0cdc60489fd575979f857c879f0edfa18",
+    "prepared_sha256": "b63ef9bf4b6016a4d48ec3b5dec93c7352c179874470536e5e4b658d2b9dfb93",
+    "rows": 64,
+    "vlm_calls": 0,
+    "new_frames_extracted": 896,
+    "preprocessing_sec": 152.34114586399994
+  },
+  "execution_source_sha256": {
+    "scripts/grounded_qa_input_study.py": "fb0dfddb53be2671f180bd6b63667068ed51a1194f2eefa843bca231917af8bb",
+    "scripts/run_grounded_qa_baseline.py": "ec5b5814d159ba2f27203c47ef044957746ba15bcb4a10466d0f443a2005fefb",
+    "scripts/gpu_agent_experiment.py": "34505bc8303efedd96441f64f7aa2b35b230407f7e146fed80741d638b7b0dab",
+    "scripts/train_agent_sft.py": "a69f189851c8d75645ccf468fd5eb903791ff15bf967adf27f4a6788878c029e",
+    "queryseek/ingest/frames.py": "6c9392a5e9d5bb12a91282fe3656e7979908b44caf8384155c5d24d10717c6c8",
+    "queryseek/eval/grounded_qa.py": "bae0f86e57073ccfde268b945d346dd388bef77962f242a4ec53d8537e5aae57",
+    "configs/grounded_qa_input_study_v1.json": "aba071cc3baf6d8595d71bd7188a08af915f0cf27c6f4f1fba39d295e68c9705"
+  },
+  "source_sha256": {
+    "analysis.json": "0bb41b2cdafe47754dfbedbf77c29644c419b64e5be21e73dff9745a7df5b0ba",
+    "run/predictions.jsonl": "f13ba54f3a0b4aa91c7600af08cc83e456824c0cc5fc83b371d552360027c1d9",
+    "run/run_manifest.json": "ad4d1baa442272994baf055759db4e14973a8db191895c1f635d2e34674adad9"
+  },
+  "archive_sha256": "c9d6ccde16c46dfc86d037dff2d547c2dcccc88278b33ac23dcc3c8fae08bdbe",
+  "validation": {
+    "archive_sha256": "c9d6ccde16c46dfc86d037dff2d547c2dcccc88278b33ac23dcc3c8fae08bdbe",
+    "files_verified": 12,
+    "execution_source_files_verified": 7,
+    "paired_observation_hashes_identical": true,
+    "local_metrics_and_cost_replay_exact": true,
+    "requests_labels_config_hashes_unchanged": true,
+    "complete_valid_generations": 64,
+    "native_global_per_frame_pixel_areas_equal_at_all_budgets": true,
+    "analysis_new_model_calls": 0,
+    "server_input_study_tests": "23 passed, including official processor",
+    "server_frame_integrity_tests": "6 passed"
+  },
+  "paired_counts": {
+    "oracle_video16 minus oracle_images16": {
+      "qa_gained": 1,
+      "qa_lost": 0
+    },
+    "oracle_video16_high minus oracle_video16": {
+      "qa_gained": 1,
+      "qa_lost": 1
+    },
+    "global_video16 minus historical_global_images16": {
+      "qa_gained": 0,
+      "qa_lost": 0
+    },
+    "global_video64 minus global_video16": {
+      "qa_gained": 0,
+      "qa_lost": 0
+    },
+    "global_images64 minus historical_global_images16": {
+      "qa_gained": 1,
+      "qa_lost": 1
+    },
+    "global_images64 minus global_video64": {
+      "qa_gained": 1,
+      "qa_lost": 1
+    }
+  },
+  "latency_scope": "Single fixed-order run with preprepared frames; model load and successful preparation reported separately. Excludes initial failed preparation/debugging, downloads and installation; not production latency.",
+  "interpretation": "No aggregate QA gain from uniformly increasing frame count or oracle pixels on eight development sources. Some nonzero temporal overlap, but all global joint metrics remain zero. Oracle clues are diagnostic inputs, not guaranteed sufficient context or an upper bound.",
+  "audio_subtitle_scope": "No separate audio or subtitle side channel. Burned-in video subtitles and UI text remain visible.",
+  "new_model_calls_in_analysis": 0,
+  "public_snapshot_validation": {
+    "result": "28 passed, 1 skipped",
+    "elapsed_sec": 3.99,
+    "scope": "Published snapshot targeted CPU/FFmpeg regression; skip requires locally provisioned processor"
+  }
+}

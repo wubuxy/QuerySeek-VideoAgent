@@ -30,3 +30,5 @@ jobs:
           tests/test_agent_budget.py tests/test_search_policy.py
           tests/test_anchored_policy.py tests/test_agent_graph.py
           tests/test_grounded_qa.py tests/test_grounded_qa_baseline.py
+          tests/test_grounded_qa_input_study.py
+          tests/test_baseline_integrity.py::test_scene_missing_pts_preserves_log_without_fabricating_time

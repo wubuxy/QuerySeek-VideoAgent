@@ -65,7 +65,7 @@
     "queryseek/ingest/__init__.py": "9a3d7783581ab502ff12ea11e9f2f48681f29c9c31d3cfc4b2876f1f5020f52a",
     "queryseek/ingest/cache.py": "419567834b7a4022221655020c99acad6d3d12a069f15b694d7dd288dad0e09f",
     "queryseek/ingest/ffprobe.py": "fced2de38a858d13e28e7a46cf969a8b0e9bab78b69d82c68bfe27c899afd08f",
-    "queryseek/ingest/frames.py": "cb76aa04089cd5c5083cbbdebac1821de1da2ea21ad3804fea5eb69b0e6d357a",
+    "queryseek/ingest/frames.py": "6c9392a5e9d5bb12a91282fe3656e7979908b44caf8384155c5d24d10717c6c8",
     "queryseek/ingest/pipeline.py": "9a9b025fbe4ffd548755f63566855a1b37cfee8ed675241f90ab3ab0b7ec0889",
     "queryseek/ingest/registry.py": "90aad205df9ffbc4c93ca1458e0d62cd8b9db58f3b69a258a7ec2a5e1dd59a34",
     "queryseek/ingest/scenes.py": "2f13da8c35d5bafa6ee99475b549ce3635186fdd10b347e9b0185f4e093f0496",
@@ -176,7 +176,7 @@
     "tests/test_agent_graph.py": "03a45a14feef014ca354e43a30c7863cc7896b1d0711e013fa707966cbc569bd",
     "tests/test_agent_sft.py": "82fe51e10f838499b9c0a8628ba6bc315a02f1fed77fed9fcfe02eda62b43027",
     "tests/test_anchored_policy.py": "1b30f3ba82b5a93d8569471760cc33520e4e244e724c6ae4a573b09631dbceb5",
-    "tests/test_baseline_integrity.py": "bb0356a64d116f5c9288df9c7bce81a2d38797b7b215aec7848b4044c29b2afb",
+    "tests/test_baseline_integrity.py": "0d4f53726f3f915f6a1a1fa80a2230601605aa6ddd450cc2c43a89d1cbe8bb74",
     "tests/test_benchmark_threshold.py": "54271d667fe7b74da582e1d5cc757eb79c63629b0ed33b2a6d85c13af00211ad",
     "tests/test_candidate_ranker.py": "5544a4e973c984d2e73e96da6bec433fcf281e85c0bed9359cab7cf5de89108b",
     "tests/test_cli.py": "69611830195864101d105ebf5c487c8374d19495d765c57436ba31990710d475",
@@ -256,7 +256,12 @@
     "scripts/run_grounded_qa_baseline.py": "ec5b5814d159ba2f27203c47ef044957746ba15bcb4a10466d0f443a2005fefb",
     "tests/test_grounded_qa.py": "38e49895ab890d3ca9fbb21c0d3d0345fb1ab8e286baf7cc45c2e9e99c471c3d",
     "tests/test_grounded_qa_baseline.py": "47a464732be44212f38350ea88876246533530afce5069c1e7d28ce8348e9f26",
-    "configs/grounded_qa_r1_v1.json": "023c894f7820592fdc81056d413052636e62c44279a50f3994c60cb987a67f61"
+    "configs/grounded_qa_r1_v1.json": "023c894f7820592fdc81056d413052636e62c44279a50f3994c60cb987a67f61",
+    "configs/grounded_qa_input_study_v1.json": "aba071cc3baf6d8595d71bd7188a08af915f0cf27c6f4f1fba39d295e68c9705",
+    "scripts/grounded_qa_input_study.py": "fb0dfddb53be2671f180bd6b63667068ed51a1194f2eefa843bca231917af8bb",
+    "tests/test_grounded_qa_input_study.py": "8ec047e1d231663050542f53b0a6ca2f5ffae026a0e7260663f2ccd0ef974374",
+    "docs/EVAL_GROUNDED_QA_INPUT_STUDY.md": "5641c13bbc0b068ce602619dfd7353f6469c9491b0d9cf67a30f1e7ed5be45d9",
+    "docs/EVAL_GROUNDED_QA_R1.md": "dfb2a4f22d3300e0ccf7a602c61fbd8674e45d93abbc7267ae5bf758421d0621"
   },
   "publication_changes": {
     "pyproject.toml": {
@@ -277,5 +282,24 @@
     "aggregate": "results/grounded_qa_pilot_20261106.json",
     "archive_sha256": "ef77a1641f0280909521622bf1ba8cb189d7f4727800b4ab117695a5ead92a2c",
     "source_commit": "4d45834ffc462bd78cb2f75fb0ffdc8f384dc1c8"
+  },
+  "grounded_qa_input_study": {
+    "date": "2026-11-07",
+    "aggregate": "results/grounded_qa_input_study_20261107.json",
+    "new_model_inference": true,
+    "new_training": false,
+    "calls": 64,
+    "execution_source_sha256": {
+      "scripts/grounded_qa_input_study.py": "fb0dfddb53be2671f180bd6b63667068ed51a1194f2eefa843bca231917af8bb",
+      "scripts/run_grounded_qa_baseline.py": "ec5b5814d159ba2f27203c47ef044957746ba15bcb4a10466d0f443a2005fefb",
+      "scripts/gpu_agent_experiment.py": "34505bc8303efedd96441f64f7aa2b35b230407f7e146fed80741d638b7b0dab",
+      "scripts/train_agent_sft.py": "a69f189851c8d75645ccf468fd5eb903791ff15bf967adf27f4a6788878c029e",
+      "queryseek/ingest/frames.py": "6c9392a5e9d5bb12a91282fe3656e7979908b44caf8384155c5d24d10717c6c8",
+      "queryseek/eval/grounded_qa.py": "bae0f86e57073ccfde268b945d346dd388bef77962f242a4ec53d8537e5aae57",
+      "configs/grounded_qa_input_study_v1.json": "aba071cc3baf6d8595d71bd7188a08af915f0cf27c6f4f1fba39d295e68c9705"
+    },
+    "archive_sha256": "c9d6ccde16c46dfc86d037dff2d547c2dcccc88278b33ac23dcc3c8fae08bdbe",
+    "local_replay_exact": true,
+    "publication_note": "Aggregate-only release. Original executable source matches the verified server execution hashes; private media, annotations, frames and connection configuration excluded."
   }
 }

@@ -56,3 +56,17 @@ def test_local_output_tag_and_intervals_are_validated_before_ffmpeg(tmp_path):
     from queryseek.ingest.frames import extract_local_frames
     for start,end,fps,tag in ((-1,2,1,"x"),(2,1,1,"x"),(0,2,0,"x"),(0,2,1,"../bad")):
         with pytest.raises(ValueError):extract_local_frames("missing",tmp_path,start,end,fps,tag=tag)
+
+
+def test_scene_missing_pts_preserves_log_without_fabricating_time(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    from queryseek.ingest import frames
+    from queryseek.schemas import Scene
+    monkeypatch.setattr(frames, '_require_ffmpeg', lambda: 'ffmpeg')
+    def command(args, **kwargs):
+        Path(args[-1]).touch()
+        return SimpleNamespace(returncode=0, stderr=b'no source timestamp available')
+    monkeypatch.setattr(frames.subprocess, 'run', command)
+    with pytest.raises(RuntimeError, match='no source PTS'):
+        frames.extract_scene_frames('unused.mp4', tmp_path, [Scene(scene_id='x',start_sec=1.,end_sec=2.)])
+    assert (tmp_path/'s_000001.ffmpeg.stderr.log').read_bytes() == b'no source timestamp available'

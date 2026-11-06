@@ -72,3 +72,7 @@ Versions below describe recorded environments, not a promise of the newest versi
 - VLMEvalKit: https://github.com/open-compass/VLMEvalKit, commit `3c192143007e4eb3f5c1a36558a4f8c1451980cb`, Apache-2.0; original notice in upstream `LICENSE`. Read the interval-set IoU definition and threshold convention in `vlmeval/dataset/utils/cgbench.py`; no upstream code copied or executed. Our evaluation glue uses strict seconds/JSON and keeps failed items in its denominator. See `docs/EVAL_GROUNDED_QA_R1.md`.
 
 Upstream source additions require an updated URL, revision, license, modification description and preserved copyright/license location before publication.
+
+## 2026-11-07 原生视频输入诊断
+
+复用 Transformers 4.57.6（https://github.com/huggingface/transformers/tree/v4.57.6 ，Apache-2.0）的 Qwen3VLProcessor、Qwen3VLVideoProcessor 与 VideoMetadata；用于已抽帧视频的时域合并、像素处理和时间标签。上游源码未修改/未复制；版权头位于包内 `models/qwen3_vl/processing_qwen3_vl.py`、`video_processing_qwen3_vl.py`，许可证在对应 dist-info/licenses/LICENSE。仍复用原 FFmpeg、Pillow、NumPy、Torch 与约束解码库，版本及许可沿用本文件。源PTS的内部整数时间基适配、逐输入检查和实验运行器为本项目胶水实现。

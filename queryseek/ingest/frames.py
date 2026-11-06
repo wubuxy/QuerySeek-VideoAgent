@@ -119,7 +119,9 @@ def extract_scene_frames(
         if proc.returncode != 0 or not img.is_file():
             continue  # 单帧抽取失败（如尾部不足）不致命，跳过
         stamps=source_timestamps(proc.stderr)
-        if not stamps:raise RuntimeError("FFmpeg scene extraction returned no source PTS")
+        if not stamps:
+            img.with_suffix(".ffmpeg.stderr.log").write_bytes(proc.stderr)
+            raise RuntimeError("FFmpeg scene extraction returned no source PTS")
         frames.append(
             VideoFrame(
                 frame_id="",  # 最终统一编号
