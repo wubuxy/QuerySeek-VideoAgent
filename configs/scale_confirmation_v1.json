@@ -1,0 +1,14 @@
+{
+  "version": "scale-confirmation-v1",
+  "parent_data": "outputs/multiscale_data/job_20261015_131704_4f9624",
+  "parent_ranker": "outputs/multiscale_ranker/job_20261015_132144_9118b9",
+  "planned_train_sources": 512,
+  "old_validation_sources": 64,
+  "new_validation_sources": 128,
+  "threads": 4,
+  "bootstrap": {"seed": 12, "resamples": 5000},
+  "primary": "full_512 minus E4 mAP on the new source holdout",
+  "secondary": ["full_512 minus full_384: data effect", "full_384 minus E4: frozen prior model confirmation", "full_512 minus structure_512: semantic feature control"],
+  "stop_rule": "exactly two new fixed 100-iteration HGB fits; no tuning, refitting or model selection after new holdout results",
+  "scope": "prospective new-source holdout inside official QVHighlights train, not a new external dataset; old validation descriptive only; fresh80 unused"
+}

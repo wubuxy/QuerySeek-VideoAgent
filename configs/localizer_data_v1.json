@@ -1,0 +1,16 @@
+{
+  "version": "localizer-data-v1",
+  "official_commit": "b7e553ac3b0c898ee6b85e03ee507c064eab89ca",
+  "official_train": "data/highlight_train_release.jsonl",
+  "official_identity_exclusions": ["data/highlight_val_release.jsonl","data/highlight_test_release.jsonl"],
+  "development_datasets": ["data/qvhighlights/dataset.json","data/qvhighlights_test/dataset.json","data/qvhighlights_test200/dataset.json"],
+  "fresh_selection": "data/qvhighlights_fresh80/selection.json",
+  "group_split_seed": 42,
+  "internal_validation_source_fraction": 0.2,
+  "pilot_train_sources": 24,
+  "pilot_validation_sources": 8,
+  "pilot_selection_seed": 4242,
+  "splitter": "sklearn.model_selection.GroupShuffleSplit over original source_video_id",
+  "scope": "annotation preparation/provenance only; no video downloads, feature extraction, model training or fresh evaluation",
+  "labels": "Official train temporal relevance intervals are benchmark localization labels. Outside intervals are not certified semantic negatives or VLM refuted examples."
+}

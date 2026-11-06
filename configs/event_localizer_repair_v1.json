@@ -1,0 +1,23 @@
+{
+  "version": "mask-event-relative-repair-v1",
+  "parent_run": "outputs/token_training_budget/job_20261015_113226_d8456e",
+  "diagnosis_run": "outputs/token_failure_audit/job_20261015_121451_f83cb3",
+  "checkpoint": "arms/delayed/models/256/large/step_1600.pt",
+  "modes": ["mask_only", "event_relative"],
+  "steps": 800,
+  "sampling_seed": 20261016,
+  "warmup_steps": 40,
+  "decay_steps": [400, 640],
+  "learning_rate": 0.0001,
+  "checkpoint_every": 200,
+  "log_every": 50,
+  "torch_threads": 4,
+  "wall_cap_sec": 1800,
+  "bootstrap": {"seed": 12, "resamples": 5000},
+  "sanity": {"queries_per_duration_bin": 4, "steps": 300, "learning_rate": 0.0003, "spec": {"hidden": 64, "heads": 4, "layers": 2, "ffn": 256}, "dropout": "disabled via eval mode for train-only memorization mechanics; not retrieval accuracy"},
+  "supervision": "event_relative: query/event-balanced positive BCE plus per-query background BCE weighted .1; GT-duration-relative SmoothL1; event-balanced original GIoU; original saliency losses unchanged",
+  "initialization": "same immutable parent model weights and torch RNG for both; reset AdamW in both arms and restart same LR schedule; not exact continuation of old optimizer",
+  "primary": "event_relative minus mask_only dense internal-validation mAP at fixed final update; isolates objective bundle under same mask-safe fine-tuning; compare both with immutable parent and E4",
+  "stop_rule": "train-only sanity and two fixed 800-step arms; all validation metrics only after both endpoints saved; no best epoch, objective/seed/threshold search, no fresh queries/labels/inference",
+  "scope": "diagnostic repair on same 254 train sources and repeatedly observed 64-source/65-query internal validation; not independent generalization or full paper replication"
+}

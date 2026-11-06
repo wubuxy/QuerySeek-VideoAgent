@@ -1,0 +1,15 @@
+{
+  "version": "univtg-source-identity-audit-v1",
+  "data_run": "outputs/localizer_data/job_20261013_142102_927805",
+  "study_run": "outputs/localizer_study/job_20261014_031110_1ad60e",
+  "official_interval_url": "https://drive.usercontent.google.com/download?id=1dDPEplMizTANYs-GAtAdkx1UR69deGtx&export=download&confirm=t",
+  "max_download_bytes": 167772160,
+  "timeout_sec": 60,
+  "wall_cap_sec": 180,
+  "download_attempts": 1,
+  "purpose": "full official interval_900k identity intersection only; never feed metadata labels/captions to a locator",
+  "hypothesis": "pretraining source overlap may invalidate independent-generalization claims even without downstream fine tuning",
+  "groups": "study train, study internal validation, official-train partition union, previously excluded identity union; no fresh query/label reads",
+  "stop_rule": "stop on transport/size/parse/identity failure; retain failure, do not substitute public VideoCC release or infer absence from incomplete coverage",
+  "scope": "interval subset audit only; point and curve identities remain unaudited unless exact complete metadata is available; no weights/features/videos/API"
+}

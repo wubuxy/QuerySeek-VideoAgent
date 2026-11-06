@@ -1,0 +1,93 @@
+# QVHighlights 评测专用配置（150s 剪辑，20 查询子集）
+# 相对默认配置的差异（记录于 docs/DECISIONS.md）：
+# - coarse_fps 0.25：离线索引与 OpenCLIP 嵌入成本减半（38 帧/视频，CPU 可承受），
+#   视觉预算 K ∈ {16, 32} 与离线帧密度解耦（E0 均匀抽样按预算选帧）。
+project:
+  name: QuerySeek-VideoAgent
+  cache_root: data/cache
+  output_root: outputs
+  data_root: data
+
+video:
+  max_duration_sec: 1800
+  max_file_size_mb: 1500
+  max_frame_side_px: 512
+  coarse_fps: 0.25
+  frame_sampling: scene_or_uniform
+  scene_threshold: 27.0
+
+asr:
+  backend: auto            # QVHighlights val 无字幕；本地 ASR 未安装 -> 空
+  local_compute_type: int8
+  model: small
+
+embedding:
+  backend: openclip
+  model_name: ViT-B-32
+  pretrained: openai
+  device: cpu
+
+retrieval:
+  top_k_windows: 5
+  min_window_sec: 3
+  max_window_sec: 120
+  frame_budget: 16
+  max_refinement_rounds: 2
+  fusion: rrf
+  subtitle:
+    merge_gap_sec: 1.5
+    min_score: 0.1
+    merge_ratio: 0.5
+  uniform:
+    cluster_gap_sec: 4.0
+    window_pad_sec: 1.5
+    relevant_score: 0.5
+  semantic:
+    top_k_frames: 24
+    min_sim: 0.15
+    cluster_gap_sec: 4.0
+    window_pad_sec: 1.5
+  fusion_config:
+    rrf_k: 60
+    nms_iou: 0.5
+  adaptive:
+    coarse_fps: 1.0
+    coarse_frames_per_window: 4
+    uncertainty_threshold: 0.5
+    min_observations_per_window: 1
+    uncertainty_width_reference_sec: 12
+
+vlm:
+  timeout_sec: 60
+  max_retries: 2        # 有界重试已恢复（DECISIONS #44；仅网络错误/429/5xx，VLMError 不重试）
+  max_frames_per_call: 8
+  temperature: 0.0
+  max_output_tokens: 512
+  trust_env: false      # API 直连不走系统代理（DECISIONS #40）
+  connect_timeout_sec: 8
+  read_timeout_sec: 25
+  write_timeout_sec: 20
+  pool_timeout_sec: 5
+  http2: false
+  max_keepalive_connections: 0
+  max_connections: 1
+  req_log_dir: outputs/vlm_reqlog
+
+agent:
+  max_iterations: 4
+  max_vlm_calls: 8
+  wall_time_limit_sec: 180
+  allow_retry: true
+  checkpoint: sqlite
+
+export:
+  output_format: mp4
+  target_duration_tolerance_sec: 3
+  fps: 30
+  codec: libx264
+  crf: 23
+  audio_codec: aac
+
+logging:
+  redact_secrets: true
+  trace: true

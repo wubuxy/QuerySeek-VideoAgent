@@ -1,0 +1,68 @@
+{
+  "mode": "synthetic_mock_only",
+  "new_real_model_calls": 0,
+  "commands": [
+    {
+      "command": [
+        "python",
+        "scripts/make_synthetic_fixture.py"
+      ],
+      "exit_code": 0,
+      "elapsed_sec": 0.706
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "queryseek.cli",
+        "ingest",
+        "--video",
+        "assets/demo/sample.mp4",
+        "--srt",
+        "assets/demo/sample.srt",
+        "--mock"
+      ],
+      "exit_code": 0,
+      "elapsed_sec": 2.237
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "queryseek.cli",
+        "search",
+        "--video-id",
+        "sample",
+        "--query",
+        "architecture",
+        "--strategy",
+        "curve",
+        "--mock"
+      ],
+      "exit_code": 0,
+      "elapsed_sec": 1.65
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "queryseek.cli",
+        "run",
+        "--video-id",
+        "sample",
+        "--query",
+        "architecture",
+        "--strategy",
+        "curve",
+        "--mock",
+        "--render",
+        "--target-seconds",
+        "10"
+      ],
+      "exit_code": 0,
+      "elapsed_sec": 3.179
+    }
+  ],
+  "rendered_clip_duration_sec": 60.023242,
+  "algorithm_accuracy_claim": false
+}

@@ -1,0 +1,123 @@
+{
+  "groups": {
+    "backtracking/hash_half": {
+      "n": 128,
+      "top1_iou": 0.20591349058434064,
+      "r1_at_05": 0.15625,
+      "r1_at_07": 0.046875,
+      "answered": 84,
+      "abstained": 44,
+      "error": 0,
+      "recovery_eligible": 45,
+      "recovery_successes": 3,
+      "recovery_rate": 0.06666666666666667,
+      "recovery_actions": 13,
+      "unique_frames": 1078,
+      "image_presentations": 1970,
+      "actual_generations": 270,
+      "input_tokens": 393335,
+      "output_tokens": 2476
+    },
+    "backtracking/mirrored_half": {
+      "n": 128,
+      "top1_iou": 0.19805279709885643,
+      "r1_at_05": 0.125,
+      "r1_at_07": 0.0546875,
+      "answered": 88,
+      "abstained": 40,
+      "error": 0,
+      "recovery_eligible": 35,
+      "recovery_successes": 0,
+      "recovery_rate": 0.0,
+      "recovery_actions": 15,
+      "unique_frames": 1032,
+      "image_presentations": 1828,
+      "actual_generations": 259,
+      "input_tokens": 367243,
+      "output_tokens": 2389
+    },
+    "fixed_uniform/global": {
+      "n": 128,
+      "top1_iou": 0.3367899611618977,
+      "r1_at_05": 0.3046875,
+      "r1_at_07": 0.1328125,
+      "answered": 121,
+      "abstained": 7,
+      "error": 0,
+      "recovery_eligible": 0,
+      "recovery_successes": 0,
+      "recovery_rate": null,
+      "recovery_actions": 0,
+      "unique_frames": 2048,
+      "image_presentations": 2048,
+      "actual_generations": 128,
+      "input_tokens": 344998,
+      "output_tokens": 1523
+    },
+    "forward_only/hash_half": {
+      "n": 128,
+      "top1_iou": 0.17344438404005647,
+      "r1_at_05": 0.140625,
+      "r1_at_07": 0.0390625,
+      "answered": 78,
+      "abstained": 50,
+      "error": 0,
+      "recovery_eligible": 45,
+      "recovery_successes": 0,
+      "recovery_rate": 0.0,
+      "recovery_actions": 0,
+      "unique_frames": 1100,
+      "image_presentations": 2076,
+      "actual_generations": 278,
+      "input_tokens": 409048,
+      "output_tokens": 2539
+    },
+    "forward_only/mirrored_half": {
+      "n": 128,
+      "top1_iou": 0.18582689861344448,
+      "r1_at_05": 0.125,
+      "r1_at_07": 0.046875,
+      "answered": 82,
+      "abstained": 46,
+      "error": 0,
+      "recovery_eligible": 35,
+      "recovery_successes": 0,
+      "recovery_rate": 0.0,
+      "recovery_actions": 0,
+      "unique_frames": 1092,
+      "image_presentations": 2036,
+      "actual_generations": 275,
+      "input_tokens": 403112,
+      "output_tokens": 2529
+    }
+  },
+  "paired_backtracking_minus_forward_source_average": {
+    "top1_iou": {
+      "mean": 0.022347502514848037,
+      "ci95": [
+        0.0015779654521544866,
+        0.0440154559379531
+      ]
+    },
+    "r1_at_05": {
+      "mean": 0.0078125,
+      "ci95": [
+        -0.0234375,
+        0.04296875
+      ]
+    },
+    "r1_at_07": {
+      "mean": 0.0078125,
+      "ci95": [
+        -0.015625,
+        0.03125
+      ]
+    }
+  },
+  "source_count": 128,
+  "records": 640,
+  "qa_accuracy": null,
+  "independent_validation": false,
+  "bill": "TODO / unverified",
+  "positive_recovery_effect_within_this_model": false
+}

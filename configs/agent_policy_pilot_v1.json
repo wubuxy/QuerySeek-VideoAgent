@@ -1,0 +1,22 @@
+{
+  "version": "agent-policy-pilot-v1",
+  "dataset": "data/qvhighlights/dataset.json",
+  "selection": "first six existing development queries in file order; no outcome or GT selection",
+  "sample_count": 6,
+  "methods": ["fixed_uniform", "forward_only", "backtracking"],
+  "max_frames": 16,
+  "frames_per_turn": 4,
+  "max_turns": 4,
+  "max_depth": 3,
+  "max_real_calls": 54,
+  "max_output_tokens": 700,
+  "temperature": 0.0,
+  "max_retries": 0,
+  "enable_thinking": false,
+  "seed": 12,
+  "initialization": "agents start in a half selected by SHA256(video_id + query); independent of GT",
+  "primary": "paired top1 temporal IoU and R1@0.5 on all six queries, failures count as zero",
+  "recovery": "conditional results when the initialized half has zero GT overlap; eligibility computed only after rollout",
+  "claims": "development feasibility pilot, no QA accuracy labels, no learned policy, no VTS reproduction, no significance claim",
+  "stop": "no retries; stop new requests after three consecutive API failures; preserve full denominator"
+}

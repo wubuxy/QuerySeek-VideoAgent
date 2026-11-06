@@ -1,0 +1,32 @@
+{
+  "python": "3.13.13",
+  "platform": "win32",
+  "packages": {
+    "numpy": "2.5.3",
+    "torch": "2.14.1+cpu",
+    "torchvision": "0.29.1+cpu",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "pydantic": "2.14.0",
+    "typer": "0.27.3",
+    "rich": "15.0.0",
+    "PyYAML": "6.0.3",
+    "python-dotenv": "1.2.4",
+    "srt": "3.5.3",
+    "rank-bm25": "0.2.2",
+    "httpx": "0.28.1",
+    "scenedetect": "0.7.1",
+    "opencv-python-headless": "5.0.0.93",
+    "pytest": "9.1.1",
+    "pytest-cov": "7.1.0",
+    "langgraph": "1.2.14",
+    "langgraph-checkpoint-sqlite": "3.1.1",
+    "streamlit": "1.65.0",
+    "open-clip-torch": "3.3.0",
+    "pillow": "12.3.0",
+    "transformers": null,
+    "lm-format-enforcer": null
+  },
+  "ffmpeg": "ffmpeg version 9.0-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "scope": "Public snapshot CPU/Mock regression, not the historical GPU training environment"
+}

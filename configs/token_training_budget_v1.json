@@ -1,0 +1,22 @@
+{
+  "version": "token-training-budget-v1",
+  "parent_run": "outputs/token_localizer/job_20261015_095228_110b61",
+  "scale": "256",
+  "capacity": "large",
+  "steps": 1600,
+  "curves": {
+    "early": {"decay_steps": [400, 640], "resume_step": 800},
+    "delayed": {"decay_steps": [800, 1280], "resume_step": 400}
+  },
+  "order": ["early", "delayed"],
+  "evaluation_steps": [200, 400, 600, 800, 1000, 1200, 1400, 1600],
+  "fixed_loss_batches": 4,
+  "torch_threads": 4,
+  "wall_cap_sec": 2400,
+  "bootstrap": {"seed": 12, "resamples": 5000},
+  "primary": "delayed/1600 dense mAP minus original early/800; joint longer-training and delayed-decay intervention",
+  "controls": ["early/1600 minus early/800: updates-only at original schedule", "delayed/1600 minus early/1600: schedule effect at matched updates", "delayed/800 minus early/800: schedule effect at matched original budget"],
+  "stop_rule": "two fixed 1600-update endpoints; evaluate all declared snapshots only after both fits finish; no best-checkpoint or decoder selection; do not extend from observed metrics",
+  "scope": "254 sources/256 queries; same 4347399-parameter CLIP-only 1fps PTS adapted UniVTG; mean query exposure rises from 50 to 100, not full 200-epoch paper training; no independent validation or saturation claim",
+  "fresh_query_label_access": false
+}

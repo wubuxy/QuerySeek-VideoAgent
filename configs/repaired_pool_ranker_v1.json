@@ -1,0 +1,13 @@
+{
+  "version": "repaired-dense-pool-ranker-v1",
+  "upstream_run": "outputs/event_localizer_repair/job_20261015_122455_f6d583",
+  "generator": "event_relative",
+  "reference_ranker_config": "configs/candidate_ranker_v1.json",
+  "controls": ["full", "structure"],
+  "top_k": 5,
+  "nms_iou": 0.7,
+  "bootstrap": {"seed": 12, "resamples": 5000},
+  "primary": "full calibrated repaired-pool mAP minus same repaired raw-foreground ranking on 65 internal validation queries",
+  "stop_rule": "freeze before upstream validation metrics exist; two fixed HGB100-round fits, no early stopping, no OOF claim because generator fitted on all train; no hyperparameter/threshold/model selection",
+  "scope": "calibration of a new fixed learned candidate pool; source-isolated internal validation, previously observed, not independent; train scores are resubstitution only"
+}

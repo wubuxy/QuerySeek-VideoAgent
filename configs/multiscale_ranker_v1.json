@@ -1,0 +1,18 @@
+{
+  "version": "multiscale-data-ranker-v1",
+  "study_run": "outputs/localizer_study/job_20261014_031110_1ad60e",
+  "planned_train_sources": 384,
+  "lengths_sec": [2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128],
+  "stride_fraction": 0.25,
+  "min_stride_sec": 1.0,
+  "threads": 4,
+  "top_k": 5,
+  "nms_iou": 0.9,
+  "folds": 3,
+  "bootstrap": {"seed": 12, "resamples": 5000},
+  "primary": "expanded union/full minus unchanged E4 on the fixed internal 65 queries",
+  "contrasts": "candidate geometry, added training sources, semantic versus structure; exactly five all-data and six OOF fits, no search",
+  "scope": "previously observed internal validation, not independent evaluation; no fresh queries/labels, VLM, pretrained locator or encoder training",
+  "data_policy": "same source/crop hash order and original 256-source prefix, extend to 384 planned sources; actual-duration quality rejects without replacement; network failure blocks; all 64 validation sources unchanged",
+  "model_reference": "ActionFormer multiscale representation motivates a fixed-window coverage diagnostic; this is not ActionFormer architecture or a paper reproduction"
+}

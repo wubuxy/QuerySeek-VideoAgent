@@ -1,0 +1,82 @@
+# QuerySeek-VideoAgent 默认配置（开发说明书 §11 建议初始值）
+# 环境变量覆盖：VLM_*、ASR_*、QUERYSEEK_CACHE_ROOT / QUERYSEEK_OUTPUT_ROOT / QUERYSEEK_DATA_ROOT
+project:
+  name: QuerySeek-VideoAgent
+  cache_root: data/cache
+  output_root: outputs
+  data_root: data
+
+video:
+  max_duration_sec: 1800
+  max_file_size_mb: 1500
+  max_frame_side_px: 512
+  coarse_fps: 0.5          # 离线统一粗抽帧频率（30 分钟视频默认只保留少量帧）
+  frame_sampling: scene_or_uniform  # scene_or_uniform | uniform_only
+  scene_threshold: 27.0    # PySceneDetect ContentDetector 阈值
+
+asr:
+  backend: auto            # srt -> faster-whisper(若已安装) -> disabled
+  local_compute_type: int8
+  model: small
+
+embedding:
+  backend: openclip        # openclip | mock | none；--mock 时强制 mock
+  model_name: ViT-B-32
+  pretrained: openai       # open_clip 预训练权重名（权重许可按模型单独核对）
+  device: cpu
+
+retrieval:
+  top_k_windows: 5
+  min_window_sec: 3
+  max_window_sec: 120
+  frame_budget: 16
+  max_refinement_rounds: 2
+  fusion: rrf              # P2 使用
+  subtitle:
+    merge_gap_sec: 1.5     # 相邻命中字幕合并间隔
+    min_score: 0.1
+    merge_ratio: 0.5       # 相邻段分数低于组内最高分*该比例时不合并（话题连续性启发式）
+  uniform:
+    cluster_gap_sec: 4.0   # 相关帧聚簇的最大时间间隔
+    window_pad_sec: 1.5    # 聚簇窗口两侧外扩
+    relevant_score: 0.5    # 判定帧相关性的分数阈值
+  semantic:                # P2: CLIP/SigLIP 语义检索
+    top_k_frames: 24
+    min_sim: 0.15
+    cluster_gap_sec: 4.0
+    window_pad_sec: 1.5
+  fusion_config:           # P2: RRF 融合 + IoU-NMS 去重
+    rrf_k: 60
+    nms_iou: 0.5
+  adaptive:                # P2: Query-Adaptive 粗到细细化
+    coarse_fps: 1.0
+    coarse_frames_per_window: 4
+    uncertainty_threshold: 0.5
+    min_observations_per_window: 1
+    uncertainty_width_reference_sec: 12
+
+vlm:
+  timeout_sec: 60
+  max_retries: 3
+  max_frames_per_call: 8   # 单次 API 调用最大帧数（自动分块）
+  temperature: 0.0
+  max_output_tokens: 512   # 判定 JSON 输出上限（约束成本，DECISIONS #39）
+
+agent:                     # P3：Agent 总预算（初始检索 + verify + ground 共享）
+  max_iterations: 4
+  max_vlm_calls: 8         # 说明书建议值 4 对 adaptive 初始检索过紧（粗观察+细化+验证），按实际调整并记录于 DECISIONS.md
+  wall_time_limit_sec: 180
+  allow_retry: true
+  checkpoint: sqlite
+
+export:
+  output_format: mp4
+  target_duration_tolerance_sec: 3
+  fps: 30
+  codec: libx264
+  crf: 23
+  audio_codec: aac
+
+logging:
+  redact_secrets: true
+  trace: true

@@ -1,0 +1,16 @@
+{
+  "version": "localizer-query-controls-v1-last80",
+  "study_run": "outputs/localizer_study/job_20261014_031110_1ad60e",
+  "scale": 256,
+  "architectures": ["matched_mlp", "matched_conv"],
+  "controls": ["no_query", "position_only"],
+  "checkpoint_rule": "fixed last epoch 80 for all six arms; reuse full-model last.pt; no validation checkpoint selection",
+  "primary_decoder": "unchanged E4 curve rules on logits, top5/NMS0.9",
+  "secondary_decoder": "unchanged point decoder; no checkpoint reselection",
+  "primary_contrast": "full minus retrained no_query curve MR-full-mAP, separately for MLP and Conv",
+  "secondary_contrasts": "full minus position_only; full minus E4; point decoder; R1 and short mAP",
+  "hypothesis": "query-conditioned heads outperform retrained query-free controls at a fixed training budget; position-only quantifies temporal prior",
+  "cost_cap_sec": 1800,
+  "stop_rule": "exactly four new fits; stop on hash/identity/finite-gradient/reload failure or wall-time cap; retain failures; no seed/width/epoch/threshold search",
+  "scope": "previously observed official-train internal validation, single seed; controls support conditional query-use diagnosis, not independent generalization or action/order understanding"
+}

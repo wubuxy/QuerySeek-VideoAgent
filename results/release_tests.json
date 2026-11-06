@@ -1,0 +1,9 @@
+{
+  "tests": "433",
+  "failures": "0",
+  "errors": "0",
+  "skipped": "6",
+  "time": "133.897",
+  "passed": 427,
+  "scope": "Curated public snapshot; CPU/synthetic/Mock; no new model inference"
+}
