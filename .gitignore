@@ -5,8 +5,8 @@ __pycache__/
 .pytest_cache/
 .coverage
 htmlcov/
-build/
-dist/
+/build/
+/dist/
 .env
 .env.*
 !.env.example
@@ -15,10 +15,10 @@ dist/
 *.log
 *.sqlite*
 *.db
-data/
-outputs/
-models/
-checkpoints/
+/data/
+/outputs/
+/models/
+/checkpoints/
 *.safetensors
 *.pt
 *.pth

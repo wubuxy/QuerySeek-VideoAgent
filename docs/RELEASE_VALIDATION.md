@@ -24,3 +24,7 @@ python -m pytest -q -p no:cacheprovider
 静态凭据扫描无命中；这是发布检查，不能解释为绝对安全保证。
 README 的 Mock 命令另行执行并记录在 `results/mock_quickstart.json`；这些耗时仅描述合成样本，不能用作真实模型延迟。
 GitHub Actions 仅运行声明的核心 Mock 子集；其远程状态以实际 Actions 页面为准。
+
+首次远程检查发现发布 `.gitignore` 的 `models/` 也排除了 `queryseek/models/` 源码。
+已将权重与运行目录规则限制为仓库根目录，补齐该源码包；本地源码与研究结果未变。
+后续发布核对还检查源码清单是否全部入 Git，并从 Git 导出的干净目录验证核心流程。
