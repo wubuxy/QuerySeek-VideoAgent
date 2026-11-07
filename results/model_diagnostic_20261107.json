@@ -1,0 +1,275 @@
+{
+  "metrics": {
+    "nf4_low_json": {
+      "n": 8,
+      "valid": 8,
+      "answered": 8,
+      "correct": 3
+    },
+    "nf4_low_free": {
+      "n": 8,
+      "valid": 8,
+      "answered": 8,
+      "correct": 3
+    },
+    "nf4_high_json": {
+      "n": 8,
+      "valid": 8,
+      "answered": 8,
+      "correct": 2
+    },
+    "nf4_high_free": {
+      "n": 8,
+      "valid": 8,
+      "answered": 8,
+      "correct": 2
+    },
+    "nf4_high_text": {
+      "n": 8,
+      "valid": 8,
+      "answered": 8,
+      "correct": 1
+    },
+    "nf4_high_wrong": {
+      "n": 8,
+      "valid": 8,
+      "answered": 8,
+      "correct": 0
+    },
+    "nf4_high_needs": {
+      "n": 8,
+      "valid": 8,
+      "answered": 1,
+      "correct": 0
+    },
+    "bf16_high_json": {
+      "n": 8,
+      "valid": 8,
+      "answered": 8,
+      "correct": 4
+    }
+  },
+  "synthetic_controls": {
+    "nf4": {
+      "n": 2,
+      "valid": 2,
+      "correct": 2
+    },
+    "bf16": {
+      "n": 2,
+      "valid": 2,
+      "correct": 2
+    }
+  },
+  "paired": {
+    "nf4_low_json__nf4_high_json": {
+      "n": 8,
+      "answer_changed": 2,
+      "gained": 0,
+      "lost": 1
+    },
+    "nf4_low_json__nf4_low_free": {
+      "n": 8,
+      "answer_changed": 0,
+      "gained": 0,
+      "lost": 0
+    },
+    "nf4_high_json__nf4_high_free": {
+      "n": 8,
+      "answer_changed": 0,
+      "gained": 0,
+      "lost": 0
+    },
+    "nf4_high_json__bf16_high_json": {
+      "n": 8,
+      "answer_changed": 2,
+      "gained": 2,
+      "lost": 0
+    },
+    "nf4_high_json__nf4_high_text": {
+      "n": 8,
+      "answer_changed": 5,
+      "gained": 0,
+      "lost": 1
+    },
+    "nf4_high_json__nf4_high_wrong": {
+      "n": 8,
+      "answer_changed": 8,
+      "gained": 0,
+      "lost": 2
+    },
+    "nf4_high_json__nf4_high_needs": {
+      "n": 8,
+      "answer_changed": 8,
+      "gained": 0,
+      "lost": 2
+    }
+  },
+  "scope": "Repeated development sources; privileged temporal evidence; no localization score.",
+  "mock": false,
+  "costs": {
+    "bf16_control": {
+      "generation_attempted": 2,
+      "images": 2,
+      "input_tokens": 271,
+      "output_tokens": 14,
+      "visual_tokens": 108,
+      "elapsed_sec": 1.303246162999983,
+      "peak_allocated_bytes": 17593966592
+    },
+    "bf16_high_json": {
+      "generation_attempted": 8,
+      "images": 128,
+      "input_tokens": 36688,
+      "output_tokens": 74,
+      "visual_tokens": 32096,
+      "elapsed_sec": 15.65459546599999,
+      "peak_allocated_bytes": 18984982528
+    },
+    "nf4_control": {
+      "generation_attempted": 2,
+      "images": 2,
+      "input_tokens": 271,
+      "output_tokens": 14,
+      "visual_tokens": 108,
+      "elapsed_sec": 13.807004174999975,
+      "peak_allocated_bytes": 7373712384
+    },
+    "nf4_high_free": {
+      "generation_attempted": 8,
+      "images": 128,
+      "input_tokens": 36688,
+      "output_tokens": 80,
+      "visual_tokens": 32096,
+      "elapsed_sec": 17.83053705300003,
+      "peak_allocated_bytes": 8668166144
+    },
+    "nf4_high_json": {
+      "generation_attempted": 8,
+      "images": 128,
+      "input_tokens": 36688,
+      "output_tokens": 80,
+      "visual_tokens": 32096,
+      "elapsed_sec": 17.915144434000013,
+      "peak_allocated_bytes": 8667815936
+    },
+    "nf4_high_needs": {
+      "generation_attempted": 8,
+      "images": 128,
+      "input_tokens": 44522,
+      "output_tokens": 1054,
+      "visual_tokens": 32096,
+      "elapsed_sec": 118.78849539799995,
+      "peak_allocated_bytes": 8927359488
+    },
+    "nf4_high_text": {
+      "generation_attempted": 8,
+      "images": 0,
+      "input_tokens": 897,
+      "output_tokens": 80,
+      "visual_tokens": 0,
+      "elapsed_sec": 4.647133687000007,
+      "peak_allocated_bytes": 7380826624
+    },
+    "nf4_high_wrong": {
+      "generation_attempted": 8,
+      "images": 128,
+      "input_tokens": 36688,
+      "output_tokens": 77,
+      "visual_tokens": 32096,
+      "elapsed_sec": 17.200075117999972,
+      "peak_allocated_bytes": 8649496064
+    },
+    "nf4_low_free": {
+      "generation_attempted": 8,
+      "images": 128,
+      "input_tokens": 12192,
+      "output_tokens": 80,
+      "visual_tokens": 7600,
+      "elapsed_sec": 8.552337000000051,
+      "peak_allocated_bytes": 7773188096
+    },
+    "nf4_low_json": {
+      "generation_attempted": 8,
+      "images": 128,
+      "input_tokens": 12192,
+      "output_tokens": 80,
+      "visual_tokens": 7600,
+      "elapsed_sec": 8.412031152000054,
+      "peak_allocated_bytes": 7773188096
+    }
+  },
+  "loads": {
+    "nf4": {
+      "records": 58,
+      "mock": false,
+      "model_load_sec": 79.369127987,
+      "load_error": null,
+      "blocked": null,
+      "new_model_calls": 58
+    },
+    "bf16": {
+      "records": 10,
+      "mock": false,
+      "model_load_sec": 57.18551343399997,
+      "load_error": null,
+      "blocked": null,
+      "new_model_calls": 10
+    }
+  },
+  "input_audit": {
+    "records": 68,
+    "audited_model_inputs": 68,
+    "matched_input_pairs": 24,
+    "metrics_replayed": true,
+    "prompts_verified": 68,
+    "costs": {
+      "generation_attempted": 68,
+      "images": 900,
+      "input_tokens": 217097,
+      "output_tokens": 1633,
+      "visual_tokens": 175896,
+      "elapsed_sec": 224.11059964600003
+    }
+  },
+  "validation": {
+    "local_new_tests": {
+      "passed": 16,
+      "skipped": 0,
+      "seconds": 3.29
+    },
+    "server_related_real_parser": {
+      "passed": 35,
+      "skipped": 0,
+      "seconds": 15.86
+    },
+    "public_full_suite": {
+      "passed": 549,
+      "skipped": 9,
+      "seconds": 147.35
+    }
+  },
+  "backup": {
+    "sha256": "268581c0ce024bc40d17fa19865ef07b68e459be07eca60bbd7eccd12c5e44cd",
+    "source_files_verified": 22,
+    "prepared_images_verified": 130,
+    "scope": "Private source and metadata; source video/model/image bytes excluded.",
+    "files_verified": 49
+  },
+  "preregistered_source": {
+    "archive_sha256": "8b19063afc5b34d73622dccf3975bf8f7792a69a90ef6a36425ca68584f1e20c",
+    "files": {
+      "queryseek/eval/model_diagnostic.py": "dda12db50c13d05c0ed8c26c5561b1861d8f735ae2c83c8f7001a8fd7e120daa",
+      "scripts/probe_model_diagnostic.py": "f4a4a0deee3ddb57141220415b574ea80c1657718983cde2e09f1f0b0ea1f682",
+      "tests/test_model_diagnostic.py": "d2b96e2ebf3b9348c8336258a4b83041162862f958a648018346098cd78d71e8",
+      "configs/model_diagnostic_v1.json": "131426ef24fd0bd4eab42c818b08678cc2aaa829f7085b7c03fc7f1557b0bea8",
+      "docs/EVAL_MODEL_DIAGNOSTIC_V1.md": "833f40cc07193896f8326a2c3e3533b9986a14f4003249eccb81235c9fd8098e"
+    }
+  },
+  "limitations": [
+    "Privileged temporal evidence, not autonomous localization.",
+    "Eight repeatedly examined development sources, not independent confirmation.",
+    "Input identity and synthetic color controls do not establish semantic grounding.",
+    "Needs verification changes prompt, output structure and abstention requirements."
+  ]
+}

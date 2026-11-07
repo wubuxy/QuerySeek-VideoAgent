@@ -1,0 +1,113 @@
+{
+  "metrics": {
+    "nf4_high_needs": {
+      "n": 8,
+      "valid": 8,
+      "answered": 1,
+      "correct": 0,
+      "raw_decision_answered": 1,
+      "raw_decision_correct": 0
+    },
+    "nf4_needs_free": {
+      "n": 8,
+      "valid": 0,
+      "answered": 0,
+      "correct": 0,
+      "raw_decision_answered": 0,
+      "raw_decision_correct": 0
+    },
+    "bf16_needs_json": {
+      "n": 8,
+      "valid": 8,
+      "answered": 1,
+      "correct": 0,
+      "raw_decision_answered": 1,
+      "raw_decision_correct": 0
+    }
+  },
+  "costs": {
+    "nf4_needs_free": {
+      "generation_attempted": 8,
+      "images": 128,
+      "input_tokens": 44522,
+      "output_tokens": 2610,
+      "visual_tokens": 32096,
+      "elapsed_sec": 166.624255115,
+      "peak_allocated_bytes": 8928240640
+    },
+    "bf16_needs_json": {
+      "generation_attempted": 8,
+      "images": 128,
+      "input_tokens": 44522,
+      "output_tokens": 1126,
+      "visual_tokens": 32096,
+      "elapsed_sec": 124.68567193299987,
+      "peak_allocated_bytes": 19244326912
+    }
+  },
+  "mock": false,
+  "loads": {
+    "nf4": {
+      "records": 8,
+      "mock": false,
+      "model_load_sec": 87.56136911300001,
+      "blocked": null,
+      "new_model_calls": 8
+    },
+    "bf16": {
+      "records": 8,
+      "mock": false,
+      "model_load_sec": 55.336591338000005,
+      "blocked": null,
+      "new_model_calls": 8
+    }
+  },
+  "matched_input_pairs": 16,
+  "new_model_calls": 16,
+  "scope": "Post-hoc development diagnosis, separately frozen; raw decision intent is not a validated answer.",
+  "input_audit": {
+    "records": 16,
+    "matched_input_pairs": 16,
+    "metrics_replayed": true,
+    "raw_decisions_replayed": true,
+    "new_model_calls": 16
+  },
+  "validation": {
+    "local_new_tests": {
+      "passed": 7,
+      "skipped": 0,
+      "seconds": 1.95
+    },
+    "server_related_real_parser": {
+      "passed": 42,
+      "skipped": 0,
+      "seconds": 16.23
+    },
+    "public_full_suite": {
+      "passed": 556,
+      "skipped": 9,
+      "seconds": 137.26
+    }
+  },
+  "backup": {
+    "sha256": "ba4a1f93c635877fa2eb277ec0d2477d62625c01f69a1ff5b474bd27cfb0c723",
+    "source_files_verified": 23,
+    "prepared_images_verified": 128,
+    "scope": "Private source and metadata; no image/video/model bytes.",
+    "files_verified": 46
+  },
+  "preregistered_source": {
+    "archive_sha256": "b3db68653ad638791525464d96485a1023b6301ec5112a6ccf59b1bbd0c5696e",
+    "files": {
+      "scripts/probe_verifier_diagnostic.py": "180ed1e594c89a0bc2a303260674a21abef19501c7c236fabf36ffebf28f2684",
+      "tests/test_verifier_diagnostic.py": "e0b9affd6c2a9afc482c4f40a6166b7b45a3b9df9b9f640542a2c696ce38efde",
+      "configs/verifier_diagnostic_v1.json": "2560ac48fcb72f8626eddcd67eba26ce91c5e4f150fd7e47754558a3b8b048e8",
+      "docs/EVAL_VERIFIER_DIAGNOSTIC_V1.md": "fbcc34dd8f03132faf169709bca954185dd6dd176eba67188cf9a276ce3a779c"
+    }
+  },
+  "limitations": [
+    "Post-hoc follow-up, frozen before its sixteen new calls.",
+    "Privileged temporal evidence and repeatedly examined development sources.",
+    "Raw decision intent is not a validated system answer; no output repair."
+  ]
+}

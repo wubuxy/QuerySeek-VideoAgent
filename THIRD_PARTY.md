@@ -1,5 +1,9 @@
 # Third-party components and attribution
 
+## 2026-11-07 固定证据的模型诊断
+
+复用已登记的Qwen3-VL-8B-Instruct、Transformers 4.57.6、bitsandbytes NF4、lm-format-enforcer 0.11.3、PyTorch及Pillow。使用同权重的NF4/BF16加载、官方processor与生成接口，不复制或修改上游代码；无新依赖/模型下载。新增提示/解码/分辨率对照、图像tensor摘要审计和分离评估胶水；合成色卡仍来自仓库统一fixture生成器。版本、URL、许可证和版权位置沿用下方组件条目。
+
 ## 2026-11-07 按证据缺失选择观察
 
 直接调用既有FFmpeg源PTS抽帧、Qwen3-VL/NF4与lm-format-enforcer 0.11.3；Pillow服务器12.0.0（https://github.com/python-pillow/Pillow，MIT-CMU，包内pillow-12.0.0.dist-info/licenses/LICENSE）用于原观察图的确定性crop与PNG保存，版本进入缓存签名。无上游代码复制或修改，无新依赖/权重下载。新增部分证据结构、粗区域映射、动作路由与两策略共享初态实验胶水；完整图与裁切共享真实源PTS，不作为两个时刻的证据。其他组件版本/许可证沿用下方记录。

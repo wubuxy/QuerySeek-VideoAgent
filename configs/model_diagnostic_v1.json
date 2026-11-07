@@ -1,0 +1,84 @@
+{
+  "requests_sha256": "a4ff948561a333b8cab132205b17edb396422a8815150022a3f6715663cd3426",
+  "labels_sha256": "7963f3a55adb2c6cf6ad6f61376aa5c0cdc60489fd575979f857c879f0edfa18",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "model_manifest_sha256": "7c32629cb034e2618e9cbdb946fe142cc5a188f425641ec39881b53136e59268",
+  "seed": 12,
+  "max_output_tokens": 512,
+  "max_retries": 0,
+  "version": "model-diagnostic-v1",
+  "date": "2026-11-07",
+  "sample_count": 8,
+  "frames": 16,
+  "max_generations": 68,
+  "oracle_prepared_sha256": "b63ef9bf4b6016a4d48ec3b5dec93c7352c179874470536e5e4b658d2b9dfb93",
+  "plans_sha256": "0272f9e89edb3bb4f7ca840b5fc09fa47b0ea3cff8c507178f81b26d00fe00b8",
+  "conditions": [
+    {
+      "name": "nf4_low_json",
+      "precision": "nf4",
+      "pixels": 65536,
+      "constrained": true,
+      "input": "oracle",
+      "prompt": "minimal"
+    },
+    {
+      "name": "nf4_low_free",
+      "precision": "nf4",
+      "pixels": 65536,
+      "constrained": false,
+      "input": "oracle",
+      "prompt": "minimal"
+    },
+    {
+      "name": "nf4_high_json",
+      "precision": "nf4",
+      "pixels": 262144,
+      "constrained": true,
+      "input": "oracle",
+      "prompt": "minimal"
+    },
+    {
+      "name": "nf4_high_free",
+      "precision": "nf4",
+      "pixels": 262144,
+      "constrained": false,
+      "input": "oracle",
+      "prompt": "minimal"
+    },
+    {
+      "name": "nf4_high_text",
+      "precision": "nf4",
+      "pixels": 262144,
+      "constrained": true,
+      "input": "text",
+      "prompt": "minimal"
+    },
+    {
+      "name": "nf4_high_wrong",
+      "precision": "nf4",
+      "pixels": 262144,
+      "constrained": true,
+      "input": "wrong",
+      "prompt": "minimal"
+    },
+    {
+      "name": "nf4_high_needs",
+      "precision": "nf4",
+      "pixels": 262144,
+      "constrained": true,
+      "input": "oracle",
+      "prompt": "needs"
+    },
+    {
+      "name": "bf16_high_json",
+      "precision": "bf16",
+      "pixels": 262144,
+      "constrained": true,
+      "input": "oracle",
+      "prompt": "minimal"
+    }
+  ],
+  "new_training": false,
+  "new_benchmark_frames": 0
+}

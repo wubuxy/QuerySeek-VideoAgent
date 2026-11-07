@@ -48,3 +48,9 @@
 ## 9. 按证据需求观察
 
 `python -m pytest tests/test_evidence_needs.py -q` 使用统一合成fixture，无网络。真实parser需要lm-format-enforcer==0.11.3。研究入口 `scripts/probe_evidence_needs.py` 的run拒收标签，evaluate另读冻结标签；需已获许可的原数据、固定准备SHA及本地模型，详见 [协议](EVAL_EVIDENCE_NEEDS_V1.md)。裁切复用Pillow，PNG图像及父图/源PTS/库版本共同记入缓存清单。
+
+## 10. 固定证据的模型诊断
+
+`python -m pytest tests/test_model_diagnostic.py -q` 无需GPU或网络，使用统一fixture；真实研究按 `scripts/probe_model_diagnostic.py` 的prepare、两精度run、evaluate分阶段执行，详见[冻结协议](EVAL_MODEL_DIAGNOSTIC_V1.md)。推理与标签评估分开，所有实际图像、张量与提示摘要留档，完整原始媒体只保存在私有环境。
+
+复杂核验跟进入口为 `scripts/probe_verifier_diagnostic.py`，依赖已冻结首轮准备目录和配置，通过独立配置执行NF4自由解码/BF16受约束核验，evaluate重用首轮NF4结果。测试：`python -m pytest tests/test_verifier_diagnostic.py -q`。协议与原始意图统计边界见[跟进记录](EVAL_VERIFIER_DIAGNOSTIC_V1.md)。

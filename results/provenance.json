@@ -299,7 +299,16 @@
     "scripts/probe_evidence_needs.py": "f45567e63aea7b89352613e09d35b3a069b71623e62bdfd05402911af621d7be",
     "tests/test_evidence_needs.py": "dc96d2beb7773314969beb69f505d93a9d3c69350716fbcad09e35e090793161",
     "configs/evidence_needs_v1.json": "99402d126ea37a9889e8a967d6465982e926d3ad1019c76265df6565e3f26f98",
-    "docs/EVAL_EVIDENCE_NEEDS_V1.md": "9573a63516bdc16a21217f5e33c95dd33c1dd9af18991d24ac73e946759bf6e9"
+    "docs/EVAL_EVIDENCE_NEEDS_V1.md": "9573a63516bdc16a21217f5e33c95dd33c1dd9af18991d24ac73e946759bf6e9",
+    "queryseek/eval/model_diagnostic.py": "dda12db50c13d05c0ed8c26c5561b1861d8f735ae2c83c8f7001a8fd7e120daa",
+    "scripts/probe_model_diagnostic.py": "f4a4a0deee3ddb57141220415b574ea80c1657718983cde2e09f1f0b0ea1f682",
+    "tests/test_model_diagnostic.py": "d2b96e2ebf3b9348c8336258a4b83041162862f958a648018346098cd78d71e8",
+    "configs/model_diagnostic_v1.json": "131426ef24fd0bd4eab42c818b08678cc2aaa829f7085b7c03fc7f1557b0bea8",
+    "docs/EVAL_MODEL_DIAGNOSTIC_V1.md": "e40c4d1a6e9285f843320bd3e4b17e94d269435082acb493e94823720c8692f3",
+    "scripts/probe_verifier_diagnostic.py": "180ed1e594c89a0bc2a303260674a21abef19501c7c236fabf36ffebf28f2684",
+    "tests/test_verifier_diagnostic.py": "e0b9affd6c2a9afc482c4f40a6166b7b45a3b9df9b9f640542a2c696ce38efde",
+    "configs/verifier_diagnostic_v1.json": "2560ac48fcb72f8626eddcd67eba26ce91c5e4f150fd7e47754558a3b8b048e8",
+    "docs/EVAL_VERIFIER_DIAGNOSTIC_V1.md": "28d03b4e9e613cf9adeff75986fdc9474b8f57761b1310e0a6a50b4c46b91b45"
   },
   "publication_changes": {
     "docs/EVAL_GROUNDED_QA_INPUT_STUDY.md": {
@@ -422,5 +431,21 @@
     "source_archive_sha256": "1b7181a18ccccff64d169d785b34bb8d2b908b3252fe05bfb4ee1c7b43aa3c17",
     "backup_sha256": "16d175c21adcc40d6eabe8c6b5cc7f897567790baa76a18ee7613b076e985677",
     "new_model_calls": 82
+  },
+  "model_diagnostic_extension": {
+    "date": "2026-11-07",
+    "result": "results/model_diagnostic_20261107.json",
+    "result_sha256": "a6764b4dda5b0cd76d986cc39ee392af8adfc534249ae001cfd173aa68afadae",
+    "source_archive_sha256": "8b19063afc5b34d73622dccf3975bf8f7792a69a90ef6a36425ca68584f1e20c",
+    "backup_sha256": "268581c0ce024bc40d17fa19865ef07b68e459be07eca60bbd7eccd12c5e44cd",
+    "new_model_calls": 68
+  },
+  "verifier_diagnostic_extension": {
+    "date": "2026-11-07",
+    "result": "results/verifier_diagnostic_20261107.json",
+    "result_sha256": "7ccc4fc1b3e372a83ff032e3e1de005ae1abd770ca1b7ba841dd074070fdc7a5",
+    "source_archive_sha256": "b3db68653ad638791525464d96485a1023b6301ec5112a6ccf59b1bbd0c5696e",
+    "backup_sha256": "ba4a1f93c635877fa2eb277ec0d2477d62625c01f69a1ff5b474bd27cfb0c723",
+    "new_model_calls": 16
   }
 }
