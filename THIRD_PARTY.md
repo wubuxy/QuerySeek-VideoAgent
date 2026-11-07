@@ -1,5 +1,12 @@
 # Third-party components and attribution
 
+## 2026-11-07 视觉变化时间树
+
+VTS https://github.com/CeeZh/VTS 固定commit `184310c5eec2193060a5c95bbda4ad443dae4e25`，MIT，Copyright (c) 2026 CeeZh。从 `infer/utils/segmentation.py`（SHA256 `d8a2bd7c4f54be62a2b2fb079bd87fabdb394dea90a6441477209e017c1c2dac`）抽取 `_compute_frame_deltas`、`_detect_boundaries_topk`、`_detect_boundaries_threshold`、`_boundaries_to_segments` 四函数至 `queryseek/vendor/vts/boundaries.py`，函数体未改；删除其余解码/服务依赖和未用功能，新增来源模块头。完整版权与MIT许可在同目录LICENSE，随wheel分发。
+媒体抽帧继续使用现有FFmpeg真实源PTS实现，OpenCLIP 3.3.0（MIT，https://github.com/mlfoundations/open_clip）直接调用，无上游修改；新时间节点/导航/哈希缓存为本项目胶水。CLIP模型复用此前本机缓存的 `timm/vit_base_patch32_clip_224.openai` revision `a6f597a30f7b82c51704746581f9a4e41421e878` 的OpenAI CLIP权重（MIT），SHA256 `e6d1bd7789aa45192b3bf90570a789b478bae1b74ebcce7eddd908e83a2b7c31`，不分发权重；显式QuickGELU。timm1.0.30（Apache-2.0，https://github.com/huggingface/pytorch-image-models）、ftfy6.3.1（Apache-2.0，https://github.com/rspeer/python-ftfy）为OpenCLIP依赖，直接安装/调用、不修改；包内许可证在各自dist-info/licenses。NumPy/Pillow/Torch复用，版本写入运行清单。
+算法适配差异：实际源PTS、bin中心采样、本项目编码器、独立缓存与有限节点预算；不称完整VTS复现或论文成绩。详细协议见 `docs/EVAL_SCENE_TREE_V1.md`。
+服务器额外补齐ftfy所需wcwidth0.2.14（MIT，https://github.com/jquast/wcwidth），未修改，许可证位于对应dist-info。安装后pip check通过；Torch2.5.1/torchvision0.20.1保持原版本。
+
 Project code is MIT; upstream code, datasets and weights retain their own terms. No videos, official annotations, model weights or paper PDFs are included in this release.
 
 ## Vendored source

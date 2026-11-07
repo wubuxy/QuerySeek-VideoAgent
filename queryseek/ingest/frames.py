@@ -71,7 +71,7 @@ def extract_uniform_frames(
         "-q:v", str(_FRAME_JPG_QUALITY),
         str(out_dir / "u_%06d.jpg"),
     ]
-    proc = subprocess.run(cmd, shell=False, capture_output=True, timeout=600)
+    proc = subprocess.run(cmd, shell=False, stdin=subprocess.DEVNULL, capture_output=True, timeout=600)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg 抽帧失败: {proc.stderr.decode(errors='replace')[:500]}")
 
@@ -115,7 +115,9 @@ def extract_scene_frames(
             "-q:v", str(_FRAME_JPG_QUALITY),
             str(img),
         ]
-        proc = subprocess.run(cmd, shell=False, capture_output=True, timeout=120)
+        # The caller may itself read a shell script from a pipe. FFmpeg must
+        # never interpret that shared input as interactive q/+/- commands.
+        proc = subprocess.run(cmd, shell=False, stdin=subprocess.DEVNULL, capture_output=True, timeout=120)
         if proc.returncode != 0 or not img.is_file():
             continue  # 单帧抽取失败（如尾部不足）不致命，跳过
         stamps=source_timestamps(proc.stderr)
@@ -204,7 +206,7 @@ def extract_local_frames(
         "-q:v", str(_FRAME_JPG_QUALITY),
         str(out_dir / f"{tag}_%04d.jpg"),
     ]
-    proc = subprocess.run(cmd, shell=False, capture_output=True, timeout=300)
+    proc = subprocess.run(cmd, shell=False, stdin=subprocess.DEVNULL, capture_output=True, timeout=300)
     if proc.returncode != 0:
         raise RuntimeError(f"ffmpeg 局部抽帧失败: {proc.stderr.decode(errors='replace')[:300]}")
 

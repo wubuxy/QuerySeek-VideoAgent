@@ -33,3 +33,9 @@ GitHub Actions 仅运行声明的核心 Mock 子集；其远程状态以实际 A
 
 公开工作树相关测试28 passed / 1 skipped（3.99秒）：grounded QA评测、全片基线、输入诊断、帧提取时间与错误日志。唯一跳过项需要本地Qwen processor；服务器实际processor检查已在23项输入测试中通过，帧提取回归另6项通过。
 这不是重新执行427项发布全套，也不是Mock准确率。64次真实推理的聚合记录、源码SHA及备份验证见 `results/grounded_qa_input_study_20261107.json`；媒体、标注和画面不分发。CI新增合成输入诊断与缺PTS时保留日志的回归。
+
+## 2026-11-07 视觉变化时间树与完整回归
+
+新增惰性多分支树、源PTS/特征缓存、独立导航工具和标签隔离结构检查；FFmpeg三个抽帧入口隔离stdin，服务器合成复现确认修复。相关协议和真实结果见 [时间树记录](EVAL_SCENE_TREE_V1.md)。
+本次在独立公开工作树重新执行完整pytest：**464 passed / 7 skipped，143.56秒**。跳过为固定本地tokenizer、Qwen processor各1项，Windows symlink权限1项，未分发官方Moment-DETR源码对照4项；不把跳过称作通过。服务器相关52项通过（11.29秒），包括真实FFmpeg管道输入回归。CI增加时间树、缓存完整性、标签隔离、失败成本、导航和stdin回归。
+VTS的4个MIT函数保留原函数体、来源与完整LICENSE，UniVTG/VTS许可证均纳入setuptools package-data。真实8来源结果完成备份及本机精确重放；无新VLM调用或训练。公开聚合见 `results/scene_tree_probe_20261107.json`。

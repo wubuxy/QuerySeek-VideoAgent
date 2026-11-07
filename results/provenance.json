@@ -65,7 +65,7 @@
     "queryseek/ingest/__init__.py": "9a3d7783581ab502ff12ea11e9f2f48681f29c9c31d3cfc4b2876f1f5020f52a",
     "queryseek/ingest/cache.py": "419567834b7a4022221655020c99acad6d3d12a069f15b694d7dd288dad0e09f",
     "queryseek/ingest/ffprobe.py": "fced2de38a858d13e28e7a46cf969a8b0e9bab78b69d82c68bfe27c899afd08f",
-    "queryseek/ingest/frames.py": "6c9392a5e9d5bb12a91282fe3656e7979908b44caf8384155c5d24d10717c6c8",
+    "queryseek/ingest/frames.py": "9825a5cda426c2f959a62d9b056e8c9a5356b4d37fd157b14a27cd1c5c732d80",
     "queryseek/ingest/pipeline.py": "9a9b025fbe4ffd548755f63566855a1b37cfee8ed675241f90ab3ab0b7ec0889",
     "queryseek/ingest/registry.py": "90aad205df9ffbc4c93ca1458e0d62cd8b9db58f3b69a258a7ec2a5e1dd59a34",
     "queryseek/ingest/scenes.py": "2f13da8c35d5bafa6ee99475b549ce3635186fdd10b347e9b0185f4e093f0496",
@@ -249,7 +249,7 @@
     "configs/univtg_input_audit_v1.json": "803a6463fd2a3614e4ab4b195b1b97bc2b67c083d25685e5f2fc58b74bca7cba",
     "configs/univtg_input_transfer_v1.json": "6d57f3f3d4579b2222c8a5877d8b6462a83a0765747582958c62e3074612772c",
     "configs/univtg_source_audit_v1.json": "30853c0098e45c2edf3834239c342ca7e214d68f8f2c04e6f6a3481dbbea117a",
-    "pyproject.toml": "af6630ade31589f588c6fd08727b4a91ce7a79827367b2fe65fb8047f0b5ce80",
+    "pyproject.toml": "5f6f9fba83a628a5220539b2602104e14da1718ef0eacf9944006b5cc0489e3d",
     ".env.example": "43a608a619e57fa94072443f1636768b11d3e64f33bee54251dcd1ded94813a8",
     "queryseek/eval/grounded_qa.py": "bae0f86e57073ccfde268b945d346dd388bef77962f242a4ec53d8537e5aae57",
     "scripts/prepare_grounded_qa.py": "cccb15b328da75c5e190fc4fff4001c6bcfdf10f50e51de5a6c27c121df1f4ca",
@@ -261,12 +261,28 @@
     "scripts/grounded_qa_input_study.py": "fb0dfddb53be2671f180bd6b63667068ed51a1194f2eefa843bca231917af8bb",
     "tests/test_grounded_qa_input_study.py": "8ec047e1d231663050542f53b0a6ca2f5ffae026a0e7260663f2ccd0ef974374",
     "docs/EVAL_GROUNDED_QA_INPUT_STUDY.md": "5641c13bbc0b068ce602619dfd7353f6469c9491b0d9cf67a30f1e7ed5be45d9",
-    "docs/EVAL_GROUNDED_QA_R1.md": "dfb2a4f22d3300e0ccf7a602c61fbd8674e45d93abbc7267ae5bf758421d0621"
+    "docs/EVAL_GROUNDED_QA_R1.md": "dfb2a4f22d3300e0ccf7a602c61fbd8674e45d93abbc7267ae5bf758421d0621",
+    "queryseek/agent/temporal_tree.py": "650b07559bb2946e4b3add3f56f09a3a09edbcd2fdd25aa83bc66d4a31737182",
+    "queryseek/agent/tree_observations.py": "9f8aa479e61a5ddf657b6d9131db12e185427cd3cfb6c9bf818ef4ad90aca20a",
+    "queryseek/vendor/vts/__init__.py": "94cfdd244eeb9e4e16db15f494141ba7e347aab0c0537f2a99e627d591d27ea5",
+    "queryseek/vendor/vts/boundaries.py": "2ff7c61a663d8b34d11ee19a7caeb62385ea5613be48bfd62ef2edb7363c716d",
+    "queryseek/vendor/vts/LICENSE": "7857495f83b2fc30e628dbb14b62daba60949a80f4485ead3336375b43707f6a",
+    "scripts/probe_scene_tree.py": "c2f01c774238315456a71aada4ce7f296f7d850edd3cbb69286fbd1015650c49",
+    "tests/test_temporal_tree.py": "d30436948ef25b639e1dd659905fb0741dbc1ed62f7ecd2beeba06cb409dcee9",
+    "configs/scene_tree_probe_v1.json": "c4593f4058cf069e967fa33623448041b7713a5d2ccef5d7614c33af9a8b7953",
+    "tests/test_frame_stdin_isolation.py": "53571145151750a2ebd8ce37c29001049b130961607107cfe11c3ca57d065f25",
+    "docs/EVAL_SCENE_TREE_V1.md": "41ea1b4992d4b9f18635654cb43cc2330b578636af1fa1f2b224c1c67218e20d"
   },
   "publication_changes": {
-    "pyproject.toml": {
-      "reason": "Include vendored UniVTG LICENSE in built distributions",
-      "published_sha256": "a34306bfb7805ebde1f0ce521b7dfe040f113066a1889a91930c5a200e0d6461"
+    "docs/EVAL_GROUNDED_QA_INPUT_STUDY.md": {
+      "reason": "Pre-existing public documentation updates; original source hash retained as historical provenance.",
+      "published_sha256": "c3025a97df576f40fb20079f22286cbc56f956ec82eb7273c042011ef0bddbf1",
+      "unchanged_by_scene_tree_extension": true
+    },
+    "docs/EVAL_GROUNDED_QA_R1.md": {
+      "reason": "Pre-existing public documentation updates; original source hash retained as historical provenance.",
+      "published_sha256": "8e7b93ad9e9c72b095cf90611150ad2b43dfa90c4084d60884e936bc62fcf908",
+      "unchanged_by_scene_tree_extension": true
     }
   },
   "grounded_qa_extension": {
@@ -301,5 +317,13 @@
     "archive_sha256": "c9d6ccde16c46dfc86d037dff2d547c2dcccc88278b33ac23dcc3c8fae08bdbe",
     "local_replay_exact": true,
     "publication_note": "Aggregate-only release. Original executable source matches the verified server execution hashes; private media, annotations, frames and connection configuration excluded."
+  },
+  "scene_tree_extension": {
+    "date": "2026-11-07",
+    "result": "results/scene_tree_probe_20261107.json",
+    "result_sha256": "b6fe03a610c441bf6c450fdc0c5f1282b3223484dc9ede0872ea60cc231ddb5c",
+    "scope": "Real CLIP structural development check, 8 videos; no VLM calls, no training, no QA claims.",
+    "config_sha256": "c4593f4058cf069e967fa33623448041b7713a5d2ccef5d7614c33af9a8b7953",
+    "archive_sha256": "9e19fb08bd9a6d2bf11317805403a9babe255eb2f48991c57f4baf0ccbd9bd1a"
   }
 }

@@ -75,6 +75,7 @@ include = ["queryseek*"]
 
 [tool.setuptools.package-data]
 "queryseek.vendor.univtg" = ["LICENSE"]
+"queryseek.vendor.vts" = ["LICENSE"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

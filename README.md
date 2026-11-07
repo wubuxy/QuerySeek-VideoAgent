@@ -7,7 +7,7 @@
 [![Core mock tests](https://github.com/wubuxy/QuerySeek-VideoAgent/actions/workflows/mock-tests.yml/badge.svg)](https://github.com/wubuxy/QuerySeek-VideoAgent/actions/workflows/mock-tests.yml)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](pyproject.toml)
 [![Model](https://img.shields.io/badge/Qwen3--VL-8B%20%7C%20QLoRA-8B5CF6?style=flat-square)](configs/agent_sft_v1.json)
-[![Tests](https://img.shields.io/badge/Release_tests-427_passed_%C2%B7_6_skipped-16A085?style=flat-square)](docs/RELEASE_VALIDATION.md)
+[![Tests](https://img.shields.io/badge/Release_tests-464_passed_%C2%B7_7_skipped-16A085?style=flat-square)](docs/RELEASE_VALIDATION.md)
 [![License](https://img.shields.io/badge/License-MIT-0EA5E9?style=flat-square)](LICENSE)
 
 [项目亮点](#highlights) · [系统架构](#architecture) · [实验结果](#results) · [快速开始](#quickstart) · [复现指南](docs/REPRODUCIBILITY.md)
@@ -42,6 +42,16 @@ QuerySeek 将自然语言查询转换为带时间戳的视频证据与可导出�
 <p>按源视频隔离数据、冻结配置、保留失败分母、记录调用成本，并进行来源配对统计。提供合成视频、离线 Mock、自动化测试与结果来源哈希。</p>
 </td>
 </tr>
+<tr>
+<td valign="top">
+<h3>🌳 按视觉变化建树</h3>
+<p>复用 VTS 边界算法与 OpenCLIP，按需展开多分支时间窗；支持指定子节点深入、兄弟切换、父节点回退和补看，独立记录观察预算与证据状态。</p>
+</td>
+<td valign="top">
+<h3>⚡ 单卡长视频结构验证</h3>
+<p>在单张 RTX A5000 上完成 8 段约 19–47 分钟视频的结构检查：24 个节点观察、145 个候选节点，保留真实源时间戳、缓存与计算成本。<a href="docs/EVAL_SCENE_TREE_V1.md">查看实测记录 →</a></p>
+</td>
+</tr>
 </table>
 
 **自主实现**：时间与证据接口、候选生成与融合、搜索状态机、训练数据适配、评测和失败诊断。基础模型与工具采用成熟开源组件，复用记录见 [THIRD_PARTY.md](THIRD_PARTY.md)。
@@ -71,6 +81,7 @@ flowchart LR
 | 工程设计 | 实现 |
 | :--- | :--- |
 | 时间契约 | 对外统一浮点秒与半开区间 `[start_sec, end_sec)`；管线 v2 保留源 PTS |
+| 视觉变化时间树 | 惰性多分支节点、真实 PTS 边界范围、独立导航与观察预算 |
 | 可复用缓存 | 视频 SHA256、管线版本与步骤配置共同构成缓存键 |
 | 受控执行 | 结构化剪辑区间、参数列表执行外部命令、超时与输出路径约束 |
 | 可观察性 | 搜索轨迹、证据引用、调用统计、预测与导出 manifest |
@@ -146,7 +157,7 @@ python -m pip install -e ".[dev,agent,research]"
 python -m pytest -q
 ```
 
-公开版本本地实测 **427 passed / 6 skipped**；GitHub Actions 持续执行核心合成与 Mock 测试。测试环境和运行记录见 [发布验证](docs/RELEASE_VALIDATION.md)。
+2026-11-07 公开版本本地实测 **464 passed / 7 skipped**；GitHub Actions 持续执行核心合成与 Mock 测试。测试环境和运行记录见 [发布验证](docs/RELEASE_VALIDATION.md)。
 
 </details>
 

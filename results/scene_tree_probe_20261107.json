@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-07",
+  "scope": "8-source development geometry; no QA or learned policy evaluation.",
+  "methods": {
+    "binary_uniform": {
+      "best_child_union_iou": 0.026991738806135063,
+      "gt_segment_containment": 1.0
+    },
+    "same_arity_uniform": {
+      "best_child_union_iou": 0.0862434148412773,
+      "gt_segment_containment": 1.0
+    },
+    "clip_change": {
+      "best_child_union_iou": 0.08829330786348569,
+      "gt_segment_containment": 1.0
+    }
+  },
+  "diagnostics": {
+    "root_pts_hit": 4,
+    "forced_minimum_roots": 0,
+    "clip_minus_same_arity_mean_iou_pp": 0.20498930222083833,
+    "paired_clip_wins_losses_ties": [
+      4,
+      4,
+      0
+    ],
+    "boundary_bracket_width_sec": {
+      "min": 18.08473332999995,
+      "median": 27.016660149999893,
+      "max": 44.366666800000075
+    },
+    "observed_images_total": 1536,
+    "frame_seconds_sum": 98.05487187699994,
+    "feature_seconds_sum": 17.173481903999942,
+    "torch_peak_allocated_gib": 0.6198797225952148,
+    "video_duration_range_sec": [
+      1157.312,
+      2839.795854
+    ],
+    "total_nodes": 145,
+    "root_children_histogram": {
+      "4": 2,
+      "5": 2,
+      "6": 1,
+      "7": 2,
+      "8": 1
+    }
+  },
+  "successful_run_cost": {
+    "scheduled": 8,
+    "completed": 8,
+    "failed": 0,
+    "mock": false,
+    "model_load_sec": 27.974236337999997,
+    "probe_elapsed_sec": 126.063885474,
+    "observed_nodes": 24,
+    "encoded_images": 768,
+    "new_frames_extracted": 768,
+    "baseline_reused_nodes": 0,
+    "feature_cache_hits": 12,
+    "observation_costs_complete": true,
+    "observation_cost_scope": "Completed observations, including partial trees. Failed attempts may incur additional unmeasured work.",
+    "peak_allocated_bytes": 665590784,
+    "new_vlm_calls": 0,
+    "new_training": false,
+    "qa_accuracy": null
+  },
+  "cost_caveat": "Mixed cache run. PyTorch peak allocated excludes CUDA context and reserved memory; not total device memory or cold-start latency.",
+  "initial_failed_attempt": {
+    "scheduled": 8,
+    "completed": 2,
+    "failed": 6,
+    "cause": "FFmpeg inherited piped shell stdin and could interpret it as interactive commands.",
+    "fix": "Use subprocess.DEVNULL for all three FFmpeg frame extractors; keep original run and code.",
+    "cost_accounting_complete": false
+  },
+  "interpretation": "CLIP versus same-arity uniform: +0.205 pp oracle geometry IoU, 4 wins / 4 losses. No established QA or learned-policy improvement.",
+  "verification": {
+    "evaluation_exactly_replayed": true,
+    "costs_exactly_replayed": true,
+    "all_partitions_valid": true,
+    "navigation_checks_passed": 8
+  },
+  "backup_verification": {
+    "archive_sha256": "9e19fb08bd9a6d2bf11317805403a9babe255eb2f48991c57f4baf0ccbd9bd1a",
+    "files_verified": 132,
+    "execution_source_files_verified": 10,
+    "frame_nodes_verified_remote": 24,
+    "feature_nodes_verified_remote": 24
+  },
+  "source_manifest": {
+    "sha256": "5379ba96d75a1e9192fc1d95b263a7453605e90971c04c68832a7905f2ea9d29",
+    "files": {
+      "queryseek/agent/temporal_tree.py": "650b07559bb2946e4b3add3f56f09a3a09edbcd2fdd25aa83bc66d4a31737182",
+      "queryseek/agent/tree_observations.py": "9f8aa479e61a5ddf657b6d9131db12e185427cd3cfb6c9bf818ef4ad90aca20a",
+      "queryseek/vendor/vts/__init__.py": "94cfdd244eeb9e4e16db15f494141ba7e347aab0c0537f2a99e627d591d27ea5",
+      "queryseek/vendor/vts/boundaries.py": "2ff7c61a663d8b34d11ee19a7caeb62385ea5613be48bfd62ef2edb7363c716d",
+      "queryseek/vendor/vts/LICENSE": "7857495f83b2fc30e628dbb14b62daba60949a80f4485ead3336375b43707f6a",
+      "scripts/probe_scene_tree.py": "c2f01c774238315456a71aada4ce7f296f7d850edd3cbb69286fbd1015650c49",
+      "tests/test_temporal_tree.py": "d30436948ef25b639e1dd659905fb0741dbc1ed62f7ecd2beeba06cb409dcee9",
+      "configs/scene_tree_probe_v1.json": "c4593f4058cf069e967fa33623448041b7713a5d2ccef5d7614c33af9a8b7953",
+      "queryseek/ingest/frames.py": "9825a5cda426c2f959a62d9b056e8c9a5356b4d37fd157b14a27cd1c5c732d80",
+      "tests/test_frame_stdin_isolation.py": "53571145151750a2ebd8ce37c29001049b130961607107cfe11c3ca57d065f25"
+    },
+    "replaces": {
+      "queryseek/agent/temporal_tree.py": "dec5b3af69a7629752f1927d5f2601f670b041b36678aaceec78fa54a56e110d",
+      "queryseek/agent/tree_observations.py": "9f8aa479e61a5ddf657b6d9131db12e185427cd3cfb6c9bf818ef4ad90aca20a",
+      "queryseek/vendor/vts/__init__.py": "94cfdd244eeb9e4e16db15f494141ba7e347aab0c0537f2a99e627d591d27ea5",
+      "queryseek/vendor/vts/boundaries.py": "2ff7c61a663d8b34d11ee19a7caeb62385ea5613be48bfd62ef2edb7363c716d",
+      "queryseek/vendor/vts/LICENSE": "7857495f83b2fc30e628dbb14b62daba60949a80f4485ead3336375b43707f6a",
+      "scripts/probe_scene_tree.py": "28da9a9df5af47c34cb0a0e92a000b302d9ef65e553cdbcf29cf856a7678ac1b",
+      "tests/test_temporal_tree.py": "dfc84334bce9ee6d0d8c5e58ba48d20de7f14d305efd54d5ebdb12d5b401e74b",
+      "configs/scene_tree_probe_v1.json": "c4593f4058cf069e967fa33623448041b7713a5d2ccef5d7614c33af9a8b7953",
+      "queryseek/ingest/frames.py": "6c9392a5e9d5bb12a91282fe3656e7979908b44caf8384155c5d24d10717c6c8"
+    }
+  },
+  "validation": {
+    "public_suite": {
+      "passed": 464,
+      "skipped": 7,
+      "seconds": 143.56
+    },
+    "server_related_suite": {
+      "passed": 52,
+      "seconds": 11.29
+    }
+  },
+  "data_policy": "Aggregate only. No media, raw images, per-question labels, credentials or model weights."
+}

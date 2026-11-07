@@ -26,3 +26,8 @@
 不发布原始视频、真实抽帧、官方标注、模型/适配器、个人运行记录、凭据和论文 PDF。
 病例复核配置及其三份依赖测试从公开快照排除，清单见 provenance；其他历史研究工具可能引用这些未公开文件。
 只有发布中实际通过的测试计入发布验证，不把排除用例称作通过。
+
+## 5. 视觉变化时间树
+
+`python -m pytest tests/test_temporal_tree.py tests/test_frame_stdin_isolation.py -q` 可离线验证合成视频、真实FFmpeg、缓存和导航。真实构建需OpenCLIP权重与已探测的无标签请求；`scripts/probe_scene_tree.py build` 和 `evaluate` 分离。
+`configs/scene_tree_probe_v1.json` 保留归档输入哈希；公开包不分发其原始8来源输入。新数据须另存新配置和哈希。`results/scene_tree_probe_20261107.json` 给出聚合指标、源码/归档SHA、成本口径与本机重放验证；不宣称完整VTS复现。

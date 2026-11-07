@@ -1,0 +1,17 @@
+{
+  "version": "scene-tree-probe-v1",
+  "date": "2026-11-07",
+  "scope": "Eight frozen development sources; bounded structural/compute probe, no QA or trained-policy evaluation",
+  "requests_sha256": "a4ff948561a333b8cab132205b17edb396422a8815150022a3f6715663cd3426",
+  "labels_sha256": "7963f3a55adb2c6cf6ad6f61376aa5c0cdc60489fd575979f857c879f0edfa18",
+  "weights_sha256": "e6d1bd7789aa45192b3bf90570a789b478bae1b74ebcce7eddd908e83a2b7c31",
+  "model_name": "ViT-B-32",
+  "force_quick_gelu": true,
+  "sampling": {"fps_cap": 1.0, "max_frames": 64, "max_side": 512, "batch_size": 16},
+  "split": {"k": 1.5, "min_children": 3, "max_children": 8, "leaf_seconds": 64.0, "max_depth": 6, "max_observed_nodes": 3},
+  "node_visit_order": "breadth-first chronological; no query, GT or answer used",
+  "root_comparisons": ["binary_uniform", "same_arity_uniform", "clip_change"],
+  "metrics": "Best root-child interval union IoU with annotated clues, GT containment/fragmentation, actual source-PTS hits, boundary bracket widths; structural diagnostics only",
+  "new_vlm_calls": 0,
+  "new_training": false
+}
