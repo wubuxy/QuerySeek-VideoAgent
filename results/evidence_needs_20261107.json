@@ -1,0 +1,166 @@
+{
+  "scope": "Eight previously examined development sources; human feedback informed design, no human answers in inference.",
+  "metrics": {
+    "base": {
+      "n": 8,
+      "valid": 1.0,
+      "accepted": 0.125,
+      "correct": 0.0,
+      "iou": 0.0,
+      "joint_at_05": 0.0,
+      "accepted_accuracy": 0.0
+    },
+    "rank_uniform": {
+      "n": 8,
+      "valid": 1.0,
+      "accepted": 0.375,
+      "correct": 0.125,
+      "iou": 0.0,
+      "joint_at_05": 0.0,
+      "accepted_accuracy": 0.3333333333333333
+    },
+    "evidence_routed": {
+      "n": 8,
+      "valid": 1.0,
+      "accepted": 0.25,
+      "correct": 0.125,
+      "iou": 0.0,
+      "joint_at_05": 0.0,
+      "accepted_accuracy": 0.5
+    }
+  },
+  "plan_errors": 0,
+  "initial_verdict_errors": 0,
+  "initial_states": {
+    "target_unobserved": 0,
+    "target_ambiguous": 4,
+    "relation_unverified": 27,
+    "attribute_unreadable": 28,
+    "temporal_unverified": 0,
+    "global_unverified": 0,
+    "contradicted": 0
+  },
+  "action_counts": {
+    "rank_uniform": {
+      "answer": 1,
+      "abstain": 0,
+      "uniform": 7,
+      "detail": 0,
+      "context": 0
+    },
+    "evidence_routed": {
+      "answer": 1,
+      "abstain": 0,
+      "uniform": 0,
+      "detail": 3,
+      "context": 4
+    }
+  },
+  "action_selection_changed": 7,
+  "branch_errors": {
+    "rank_uniform": 0,
+    "evidence_routed": 0
+  },
+  "costs": {
+    "backend_calls": 82,
+    "input_tokens": 141663,
+    "output_tokens": 10366,
+    "visual_tokens": 45810,
+    "images": 771,
+    "elapsed_sec": 1134.4825064300005,
+    "peak_allocated_bytes": 8290944000,
+    "model_load_sec": 84.470678707,
+    "new_frames_extracted": 80,
+    "new_crops_created": 3
+  },
+  "replay": {
+    "evaluation_exactly_replayed": true,
+    "plans": 8,
+    "verdicts": 74,
+    "controller_actions": 32,
+    "partial_refs": 70,
+    "detail_views": 3,
+    "reused_actions": 0,
+    "costs_by_stage": {
+      "shared": {
+        "calls": 68,
+        "input_tokens": 96998,
+        "output_tokens": 8441,
+        "visual_tokens": 28600,
+        "images": 480,
+        "elapsed_sec": 918.4646150100007
+      },
+      "rank_uniform": {
+        "calls": 7,
+        "input_tokens": 25201,
+        "output_tokens": 990,
+        "visual_tokens": 9960,
+        "images": 168,
+        "elapsed_sec": 113.00629473599969
+      },
+      "evidence_routed": {
+        "calls": 7,
+        "input_tokens": 19464,
+        "output_tokens": 935,
+        "visual_tokens": 7250,
+        "images": 123,
+        "elapsed_sec": 103.01159668400021
+      }
+    },
+    "new_inference": 0,
+    "source_and_prompt_bindings_verified": true,
+    "partial_refs_are_claims_not_human_certified": true,
+    "candidate_selection_changed": 0,
+    "action_type_changed": 7,
+    "plan_scope_counts": {
+      "single_view": 3,
+      "temporal": 4,
+      "global": 1
+    },
+    "initial_supported_claims": 1
+  },
+  "backup": {
+    "sha256": "16d175c21adcc40d6eabe8c6b5cc7f897567790baa76a18ee7613b076e985677",
+    "source_files_verified": 21,
+    "image_references_verified": 771,
+    "detail_views_verified": 3,
+    "observation_manifests_verified": 14,
+    "files_verified": 62
+  },
+  "validation": {
+    "new_tests_local": {
+      "passed": 18,
+      "skipped": 1,
+      "seconds": 4.19
+    },
+    "server_related_with_real_parser": {
+      "passed": 36,
+      "skipped": 0,
+      "seconds": 15.88
+    },
+    "public_full_suite": {
+      "passed": 533,
+      "skipped": 9,
+      "seconds": 145.23
+    }
+  },
+  "preregistered_source": {
+    "archive_sha256": "1b7181a18ccccff64d169d785b34bb8d2b908b3252fe05bfb4ee1c7b43aa3c17",
+    "files": {
+      "queryseek/retrieval/evidence_needs.py": "3449e72da7e447f451049eb18e6a64bf59c429e48cef9ce75984ad9387e480f2",
+      "scripts/probe_evidence_needs.py": "f45567e63aea7b89352613e09d35b3a069b71623e62bdfd05402911af621d7be",
+      "tests/test_evidence_needs.py": "dc96d2beb7773314969beb69f505d93a9d3c69350716fbcad09e35e090793161",
+      "configs/evidence_needs_v1.json": "99402d126ea37a9889e8a967d6465982e926d3ad1019c76265df6565e3f26f98",
+      "docs/EVAL_EVIDENCE_NEEDS_V1.md": "00b7a247d794d6135c5a4d0cde8460f5fc547ba6359b69cd1f6e9b9e72ff020b"
+    }
+  },
+  "human_review_cases": 3,
+  "new_training": false,
+  "generation_retries": 0,
+  "limitations": [
+    "Repeatedly examined development sources, not independent confirmation.",
+    "Human feedback informed design but no human answers/object hints enter inference.",
+    "Shared initial states; observation policies differ in selected candidate/action/information and visual budgets.",
+    "Output grammar does not guarantee correct target identity or relation."
+  ]
+}

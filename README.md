@@ -7,7 +7,7 @@
 [![Core mock tests](https://github.com/wubuxy/QuerySeek-VideoAgent/actions/workflows/mock-tests.yml/badge.svg)](https://github.com/wubuxy/QuerySeek-VideoAgent/actions/workflows/mock-tests.yml)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](pyproject.toml)
 [![Model](https://img.shields.io/badge/Qwen3--VL-8B%20%7C%20QLoRA-8B5CF6?style=flat-square)](configs/agent_sft_v1.json)
-[![Tests](https://img.shields.io/badge/Release_tests-515_passed_%C2%B7_8_skipped-16A085?style=flat-square)](docs/RELEASE_VALIDATION.md)
+[![Tests](https://img.shields.io/badge/Release_tests-533_passed_%C2%B7_9_skipped-16A085?style=flat-square)](docs/RELEASE_VALIDATION.md)
 [![License](https://img.shields.io/badge/License-MIT-0EA5E9?style=flat-square)](LICENSE)
 
 [项目亮点](#highlights) · [系统架构](#architecture) · [实验结果](#results) · [快速开始](#quickstart) · [复现指南](docs/REPRODUCIBILITY.md)
@@ -49,7 +49,7 @@ QuerySeek 将自然语言查询转换为带时间戳的视频证据与可导出�
 </td>
 <td valign="top">
 <h3>⚡ 单卡长视频对照实验</h3>
-<p>在单张 RTX A5000 上完成长视频时间树、查询表示、候选顺序与逐候选核验实验；保留源码、图像身份、决策与调用成本记录。<a href="docs/EVAL_EVIDENCE_CONTRACT_V2.md">查看实测记录 →</a></p>
+<p>在单张 RTX A5000 上完成长视频时间树、查询表示、候选顺序与逐候选核验实验；保留源码、图像身份、决策与调用成本记录。<a href="docs/EVAL_EVIDENCE_NEEDS_V1.md">查看实测记录 →</a></p>
 </td>
 </tr>
 <tr>
@@ -58,8 +58,8 @@ QuerySeek 将自然语言查询转换为带时间戳的视频证据与可导出�
 <p>实现仅依赖问题的事件短句生成，记录回答焦点与时间关系字段；与原问题、token 分块进行相同视频帧和定位规则下的对照。</p>
 </td>
 <td valign="top">
-<h3>📌 三态证据与有界补看</h3>
-<p>将支持、矛盾与观察不足编码为互斥输出，引用实际观察帧；由固定预算控制补看、回答或弃答，并确定性映射候选时间窗。支持固定帧预算内保留原检索锚点。</p>
+<h3>📌 按证据缺失选择观察</h3>
+<p>保留目标与关系的部分证据，按缺失信息选择局部细节或前后上下文；支持静态属性单帧引用、原检索锚点保留和固定预算下的回答与弃答。</p>
 </td>
 </tr>
 </table>
@@ -167,7 +167,7 @@ python -m pip install -e ".[dev,agent,research]"
 python -m pytest -q
 ```
 
-2026-11-07 公开版本本地实测 **515 passed / 8 skipped**；GitHub Actions 持续执行核心合成与 Mock 测试。测试环境和运行记录见 [发布验证](docs/RELEASE_VALIDATION.md)。
+2026-11-07 公开版本本地实测 **533 passed / 9 skipped**；GitHub Actions 持续执行核心合成与 Mock 测试。测试环境和运行记录见 [发布验证](docs/RELEASE_VALIDATION.md)。
 
 </details>
 

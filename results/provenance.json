@@ -294,7 +294,12 @@
     "queryseek/retrieval/anchor_observations.py": "f14a38761074f2dd8158fc7cb6e1c316c6c98968304fbd5fef8b091bd8421c26",
     "scripts/repair_packet_anchors.py": "680d908774060402b9e98125df712a7333d8a341c54dec4e5ea7f2a9572e253a",
     "tests/test_anchor_observations.py": "560207bff4e313fc0524bb9a7022b13b9c6677936d14aff0c9a8e8137ed454b5",
-    "docs/EVAL_ANCHOR_RETENTION.md": "e8c72329eeb965d240cbcadbc36f76623afa31da5dd1a241ddb87e19318e728d"
+    "docs/EVAL_ANCHOR_RETENTION.md": "e8c72329eeb965d240cbcadbc36f76623afa31da5dd1a241ddb87e19318e728d",
+    "queryseek/retrieval/evidence_needs.py": "3449e72da7e447f451049eb18e6a64bf59c429e48cef9ce75984ad9387e480f2",
+    "scripts/probe_evidence_needs.py": "f45567e63aea7b89352613e09d35b3a069b71623e62bdfd05402911af621d7be",
+    "tests/test_evidence_needs.py": "dc96d2beb7773314969beb69f505d93a9d3c69350716fbcad09e35e090793161",
+    "configs/evidence_needs_v1.json": "99402d126ea37a9889e8a967d6465982e926d3ad1019c76265df6565e3f26f98",
+    "docs/EVAL_EVIDENCE_NEEDS_V1.md": "9573a63516bdc16a21217f5e33c95dd33c1dd9af18991d24ac73e946759bf6e9"
   },
   "publication_changes": {
     "docs/EVAL_GROUNDED_QA_INPUT_STUDY.md": {
@@ -409,5 +414,13 @@
       "queryseek/retrieval/evidence_contract.py": "39c6ba80772f0e1dd71281211319c449e7fbbde38c8df81207709c580e795da9",
       "scripts/probe_evidence_contract.py": "7ad43fb10574c70497bfac217ff9c8c8358922def151bf9581df182ad3a98267"
     }
+  },
+  "evidence_needs_extension": {
+    "date": "2026-11-07",
+    "result": "results/evidence_needs_20261107.json",
+    "result_sha256": "c95805433e62b3345d742117f39fae798740b5a5364c4bf002451501e33b8b42",
+    "source_archive_sha256": "1b7181a18ccccff64d169d785b34bb8d2b908b3252fe05bfb4ee1c7b43aa3c17",
+    "backup_sha256": "16d175c21adcc40d6eabe8c6b5cc7f897567790baa76a18ee7613b076e985677",
+    "new_model_calls": 82
   }
 }

@@ -1,0 +1,22 @@
+{
+  "requests_sha256": "a4ff948561a333b8cab132205b17edb396422a8815150022a3f6715663cd3426",
+  "labels_sha256": "7963f3a55adb2c6cf6ad6f61376aa5c0cdc60489fd575979f857c879f0edfa18",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "model_manifest_sha256": "7c32629cb034e2618e9cbdb946fe142cc5a188f425641ec39881b53136e59268",
+  "seed": 12,
+  "pixels": 65536,
+  "max_side": 1024,
+  "max_output_tokens": 512,
+  "max_retries": 0,
+  "version": "evidence-needs-v1",
+  "date": "2026-11-07",
+  "prepared_sha256": "a3e67af3913709492ec12fe86ada2aa9aa1bfe85f8273abbd4dfb211b3784933",
+  "sample_count": 8,
+  "candidate_count": 60,
+  "max_generations": 84,
+  "extra_frames": 16,
+  "context_before_sec": 24.0,
+  "context_after_sec": 8.0,
+  "new_training": false,
+  "new_clip_encoding": false
+}

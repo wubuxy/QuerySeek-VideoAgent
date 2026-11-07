@@ -44,3 +44,7 @@
 ## 8. 候选内观察与严格证据契约
 
 `python -m pytest tests/test_evidence_packets.py tests/test_evidence_contract.py tests/test_anchor_observations.py -q` 使用合成视频覆盖展示/引用一致、候选反序、三态控制、一次补看、旧联合对照复用和Mock/真实隔离。真实parser测试还需lm-format-enforcer==0.11.3，无需模型。两个研究入口分别为 `scripts/probe_evidence_packets.py` 与 `scripts/probe_evidence_contract.py`，后者保留v1记录，冻结旧准备/联合预测SHA并复用，记录新增核验成本。实际模型快照与源码逐SHA校验；更换数据必须另存配置。媒体、模型和私人复核页不分发，事前协议与实测结果分别留存。参见 [严格契约协议](EVAL_EVIDENCE_CONTRACT_V2.md)。
+
+## 9. 按证据需求观察
+
+`python -m pytest tests/test_evidence_needs.py -q` 使用统一合成fixture，无网络。真实parser需要lm-format-enforcer==0.11.3。研究入口 `scripts/probe_evidence_needs.py` 的run拒收标签，evaluate另读冻结标签；需已获许可的原数据、固定准备SHA及本地模型，详见 [协议](EVAL_EVIDENCE_NEEDS_V1.md)。裁切复用Pillow，PNG图像及父图/源PTS/库版本共同记入缓存清单。
