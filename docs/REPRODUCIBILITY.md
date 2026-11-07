@@ -40,3 +40,7 @@
 ## 7. 查询表示与证据绑定回答
 
 `python -m pytest tests/test_query_reader.py -q` 通过合成视频验证规划→oracle接口→检索→候选绑定Mock流程。`scripts/probe_query_reader.py` 的plan-oracle/prepare/answer/evaluate四阶段按配置、源码和输入哈希隔离；真实生成核对模型快照，评估入口拒绝Mock。本轮复用既有开发样本/帧缓存，不分发媒体、标签或模型。更换输入须另存配置；不能把Mock结果当准确率。事前协议原字节保留在source包，当前文档追加结果，见 [协议与结果](EVAL_QUERY_READER_V1.md)。
+
+## 8. 候选内观察与严格证据契约
+
+`python -m pytest tests/test_evidence_packets.py tests/test_evidence_contract.py tests/test_anchor_observations.py -q` 使用合成视频覆盖展示/引用一致、候选反序、三态控制、一次补看、旧联合对照复用和Mock/真实隔离。真实parser测试还需lm-format-enforcer==0.11.3，无需模型。两个研究入口分别为 `scripts/probe_evidence_packets.py` 与 `scripts/probe_evidence_contract.py`，后者保留v1记录，冻结旧准备/联合预测SHA并复用，记录新增核验成本。实际模型快照与源码逐SHA校验；更换数据必须另存配置。媒体、模型和私人复核页不分发，事前协议与实测结果分别留存。参见 [严格契约协议](EVAL_EVIDENCE_CONTRACT_V2.md)。

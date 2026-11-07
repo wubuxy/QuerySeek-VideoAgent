@@ -1,0 +1,295 @@
+{
+  "date": "2026-11-07",
+  "scope": "Eight reused development sources; v1 structural failure followed by separately frozen v2 contract repair.",
+  "initial_v1": {
+    "scope": "Eight reused development sources; changed candidate pool/sampling/input vs prior round.",
+    "metrics": {
+      "joint_forward": {
+        "n": 8,
+        "valid": 1.0,
+        "accepted": 0.875,
+        "correct": 0.0,
+        "iou": 0.057285988393253655,
+        "joint_at_05": 0.0,
+        "accepted_accuracy": 0.0
+      },
+      "joint_reverse": {
+        "n": 8,
+        "valid": 1.0,
+        "accepted": 0.875,
+        "correct": 0.125,
+        "iou": 0.05855084557319938,
+        "joint_at_05": 0.0,
+        "accepted_accuracy": 0.14285714285714285
+      },
+      "packet_verify": {
+        "n": 8,
+        "valid": 1.0,
+        "accepted": 0.125,
+        "correct": 0.0,
+        "iou": 0.0,
+        "joint_at_05": 0.0,
+        "accepted_accuracy": 0.0
+      },
+      "packet_observe": {
+        "n": 8,
+        "valid": 1.0,
+        "accepted": 0.125,
+        "correct": 0.0,
+        "iou": 0.0,
+        "joint_at_05": 0.0,
+        "accepted_accuracy": 0.0
+      }
+    },
+    "candidate_r05": 0.125,
+    "displayed_gt_hit": 0.375,
+    "order_changed_answer": 3,
+    "order_changed_candidate": 5,
+    "verifier_errors": 35,
+    "state_counts": {
+      "supported": 25,
+      "contradicted": 0,
+      "insufficient": 0
+    },
+    "refinement_attempts": 0,
+    "refinement_errors": 0,
+    "costs": {
+      "backend_calls": 76,
+      "input_tokens": 185086,
+      "output_tokens": 7593,
+      "images": 1440,
+      "elapsed_sec": 575.5846224899998,
+      "peak_allocated_bytes": 9456992256,
+      "model_load_sec": 70.807108846,
+      "base_new_frames": 480,
+      "extra_new_frames": 0
+    }
+  },
+  "strict_v2": {
+    "scope": "Eight reused development sources; changed candidate pool/sampling/input vs prior round.",
+    "metrics": {
+      "joint_forward": {
+        "n": 8,
+        "valid": 1.0,
+        "accepted": 0.875,
+        "correct": 0.0,
+        "iou": 0.057285988393253655,
+        "joint_at_05": 0.0,
+        "accepted_accuracy": 0.0
+      },
+      "joint_reverse": {
+        "n": 8,
+        "valid": 1.0,
+        "accepted": 0.875,
+        "correct": 0.125,
+        "iou": 0.05855084557319938,
+        "joint_at_05": 0.0,
+        "accepted_accuracy": 0.14285714285714285
+      },
+      "packet_verify": {
+        "n": 8,
+        "valid": 1.0,
+        "accepted": 0.125,
+        "correct": 0.0,
+        "iou": 0.0,
+        "joint_at_05": 0.0,
+        "accepted_accuracy": 0.0
+      },
+      "packet_observe": {
+        "n": 8,
+        "valid": 1.0,
+        "accepted": 0.125,
+        "correct": 0.0,
+        "iou": 0.0,
+        "joint_at_05": 0.0,
+        "accepted_accuracy": 0.0
+      }
+    },
+    "candidate_r05": 0.125,
+    "displayed_gt_hit": 0.375,
+    "order_changed_answer": 3,
+    "order_changed_candidate": 5,
+    "verifier_errors": 0,
+    "state_counts": {
+      "supported": 1,
+      "contradicted": 1,
+      "insufficient": 58
+    },
+    "refinement_attempts": 7,
+    "refinement_errors": 0,
+    "costs": {
+      "backend_calls": 67,
+      "input_tokens": 99469,
+      "output_tokens": 4907,
+      "images": 648,
+      "elapsed_sec": 367.90107360900026,
+      "peak_allocated_bytes": 8157522432,
+      "model_load_sec": 88.02586776399997,
+      "base_new_frames": 0,
+      "extra_new_frames": 112
+    }
+  },
+  "new_model_calls_total": 143,
+  "reused_joint_control_calls": 16,
+  "generation_retries": 0,
+  "new_training": false,
+  "decision_audit": {
+    "scope": "Posthoc read-only decision audit; reference-label agreement is not human-certified semantic correctness.",
+    "atomic_decisions_replayed": 67,
+    "reused_controls_verified": 16,
+    "prepared_bytes_identical": true,
+    "missing_reason_counts": {
+      "visual_detail": 29,
+      "none": 2,
+      "event_relation": 20,
+      "global_scope": 1,
+      "temporal_extent": 8
+    },
+    "initial_supported_claims": 1,
+    "supported_claims_answer_agrees_with_label": 0,
+    "supported_claims_candidate_iou_ge_05": 0,
+    "supported_claims_joint_ge_05": 0,
+    "initial_controller_actions": {
+      "observe_more": 7,
+      "answer": 1
+    },
+    "initial_aggregation_reasons": {
+      "no_supported_candidate": 7,
+      "supported_claim": 1
+    },
+    "final_aggregation_reasons": {
+      "no_supported_candidate": 7,
+      "supported_claim": 1
+    },
+    "new_inference": 0
+  },
+  "v1_replay": {
+    "evaluation_exactly_replayed": true,
+    "candidate_sets": 8,
+    "joint_bindings": 16,
+    "verdict_bindings": 25,
+    "state_actions": 16,
+    "refined_packets": 0,
+    "outside_displayed_frames": 0,
+    "costs_verified": true,
+    "backend_failed_calls": 0,
+    "joint_errors": 0,
+    "extra_verdict_errors": 0,
+    "new_inference": 0
+  },
+  "v2_replay": {
+    "evaluation_exactly_replayed": true,
+    "candidate_sets": 8,
+    "joint_bindings": 16,
+    "verdict_bindings": 67,
+    "state_actions": 16,
+    "refined_packets": 7,
+    "outside_displayed_frames": 0,
+    "costs_verified": true,
+    "backend_failed_calls": 0,
+    "joint_errors": 0,
+    "extra_verdict_errors": 0,
+    "new_inference": 0
+  },
+  "v1_backup": {
+    "sha256": "d82151b14c99244fc9e18f6c90e69ac3a967e693255b93ebdd272701637d854a",
+    "source_files_verified": 19,
+    "frame_caches_verified": 60,
+    "prepared_and_refined_image_references_verified": 480,
+    "files_verified": 158
+  },
+  "v2_backup": {
+    "sha256": "f1e3cd63ba30d09dd6d3da400a81b51b8e560a2ab3142b26a12eaf926c8d30c6",
+    "source_files_verified": 21,
+    "frame_caches_verified": 67,
+    "prepared_and_refined_image_references_verified": 648,
+    "files_verified": 173
+  },
+  "v1_preregistered_source": {
+    "archive_sha256": "0b5e75c5502deae5217b7efb726941cf285258d146f136fce550454e41a36aec",
+    "files": {
+      "queryseek/retrieval/evidence_packets.py": "137e8938c8908c472ae26bedca53e7c9ff97ec7441af2ada30ec2c59f58a062a",
+      "scripts/probe_evidence_packets.py": "7363054fe8bd3b2b2ea2f110f2c23c979fe93afec69ea9faf983bc553270868d",
+      "tests/test_evidence_packets.py": "c54ac40c2fca002b702e7ea26286903c970d88450d4c4845169dd0e9c7748752",
+      "configs/evidence_packets_v1.json": "b7ddc876d413a445b1a6b745809174ffda410eb0171eb9ebb0e2f6d478c31c8e",
+      "docs/EVAL_EVIDENCE_PACKETS_V1.md": "c2285a44c64ad258388783f94920dc322e53fa344ff83e0533e143703a1e589f"
+    }
+  },
+  "v2_preregistered_source": {
+    "archive_sha256": "304ae369448392c57598c317c12e063e00cf82169df73af6884da11c2bd4d71e",
+    "files": {
+      "queryseek/retrieval/evidence_contract.py": "39c6ba80772f0e1dd71281211319c449e7fbbde38c8df81207709c580e795da9",
+      "scripts/probe_evidence_contract.py": "7ad43fb10574c70497bfac217ff9c8c8358922def151bf9581df182ad3a98267",
+      "tests/test_evidence_contract.py": "cbcd29cd2462c6f70701ec4c297e216a2871c3ad55a1d8841acec15b739e99e7",
+      "configs/evidence_contract_v2.json": "ffa959abb2327fba28559fe21d4a16df7b3e0e342c33abe7ef1e4b1ef2f835e1",
+      "docs/EVAL_EVIDENCE_CONTRACT_V2.md": "12507f258fd1ffceb40ce0ed79d6bd177ca9a777e3d05468883ed1e933876994"
+    }
+  },
+  "validation": {
+    "new_tests_local": {
+      "passed": 11,
+      "skipped": 1,
+      "seconds": 3.09
+    },
+    "server_related_with_real_parser": {
+      "passed": 35,
+      "skipped": 0,
+      "seconds": 32.1
+    },
+    "public_full_suite": {
+      "passed": 510,
+      "skipped": 8,
+      "seconds": 146.43
+    },
+    "post_anchor_repair_validation": {
+      "anchor_tests_local": {
+        "passed": 5,
+        "skipped": 0,
+        "seconds": 0.73
+      },
+      "anchor_tests_server": {
+        "passed": 5,
+        "skipped": 0,
+        "seconds": 4.86
+      },
+      "public_full_suite": {
+        "passed": 515,
+        "skipped": 8,
+        "seconds": 135.22
+      }
+    }
+  },
+  "anchor_retention": {
+    "scope": "Posthoc engineering repair; no new model inference or accuracy measurement.",
+    "seed_windows": 20,
+    "anchors_preserved": 20,
+    "original_seed_gap_sec_min": 2.719391129999849,
+    "original_seed_gap_sec_max": 4.0,
+    "prepared_frames": 480,
+    "new_frames_extracted": 0,
+    "new_model_calls": 0,
+    "qa_accuracy": null
+  },
+  "anchor_backup": {
+    "sha256": "adcd26660672fd7cb17c8c913ecc966e15e63b26875ed9aaec9d5ac8fa1758dc",
+    "files_verified": 8,
+    "anchors_verified": 20,
+    "unchanged_nonseed_packets": true,
+    "fixed_frame_budget": 480,
+    "server_verified_image_references": 480,
+    "new_model_calls": 0
+  },
+  "private_human_review": {
+    "cases": 3,
+    "media_not_published": true,
+    "model_did_not_use_review_clips": true
+  },
+  "limitations": [
+    "No independent generalization measurement.",
+    "Parser validity and two-frame citations do not certify visual or relational correctness.",
+    "Uniform two-frame requirement may be too restrictive for static attributes; no posthoc threshold change.",
+    "v1 changes candidate pool, observation sampling and image interface vs the earlier reader study.",
+    "Joint and independent methods share base images, not call/token budgets; observation adds costs.",
+    "v2 changes output encoding instructions and grammar together, retaining candidate/model/controller settings."
+  ]
+}

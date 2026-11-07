@@ -1,5 +1,9 @@
 # Third-party components and attribution
 
+## 2026-11-07 候选内核验与有界补看
+
+继续直接复用已记录版本与许可证的 FFmpeg 源PTS抽帧、Qwen3-VL-8B/NF4、Transformers 4.57.6 images接口与 lm-format-enforcer 0.11.3；本机/服务器不下载模型或安装依赖，无上游代码拷贝/修改。新实现为候选窗口、源图/引用契约、三态证据校验和固定预算编排胶水；v2直接使用现有解析器的oneOf互斥分支实现状态/答案/引用的联合约束。CI额外固定安装同版本0.11.3以运行真实解析器测试（MIT，https://github.com/noamgat/lm-format-enforcer，许可证位置沿用下方记录）。私人复核视频以现有FFmpeg结构化参数重新编码，不发布媒体；模型仍只使用记录中的抽帧。组件URL、版本、许可与版权位置沿用下方记录。
+
 ## 2026-11-07 查询表示与证据绑定回答
 
 沿用已记录版本/许可证的 OpenCLIP 3.3.0（MIT，https://github.com/mlfoundations/open_clip）、Qwen3-VL-8B-Instruct、Transformers 4.57.6、bitsandbytes 0.46.1 与 lm-format-enforcer；未复制或修改上游代码、未增加依赖或模型下载。直接使用 OpenCLIP 官方 tokenizer 分块、官方文本编码和 Transformers 原生 video/约束生成接口。新增部分为问题表示、候选 ID 绑定、弃答协议和评测胶水；许可证与版权头位置沿用下方组件记录。详见 `docs/EVAL_QUERY_READER_V1.md`。
