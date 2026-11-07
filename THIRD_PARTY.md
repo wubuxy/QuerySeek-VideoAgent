@@ -1,5 +1,9 @@
 # Third-party components and attribution
 
+## 2026-11-07 查询表示与证据绑定回答
+
+沿用已记录版本/许可证的 OpenCLIP 3.3.0（MIT，https://github.com/mlfoundations/open_clip）、Qwen3-VL-8B-Instruct、Transformers 4.57.6、bitsandbytes 0.46.1 与 lm-format-enforcer；未复制或修改上游代码、未增加依赖或模型下载。直接使用 OpenCLIP 官方 tokenizer 分块、官方文本编码和 Transformers 原生 video/约束生成接口。新增部分为问题表示、候选 ID 绑定、弃答协议和评测胶水；许可证与版权头位置沿用下方组件记录。详见 `docs/EVAL_QUERY_READER_V1.md`。
+
 ## 2026-11-07 问题引导补看
 
 沿用已记录版本的FFmpeg、OpenCLIP ViT-B-32/openai、VTS四个MIT边界函数、Qwen3-VL-8B/NF4及Transformers原生video接口；无新第三方代码拷贝、模型下载、依赖安装或上游修改。新增部分仅为区域融合排序、观察预算/上下文分配及评测胶水；候选定位复用本项目已有E4曲线。TFVTG与FV-Action仅作为诊断设计依据，未复制代码或宣称复现其方法。来源链接、适用边界见 `docs/EVAL_QUERY_REFINEMENT_V1.md`。

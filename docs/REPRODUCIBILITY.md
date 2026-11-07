@@ -36,3 +36,7 @@
 
 `python -m pytest tests/test_query_refinement.py -q` 使用合成视频跑通检索→独立oracle准备→Mock推理，真实指标入口拒绝Mock。`scripts/probe_query_refinement.py` 提供prepare/context/run/evaluate分离入口；CLIP缓存身份、请求、标签、准备产物和源码均按冻结哈希检查。
 真实运行前还需用 `scripts.run_grounded_qa_baseline.verify_model_snapshot` 核验本地Qwen模型快照；该校验已在归档执行前完成。数据/模型不分发，原始8来源配置不是公开下载入口。更换输入须另存配置。协议中的事前版本保留在源包哈希中，公开文档追加实测结果；见 [记录](EVAL_QUERY_REFINEMENT_V1.md)。
+
+## 7. 查询表示与证据绑定回答
+
+`python -m pytest tests/test_query_reader.py -q` 通过合成视频验证规划→oracle接口→检索→候选绑定Mock流程。`scripts/probe_query_reader.py` 的plan-oracle/prepare/answer/evaluate四阶段按配置、源码和输入哈希隔离；真实生成核对模型快照，评估入口拒绝Mock。本轮复用既有开发样本/帧缓存，不分发媒体、标签或模型。更换输入须另存配置；不能把Mock结果当准确率。事前协议原字节保留在source包，当前文档追加结果，见 [协议与结果](EVAL_QUERY_READER_V1.md)。

@@ -1,0 +1,18 @@
+{
+  "version": "query-reader-v1",
+  "date": "2026-11-07",
+  "requests_sha256": "a4ff948561a333b8cab132205b17edb396422a8815150022a3f6715663cd3426",
+  "labels_sha256": "7963f3a55adb2c6cf6ad6f61376aa5c0cdc60489fd575979f857c879f0edfa18",
+  "clip_manifest_sha256": "fea3c587cdd920f7bc326752fb886b699c5e94e172645250716ae8db41232984",
+  "oracle_prepared_sha256": "b63ef9bf4b6016a4d48ec3b5dec93c7352c179874470536e5e4b658d2b9dfb93",
+  "oracle_predictions_sha256": "f13ba54f3a0b4aa91c7600af08cc83e456824c0cc5fc83b371d552360027c1d9",
+  "old_retrieval_sha256": "148c74ff7f0ecf68f7b3d1865f4fbe8f473d4b66d90a5d8ccadff8a8cbfb9535",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "model_manifest_sha256": "7c32629cb034e2618e9cbdb946fe142cc5a188f425641ec39881b53136e59268",
+  "seed": 12, "sample_count": 8, "max_generations": 56, "max_output_tokens": 512,
+  "max_retries": 0, "pixels": 65536, "review_frames": 16,
+  "chunk_tokens": 60, "max_chunks": 3, "candidate_limit": 2,
+  "sampling": {"fps_cap": 1.0, "max_frames": 192, "max_side": 512, "batch_size": 16},
+  "top_k": 5, "nms_iou": 0.9,
+  "new_training": false, "audio": false, "subtitle": false
+}

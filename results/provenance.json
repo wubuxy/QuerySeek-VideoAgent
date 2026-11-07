@@ -275,7 +275,12 @@
     "scripts/probe_query_refinement.py": "95c3664c81b5a7df4d8ff6cb2bcfc9fcc3585bc9796bcfc787fffd9e87efa529",
     "tests/test_query_refinement.py": "655435eb7c5c1930bb19e00576b537590c37a14011da484fa66ad7843a8c6a2f",
     "configs/query_refinement_v1.json": "5df3b1550ebc8bf1f0d10fa768c89a88135d3d2e08f55daf4927069b6829342f",
-    "docs/EVAL_QUERY_REFINEMENT_V1.md": "a29965f246e4e33b0b91d827c8d9dc0764de0eff6f3363fb7301809e429e8c64"
+    "docs/EVAL_QUERY_REFINEMENT_V1.md": "a29965f246e4e33b0b91d827c8d9dc0764de0eff6f3363fb7301809e429e8c64",
+    "queryseek/retrieval/query_reader.py": "ef44cd4e9dc4cd499818a50d172b9127be673e230609e9dd30e8a3a0df5091dd",
+    "scripts/probe_query_reader.py": "b97fa6ab71a5d56e8bb8b131ac67750572183db695088062870c380a02488bb8",
+    "tests/test_query_reader.py": "8bbb5f793954cce1847c0626377ca6cad24e281ed7d27d28a75ffeb2637c86eb",
+    "configs/query_reader_v1.json": "0a29219d3e6077333f6eb98abb26c18172f041944f5dbbe41205dab1d1c2351e",
+    "docs/EVAL_QUERY_READER_V1.md": "383f6bed0319be287a2ee0f5f269afb532fe7184cf5355f1ad1bc01af2f67f06"
   },
   "publication_changes": {
     "docs/EVAL_GROUNDED_QA_INPUT_STUDY.md": {
@@ -351,6 +356,30 @@
       "scripts/gpu_agent_experiment.py": "34505bc8303efedd96441f64f7aa2b35b230407f7e146fed80741d638b7b0dab",
       "queryseek/embeddings/openclip_encoder.py": "8088ae2c1b7c9970526be42c3f0d79176ddff5788c157f00d76888ed7aa34c9e",
       "queryseek/eval/grounded_qa.py": "bae0f86e57073ccfde268b945d346dd388bef77962f242a4ec53d8537e5aae57"
+    }
+  },
+  "query_reader_extension": {
+    "date": "2026-11-07",
+    "result": "results/query_reader_20261107.json",
+    "result_sha256": "852d4ce0c3d8a301247d063d4ba77e3c7ef3db9e4e89625cae6d2df905355675",
+    "scope": "8-source development; 56 real calls, 8 reused baseline calls, no retries/training.",
+    "config_sha256": "0a29219d3e6077333f6eb98abb26c18172f041944f5dbbe41205dab1d1c2351e",
+    "archive_sha256": "439ddc0b58c62afe4e06ddfbbbe7a0623d809e25dadc8cd5f3fe1786662b890b",
+    "runtime_source_sha256": {
+      "scripts/probe_query_refinement.py": "95c3664c81b5a7df4d8ff6cb2bcfc9fcc3585bc9796bcfc787fffd9e87efa529",
+      "queryseek/retrieval/query_refinement.py": "48ffa05caa4e3379c04ebd5df9785a0215e8900cd8966f887a5148e003a8a73a",
+      "queryseek/retrieval/curve_spans.py": "e9b171551da15f330a90cf5d28bb6d503acb27cd6829b887529c2599678da81d",
+      "queryseek/agent/tree_observations.py": "9f8aa479e61a5ddf657b6d9131db12e185427cd3cfb6c9bf818ef4ad90aca20a",
+      "queryseek/agent/temporal_tree.py": "650b07559bb2946e4b3add3f56f09a3a09edbcd2fdd25aa83bc66d4a31737182",
+      "queryseek/ingest/frames.py": "9825a5cda426c2f959a62d9b056e8c9a5356b4d37fd157b14a27cd1c5c732d80",
+      "scripts/grounded_qa_input_study.py": "fb0dfddb53be2671f180bd6b63667068ed51a1194f2eefa843bca231917af8bb",
+      "scripts/train_agent_sft.py": "a69f189851c8d75645ccf468fd5eb903791ff15bf967adf27f4a6788878c029e",
+      "scripts/gpu_agent_experiment.py": "34505bc8303efedd96441f64f7aa2b35b230407f7e146fed80741d638b7b0dab",
+      "queryseek/embeddings/openclip_encoder.py": "8088ae2c1b7c9970526be42c3f0d79176ddff5788c157f00d76888ed7aa34c9e",
+      "queryseek/eval/grounded_qa.py": "bae0f86e57073ccfde268b945d346dd388bef77962f242a4ec53d8537e5aae57",
+      "scripts/probe_query_reader.py": "b97fa6ab71a5d56e8bb8b131ac67750572183db695088062870c380a02488bb8",
+      "queryseek/retrieval/query_reader.py": "ef44cd4e9dc4cd499818a50d172b9127be673e230609e9dd30e8a3a0df5091dd",
+      "scripts/run_grounded_qa_baseline.py": "ec5b5814d159ba2f27203c47ef044957746ba15bcb4a10466d0f443a2005fefb"
     }
   }
 }

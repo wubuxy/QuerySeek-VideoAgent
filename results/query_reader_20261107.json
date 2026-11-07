@@ -1,0 +1,231 @@
+{
+  "date": "2026-11-07",
+  "scope": "Eight repeatedly used development sources; no independent confirmation",
+  "methods": {
+    "raw": {
+      "n": 8,
+      "valid": 1.0,
+      "accepted": 0.75,
+      "correct": 0.25,
+      "iou": 0.057285988393253655,
+      "joint_at_05": 0.0,
+      "observed_hit": 0.875,
+      "review_hit": 0.5,
+      "rank1_iou": 0.057285988393253655,
+      "top5_best_iou": 0.10483036748592293,
+      "top5_r05": 0.125,
+      "accepted_correct_fraction": 0.3333333333333333
+    },
+    "token_chunks": {
+      "n": 8,
+      "valid": 1.0,
+      "accepted": 0.75,
+      "correct": 0.25,
+      "iou": 0.057285988393253655,
+      "joint_at_05": 0.0,
+      "observed_hit": 0.875,
+      "review_hit": 0.5,
+      "rank1_iou": 0.057285988393253655,
+      "top5_best_iou": 0.10483036748592293,
+      "top5_r05": 0.125,
+      "accepted_correct_fraction": 0.3333333333333333
+    },
+    "event_queries": {
+      "n": 8,
+      "valid": 1.0,
+      "accepted": 0.875,
+      "correct": 0.25,
+      "iou": 0.003922592789354699,
+      "joint_at_05": 0.0,
+      "observed_hit": 0.875,
+      "review_hit": 0.5,
+      "rank1_iou": 0.003922592789354699,
+      "top5_best_iou": 0.15715846160971736,
+      "top5_r05": 0.25,
+      "accepted_correct_fraction": 0.2857142857142857
+    }
+  },
+  "oracle": {
+    "oracle_video16": {
+      "n": 8,
+      "correct": 2,
+      "valid_outputs": 8,
+      "reused": true
+    },
+    "oracle_list_letter": {
+      "n": 8,
+      "correct": 3,
+      "valid_outputs": 8,
+      "reused": false
+    },
+    "oracle_labeled_json": {
+      "n": 8,
+      "correct": 1,
+      "valid_outputs": 8,
+      "reused": false
+    },
+    "oracle_labeled_letter": {
+      "n": 8,
+      "correct": 1,
+      "valid_outputs": 8,
+      "reused": false
+    }
+  },
+  "oracle_paired_changes": {
+    "oracle_video16": {
+      "gained": 0,
+      "lost": 0,
+      "retained": 2
+    },
+    "oracle_list_letter": {
+      "gained": 1,
+      "lost": 0,
+      "retained": 2
+    },
+    "oracle_labeled_json": {
+      "gained": 0,
+      "lost": 1,
+      "retained": 1
+    },
+    "oracle_labeled_letter": {
+      "gained": 0,
+      "lost": 1,
+      "retained": 1
+    }
+  },
+  "plans_ok": 8,
+  "costs": {
+    "backend_calls": 56,
+    "reused_baseline_calls": 8,
+    "input_tokens": 41950,
+    "output_tokens": 868,
+    "images": 768,
+    "elapsed_sec": 80.86685533900007,
+    "peak_allocated_bytes": 7658803712,
+    "model_load_sec": 136.01694036700002
+  },
+  "retrieval_costs": {
+    "scheduled": 24,
+    "completed": 24,
+    "model_load_sec": 6.188460082000006,
+    "text_encoding_sec": 0.4423378869999226,
+    "encoded_texts": 30,
+    "new_encoded_images": 0,
+    "new_frames_extracted": 0
+  },
+  "cache_observation_elapsed_sec": 0.9074900819999812,
+  "query_count_histogram": {
+    "raw": {
+      "1": 8
+    },
+    "token_chunks": {
+      "1": 7,
+      "2": 1
+    },
+    "event_queries": {
+      "2": 4,
+      "3": 4
+    }
+  },
+  "posthoc_failure_audit": {
+    "scope": "Posthoc read-only audit; no new inference, no alternative method scores used for selection.",
+    "aggregates": {
+      "raw": {
+        "eligible_candidate_r05_count": 0,
+        "review_hit_only_outside_candidate_count": 3,
+        "candidate_displayed_hit_count": 1,
+        "returned_candidate_counts": {
+          "c1": 3,
+          "c0": 3,
+          "none": 2
+        },
+        "mean_candidate_pair_iou": 0.46016093864543345,
+        "top5_good_but_ineligible_count": 1
+      },
+      "token_chunks": {
+        "eligible_candidate_r05_count": 0,
+        "review_hit_only_outside_candidate_count": 3,
+        "candidate_displayed_hit_count": 1,
+        "returned_candidate_counts": {
+          "c1": 3,
+          "c0": 3,
+          "none": 2
+        },
+        "mean_candidate_pair_iou": 0.47910040102292595,
+        "top5_good_but_ineligible_count": 1
+      },
+      "event_queries": {
+        "eligible_candidate_r05_count": 1,
+        "review_hit_only_outside_candidate_count": 2,
+        "candidate_displayed_hit_count": 2,
+        "returned_candidate_counts": {
+          "c0": 4,
+          "c1": 3,
+          "none": 1
+        },
+        "mean_candidate_pair_iou": 0.43823558802226065,
+        "top5_good_but_ineligible_count": 1
+      }
+    },
+    "semantic_notes_scope": "Qualitative reading of generated plans, not blinded ratings or a measured semantic-accuracy benchmark."
+  },
+  "replay": {
+    "evaluation_exactly_replayed": true,
+    "curves_replayed": 24,
+    "review_selections_replayed": 24,
+    "bound_answers_replayed": 24,
+    "oracle_input_rows_identical": 24,
+    "raw_baseline_max_score_difference": 0.0,
+    "plans_freeze_verified": true,
+    "new_model_calls": 0,
+    "scope": "Read-only replay, no new inference or score-selected rerun."
+  },
+  "backup_verification": {
+    "sha256": "439ddc0b58c62afe4e06ddfbbbe7a0623d809e25dadc8cd5f3fe1786662b890b",
+    "source_files_verified": 17,
+    "frame_caches_verified": 8,
+    "feature_caches_verified": 8,
+    "vlm_image_occurrences_verified": 768,
+    "files_verified": 78
+  },
+  "preregistered_source_manifest": {
+    "archive_sha256": "28162a6bd2aa3e28160f30edd6fb3616e96757e2a1e8bdc2d44b214039722504",
+    "files": {
+      "queryseek/retrieval/query_reader.py": "ef44cd4e9dc4cd499818a50d172b9127be673e230609e9dd30e8a3a0df5091dd",
+      "scripts/probe_query_reader.py": "b97fa6ab71a5d56e8bb8b131ac67750572183db695088062870c380a02488bb8",
+      "tests/test_query_reader.py": "8bbb5f793954cce1847c0626377ca6cad24e281ed7d27d28a75ffeb2637c86eb",
+      "configs/query_reader_v1.json": "0a29219d3e6077333f6eb98abb26c18172f041944f5dbbe41205dab1d1c2351e",
+      "docs/EVAL_QUERY_READER_V1.md": "fccff3203fceaf9ecfa2d7baa4f5bc2fc479ce4e01b4c58a3db4c9e704e085f8"
+    }
+  },
+  "validation": {
+    "new_tests": {
+      "passed": 13,
+      "seconds": 4.74
+    },
+    "local_related": {
+      "passed": 35,
+      "skipped": 1,
+      "seconds": 12.73
+    },
+    "server_related_real_processor": {
+      "passed": 36,
+      "skipped": 0,
+      "seconds": 32.04
+    },
+    "public_full_suite": {
+      "passed": 486,
+      "skipped": 7,
+      "seconds": 135.95
+    }
+  },
+  "new_training": false,
+  "generation_retries": 0,
+  "limitations": [
+    "Eight repeatedly used development sources; not independent generalization.",
+    "Max across event queries is OR-like retrieval, not temporal/conjunctive verification.",
+    "Candidate ID binds returned time but does not certify semantic evidence.",
+    "Oracle interface changes instruction and decoding together; reused baseline is separately labeled.",
+    "Peak allocated is not total GPU memory; load and cached preparation costs are separate."
+  ]
+}
