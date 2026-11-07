@@ -1,0 +1,211 @@
+{
+  "date": "2026-11-07",
+  "n": 8,
+  "scope": "Development diagnostics, no independent confirmation or new training",
+  "methods": {
+    "dense_uniform": {
+      "coarse_hit": 0.5,
+      "observed_hit": 0.875,
+      "review_hit": 0.5,
+      "rank1_iou": 0.057285988393253655,
+      "top5_best_iou": 0.10483036748592293,
+      "top5_r05": 0.125,
+      "qa": {
+        "qa_correct": 0.25,
+        "interval_set_iou": 0.04813222573327944,
+        "acc_at_iou": 0.0,
+        "joint_at_05": 0.0,
+        "n": 8,
+        "valid_outputs": 8,
+        "missing_outputs": 0
+      }
+    },
+    "uniform_refine": {
+      "coarse_hit": 0.5,
+      "observed_hit": 0.625,
+      "review_hit": 0.375,
+      "rank1_iou": 0.020258399914442834,
+      "top5_best_iou": 0.18058869867030763,
+      "top5_r05": 0.25,
+      "qa": {
+        "qa_correct": 0.25,
+        "interval_set_iou": 0.025148338116896637,
+        "acc_at_iou": 0.0,
+        "joint_at_05": 0.0,
+        "n": 8,
+        "valid_outputs": 8,
+        "missing_outputs": 0
+      }
+    },
+    "scene_refine": {
+      "coarse_hit": 0.5,
+      "observed_hit": 0.875,
+      "review_hit": 0.375,
+      "rank1_iou": 0.02210419294042696,
+      "top5_best_iou": 0.02210419294042696,
+      "top5_r05": 0.0,
+      "qa": {
+        "qa_correct": 0.25,
+        "interval_set_iou": 0.11035795571128028,
+        "acc_at_iou": 0.0,
+        "joint_at_05": 0.0,
+        "n": 8,
+        "valid_outputs": 8,
+        "missing_outputs": 0
+      }
+    }
+  },
+  "oracle_context": {
+    "n": 8,
+    "qa_correct": 0.25
+  },
+  "oracle_comparison": {
+    "old_correct": 2,
+    "context_correct": 2,
+    "gained": 1,
+    "lost": 1,
+    "same_prompt_hashes": true,
+    "old_predictions_sha256": "f13ba54f3a0b4aa91c7600af08cc83e456824c0cc5fc83b371d552360027c1d9"
+  },
+  "generation_costs": {
+    "backend_calls": 32,
+    "input_tokens": 23396,
+    "output_tokens": 1090,
+    "images": 512,
+    "elapsed_sec": 82.40381604000015,
+    "peak_allocated_bytes": 7556378624,
+    "model_load_sec": 69.90901726000004
+  },
+  "retrieval_costs": {
+    "scheduled": 24,
+    "completed": 24,
+    "failed": 0,
+    "mock": false,
+    "model_load_sec": 6.429105389,
+    "text_encoding_sec": 1.7441810750000002,
+    "encoded_texts": 8,
+    "new_vlm_calls": 0,
+    "new_encoded_images": 3584,
+    "new_frames_extracted": 3584,
+    "cost_accounting_complete": true,
+    "elapsed_sec": 491.970415664,
+    "peak_allocated_bytes": 665590784
+  },
+  "oracle_preparation_costs": {
+    "new_frames_extracted": 128,
+    "elapsed_sec": 26.905531407999888
+  },
+  "failure_chain": {
+    "dense_uniform": {
+      "failure_chain_counts": {
+        "gt_timestamp_reaches_reader_but_answer_wrong": 3,
+        "answer_correct_but_grounding_below_05": 1,
+        "gt_timestamp_dropped_in_review_selection": 3,
+        "no_observed_gt_timestamp": 1
+      },
+      "observations_hit_count": 7,
+      "review_hit_count": 4
+    },
+    "uniform_refine": {
+      "failure_chain_counts": {
+        "no_observed_gt_timestamp": 3,
+        "gt_timestamp_reaches_reader_but_answer_wrong": 3,
+        "gt_timestamp_dropped_in_review_selection": 2
+      },
+      "observations_hit_count": 5,
+      "review_hit_count": 3
+    },
+    "scene_refine": {
+      "failure_chain_counts": {
+        "gt_timestamp_dropped_in_review_selection": 4,
+        "gt_timestamp_reaches_reader_but_answer_wrong": 2,
+        "answer_correct_but_grounding_below_05": 1,
+        "no_observed_gt_timestamp": 1
+      },
+      "observations_hit_count": 7,
+      "review_hit_count": 3
+    }
+  },
+  "posthoc_selection_audit": {
+    "scope": "Post-hoc score audit; raw-score top16 is a read-only counterfactual, not a new QA experiment or a selected replacement.",
+    "aggregates": {
+      "dense_uniform": {
+        "direct_top16_hit_count": 4,
+        "observed_but_not_reviewed": 3,
+        "dropped_with_gt_rank_over16": 3,
+        "dropped_despite_gt_rank_top16": 0
+      },
+      "scene_refine": {
+        "direct_top16_hit_count": 4,
+        "observed_but_not_reviewed": 4,
+        "dropped_with_gt_rank_over16": 3,
+        "dropped_despite_gt_rank_top16": 1
+      },
+      "uniform_refine": {
+        "direct_top16_hit_count": 2,
+        "observed_but_not_reviewed": 2,
+        "dropped_with_gt_rank_over16": 2,
+        "dropped_despite_gt_rank_top16": 0
+      }
+    },
+    "new_vlm_calls": 0
+  },
+  "clue_duration_sec": {
+    "min": 2.0,
+    "median": 18.090983383977903,
+    "max": 62.0
+  },
+  "truncated_questions": 1,
+  "replay": {
+    "evaluation_exactly_replayed": true,
+    "curves_replayed": 24,
+    "max_curve_difference": 0.0,
+    "review_selections_exactly_replayed": 24,
+    "costs_verified": true
+  },
+  "backup_verification": {
+    "sha256": "d3f4ee387b248d7ecb22d4a8d45f1007919bf0f03e4661537a39905d3c4f235d",
+    "source_files_verified": 14,
+    "frame_caches_verified": 48,
+    "feature_caches_verified": 48,
+    "vlm_image_occurrences_verified": 512,
+    "files_verified": 242
+  },
+  "preregistered_source_manifest": {
+    "archive_sha256": "013db8029a3d8de241f70dada67346f2de44fef91a8c25d210939ebdc28d806a",
+    "files": {
+      "queryseek/retrieval/query_refinement.py": "48ffa05caa4e3379c04ebd5df9785a0215e8900cd8966f887a5148e003a8a73a",
+      "scripts/probe_query_refinement.py": "95c3664c81b5a7df4d8ff6cb2bcfc9fcc3585bc9796bcfc787fffd9e87efa529",
+      "tests/test_query_refinement.py": "655435eb7c5c1930bb19e00576b537590c37a14011da484fa66ad7843a8c6a2f",
+      "configs/query_refinement_v1.json": "5df3b1550ebc8bf1f0d10fa768c89a88135d3d2e08f55daf4927069b6829342f",
+      "docs/EVAL_QUERY_REFINEMENT_V1.md": "098b65da6dc609295b55d50878a14ae6b585ce2bf713722ebfeb9e3c24471867"
+    }
+  },
+  "source_note": "Runtime code/config bytes are preserved. The public protocol document appends results to its archived preregistration.",
+  "validation": {
+    "public_suite": {
+      "passed": 473,
+      "skipped": 7,
+      "seconds": 129.39
+    },
+    "server_related": {
+      "passed": 35,
+      "skipped": 1,
+      "seconds": 15.94
+    },
+    "server_real_processor_suite": {
+      "passed": 5,
+      "seconds": 23.2
+    }
+  },
+  "new_training": false,
+  "new_generations": 32,
+  "generation_retries": 0,
+  "limitations": [
+    "8 development sources, no held-out confirmation.",
+    "Timestamp hit is not proof of visible detail or sufficient semantic evidence.",
+    "Oracle padding changes both context and sampling density.",
+    "Cache-mixed one-off timing; peak allocated is not total device memory.",
+    "No demonstrated QA or joint-grounding gain; no newly learned backtracking policy."
+  ]
+}

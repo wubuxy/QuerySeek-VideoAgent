@@ -7,7 +7,7 @@
 [![Core mock tests](https://github.com/wubuxy/QuerySeek-VideoAgent/actions/workflows/mock-tests.yml/badge.svg)](https://github.com/wubuxy/QuerySeek-VideoAgent/actions/workflows/mock-tests.yml)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](pyproject.toml)
 [![Model](https://img.shields.io/badge/Qwen3--VL-8B%20%7C%20QLoRA-8B5CF6?style=flat-square)](configs/agent_sft_v1.json)
-[![Tests](https://img.shields.io/badge/Release_tests-464_passed_%C2%B7_7_skipped-16A085?style=flat-square)](docs/RELEASE_VALIDATION.md)
+[![Tests](https://img.shields.io/badge/Release_tests-473_passed_%C2%B7_7_skipped-16A085?style=flat-square)](docs/RELEASE_VALIDATION.md)
 [![License](https://img.shields.io/badge/License-MIT-0EA5E9?style=flat-square)](LICENSE)
 
 [项目亮点](#highlights) · [系统架构](#architecture) · [实验结果](#results) · [快速开始](#quickstart) · [复现指南](docs/REPRODUCIBILITY.md)
@@ -44,12 +44,12 @@ QuerySeek 将自然语言查询转换为带时间戳的视频证据与可导出�
 </tr>
 <tr>
 <td valign="top">
-<h3>🌳 按视觉变化建树</h3>
-<p>复用 VTS 边界算法与 OpenCLIP，按需展开多分支时间窗；支持指定子节点深入、兄弟切换、父节点回退和补看，独立记录观察预算与证据状态。</p>
+<h3>🌳 时间树与问题引导补看</h3>
+<p>复用 VTS 边界算法与 OpenCLIP，按需展开多分支时间窗，按问题相关性分配粗到细观察预算；支持深入、切换、回退和补看，独立记录观察与证据状态。</p>
 </td>
 <td valign="top">
 <h3>⚡ 单卡长视频结构验证</h3>
-<p>在单张 RTX A5000 上完成 8 段约 19–47 分钟视频的结构检查：24 个节点观察、145 个候选节点，保留真实源时间戳、缓存与计算成本。<a href="docs/EVAL_SCENE_TREE_V1.md">查看实测记录 →</a></p>
+<p>在单张 RTX A5000 上完成 8 段约 19–47 分钟视频的时间树检查、等预算检索和 32 次问答对照，逐阶段记录采样、选帧、定位、回答与计算成本。<a href="docs/EVAL_QUERY_REFINEMENT_V1.md">查看实测记录 →</a></p>
 </td>
 </tr>
 </table>
@@ -157,7 +157,7 @@ python -m pip install -e ".[dev,agent,research]"
 python -m pytest -q
 ```
 
-2026-11-07 公开版本本地实测 **464 passed / 7 skipped**；GitHub Actions 持续执行核心合成与 Mock 测试。测试环境和运行记录见 [发布验证](docs/RELEASE_VALIDATION.md)。
+2026-11-07 公开版本本地实测 **473 passed / 7 skipped**；GitHub Actions 持续执行核心合成与 Mock 测试。测试环境和运行记录见 [发布验证](docs/RELEASE_VALIDATION.md)。
 
 </details>
 

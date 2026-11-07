@@ -31,3 +31,8 @@
 
 `python -m pytest tests/test_temporal_tree.py tests/test_frame_stdin_isolation.py -q` 可离线验证合成视频、真实FFmpeg、缓存和导航。真实构建需OpenCLIP权重与已探测的无标签请求；`scripts/probe_scene_tree.py build` 和 `evaluate` 分离。
 `configs/scene_tree_probe_v1.json` 保留归档输入哈希；公开包不分发其原始8来源输入。新数据须另存新配置和哈希。`results/scene_tree_probe_20261107.json` 给出聚合指标、源码/归档SHA、成本口径与本机重放验证；不宣称完整VTS复现。
+
+## 6. 问题引导局部补看
+
+`python -m pytest tests/test_query_refinement.py -q` 使用合成视频跑通检索→独立oracle准备→Mock推理，真实指标入口拒绝Mock。`scripts/probe_query_refinement.py` 提供prepare/context/run/evaluate分离入口；CLIP缓存身份、请求、标签、准备产物和源码均按冻结哈希检查。
+真实运行前还需用 `scripts.run_grounded_qa_baseline.verify_model_snapshot` 核验本地Qwen模型快照；该校验已在归档执行前完成。数据/模型不分发，原始8来源配置不是公开下载入口。更换输入须另存配置。协议中的事前版本保留在源包哈希中，公开文档追加实测结果；见 [记录](EVAL_QUERY_REFINEMENT_V1.md)。

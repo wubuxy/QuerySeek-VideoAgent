@@ -39,3 +39,8 @@ GitHub Actions 仅运行声明的核心 Mock 子集；其远程状态以实际 A
 新增惰性多分支树、源PTS/特征缓存、独立导航工具和标签隔离结构检查；FFmpeg三个抽帧入口隔离stdin，服务器合成复现确认修复。相关协议和真实结果见 [时间树记录](EVAL_SCENE_TREE_V1.md)。
 本次在独立公开工作树重新执行完整pytest：**464 passed / 7 skipped，143.56秒**。跳过为固定本地tokenizer、Qwen processor各1项，Windows symlink权限1项，未分发官方Moment-DETR源码对照4项；不把跳过称作通过。服务器相关52项通过（11.29秒），包括真实FFmpeg管道输入回归。CI增加时间树、缓存完整性、标签隔离、失败成本、导航和stdin回归。
 VTS的4个MIT函数保留原函数体、来源与完整LICENSE，UniVTG/VTS许可证均纳入setuptools package-data。真实8来源结果完成备份及本机精确重放；无新VLM调用或训练。公开聚合见 `results/scene_tree_probe_20261107.json`。
+
+## 2026-11-07 问题引导补看完整回归
+
+公开工作树重新执行完整pytest：**473 passed / 7 skipped，129.39秒**；跳过原因同上轮。新增9项覆盖等预算、源PTS去重、候选选帧、真实合成FFmpeg、标签隔离、Mock/真实禁止混用、输入篡改、失败分母和联合评测。CI增加该9项。
+服务器相关35 passed/1 skipped（15.94秒），随后设置本地Qwen processor执行输入专项5项全部通过（23.20秒），补验该跳过项。真实24组检索、32次生成全成功；242文件归档校验，24曲线和24组选帧、指标/成本均在本机精确重放。完整记录见 [问题引导补看](EVAL_QUERY_REFINEMENT_V1.md)。

@@ -1,7 +1,6 @@
 {
   "release_date": "2026-11-06",
   "experiment_date": "2026-10-21",
-  "new_training_or_inference": false,
   "historical_test_result": "450 passed, 2 skipped in 114.32s; not this release test run",
   "model": "Qwen/Qwen3-VL-8B-Instruct",
   "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
@@ -271,7 +270,12 @@
     "tests/test_temporal_tree.py": "d30436948ef25b639e1dd659905fb0741dbc1ed62f7ecd2beeba06cb409dcee9",
     "configs/scene_tree_probe_v1.json": "c4593f4058cf069e967fa33623448041b7713a5d2ccef5d7614c33af9a8b7953",
     "tests/test_frame_stdin_isolation.py": "53571145151750a2ebd8ce37c29001049b130961607107cfe11c3ca57d065f25",
-    "docs/EVAL_SCENE_TREE_V1.md": "41ea1b4992d4b9f18635654cb43cc2330b578636af1fa1f2b224c1c67218e20d"
+    "docs/EVAL_SCENE_TREE_V1.md": "41ea1b4992d4b9f18635654cb43cc2330b578636af1fa1f2b224c1c67218e20d",
+    "queryseek/retrieval/query_refinement.py": "48ffa05caa4e3379c04ebd5df9785a0215e8900cd8966f887a5148e003a8a73a",
+    "scripts/probe_query_refinement.py": "95c3664c81b5a7df4d8ff6cb2bcfc9fcc3585bc9796bcfc787fffd9e87efa529",
+    "tests/test_query_refinement.py": "655435eb7c5c1930bb19e00576b537590c37a14011da484fa66ad7843a8c6a2f",
+    "configs/query_refinement_v1.json": "5df3b1550ebc8bf1f0d10fa768c89a88135d3d2e08f55daf4927069b6829342f",
+    "docs/EVAL_QUERY_REFINEMENT_V1.md": "a29965f246e4e33b0b91d827c8d9dc0764de0eff6f3363fb7301809e429e8c64"
   },
   "publication_changes": {
     "docs/EVAL_GROUNDED_QA_INPUT_STUDY.md": {
@@ -325,5 +329,28 @@
     "scope": "Real CLIP structural development check, 8 videos; no VLM calls, no training, no QA claims.",
     "config_sha256": "c4593f4058cf069e967fa33623448041b7713a5d2ccef5d7614c33af9a8b7953",
     "archive_sha256": "9e19fb08bd9a6d2bf11317805403a9babe255eb2f48991c57f4baf0ccbd9bd1a"
+  },
+  "original_release_new_training_or_inference": false,
+  "original_release_scope": "Top-level model/experiment fields describe the original archived SFT release; subsequent real experiments are described by extension records.",
+  "query_refinement_extension": {
+    "date": "2026-11-07",
+    "result": "results/query_refinement_20261107.json",
+    "result_sha256": "2e5a9c3363727500362c91b6e5cd2d55831589d3dec0c01672187484694d5bbb",
+    "scope": "8-source development, matched observation budgets; 32 real generations, no retries/training.",
+    "config_sha256": "5df3b1550ebc8bf1f0d10fa768c89a88135d3d2e08f55daf4927069b6829342f",
+    "archive_sha256": "d3f4ee387b248d7ecb22d4a8d45f1007919bf0f03e4661537a39905d3c4f235d",
+    "runtime_source_sha256": {
+      "scripts/probe_query_refinement.py": "95c3664c81b5a7df4d8ff6cb2bcfc9fcc3585bc9796bcfc787fffd9e87efa529",
+      "queryseek/retrieval/query_refinement.py": "48ffa05caa4e3379c04ebd5df9785a0215e8900cd8966f887a5148e003a8a73a",
+      "queryseek/retrieval/curve_spans.py": "e9b171551da15f330a90cf5d28bb6d503acb27cd6829b887529c2599678da81d",
+      "queryseek/agent/tree_observations.py": "9f8aa479e61a5ddf657b6d9131db12e185427cd3cfb6c9bf818ef4ad90aca20a",
+      "queryseek/agent/temporal_tree.py": "650b07559bb2946e4b3add3f56f09a3a09edbcd2fdd25aa83bc66d4a31737182",
+      "queryseek/ingest/frames.py": "9825a5cda426c2f959a62d9b056e8c9a5356b4d37fd157b14a27cd1c5c732d80",
+      "scripts/grounded_qa_input_study.py": "fb0dfddb53be2671f180bd6b63667068ed51a1194f2eefa843bca231917af8bb",
+      "scripts/train_agent_sft.py": "a69f189851c8d75645ccf468fd5eb903791ff15bf967adf27f4a6788878c029e",
+      "scripts/gpu_agent_experiment.py": "34505bc8303efedd96441f64f7aa2b35b230407f7e146fed80741d638b7b0dab",
+      "queryseek/embeddings/openclip_encoder.py": "8088ae2c1b7c9970526be42c3f0d79176ddff5788c157f00d76888ed7aa34c9e",
+      "queryseek/eval/grounded_qa.py": "bae0f86e57073ccfde268b945d346dd388bef77962f242a4ec53d8537e5aae57"
+    }
   }
 }

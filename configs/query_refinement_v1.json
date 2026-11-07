@@ -1,0 +1,29 @@
+{
+  "version": "query-refinement-v1",
+  "date": "2026-11-07",
+  "requests_sha256": "a4ff948561a333b8cab132205b17edb396422a8815150022a3f6715663cd3426",
+  "labels_sha256": "7963f3a55adb2c6cf6ad6f61376aa5c0cdc60489fd575979f857c879f0edfa18",
+  "clip_manifest_sha256": "fea3c587cdd920f7bc326752fb886b699c5e94e172645250716ae8db41232984",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "seed": 12,
+  "max_output_tokens": 512,
+  "max_generations": 32,
+  "max_retries": 0,
+  "temperature": 0,
+  "retrieval": {
+    "root_frames": 64, "dense_frames": 192, "local_frames": 64, "selected_regions": 2,
+    "region_pool": 3, "review_frames": 16, "top_k": 5, "nms_iou": 0.9,
+    "split": {"k": 1.5, "min_children": 3, "max_children": 8, "leaf_seconds": 64.0, "max_depth": 6, "max_observed_nodes": 3}
+  },
+  "sampling": {"fps_cap": 1.0, "max_frames": 64, "max_side": 512, "batch_size": 16},
+  "oracle_context_padding_sec": 10.0,
+  "conditions": [
+    {"name": "dense_uniform", "scope": "retrieval", "input": "video", "frames": 16, "pixels": 65536, "output": "grounded"},
+    {"name": "uniform_refine", "scope": "retrieval", "input": "video", "frames": 16, "pixels": 65536, "output": "grounded"},
+    {"name": "scene_refine", "scope": "retrieval", "input": "video", "frames": 16, "pixels": 65536, "output": "grounded"},
+    {"name": "oracle_context16", "scope": "oracle_diagnostic", "input": "video", "frames": 16, "pixels": 65536, "output": "answer"}
+  ],
+  "new_training": false,
+  "audio": false,
+  "subtitle": false
+}
