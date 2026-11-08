@@ -1,0 +1,17 @@
+{
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "model_manifest_sha256": "7c32629cb034e2618e9cbdb946fe142cc5a188f425641ec39881b53136e59268",
+  "seed": 12,
+  "max_output_tokens": 512,
+  "frames": 16,
+  "pixels": 262144,
+  "sample_count": 8,
+  "dev_labels_sha256": "7963f3a55adb2c6cf6ad6f61376aa5c0cdc60489fd575979f857c879f0edfa18",
+  "fresh_labels_sha256": "aadc05ad5e56a0dddb09beaf1c53f44282dffc4220e032ab85577bf39fb40a7c",
+  "version": "grounded-reader-fix-v1",
+  "parent_config_sha256": "047bafabd5192f629150207db4358e07ee5fea824bdea39c5c1e5e29c59b2f6e",
+  "max_generations": 64,
+  "max_retries": 0,
+  "new_training": false,
+  "new_sources": false
+}

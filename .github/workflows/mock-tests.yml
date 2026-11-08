@@ -32,5 +32,5 @@ jobs:
           tests/test_grounded_qa.py tests/test_grounded_qa_baseline.py
           tests/test_grounded_qa_input_study.py
           tests/test_temporal_tree.py tests/test_frame_stdin_isolation.py
-          tests/test_query_refinement.py tests/test_query_reader.py tests/test_evidence_packets.py tests/test_evidence_contract.py tests/test_anchor_observations.py tests/test_evidence_needs.py tests/test_model_diagnostic.py tests/test_verifier_diagnostic.py tests/test_compact_reader.py
+          tests/test_query_refinement.py tests/test_query_reader.py tests/test_evidence_packets.py tests/test_evidence_contract.py tests/test_anchor_observations.py tests/test_evidence_needs.py tests/test_model_diagnostic.py tests/test_verifier_diagnostic.py tests/test_compact_reader.py tests/test_grounded_reader_fix.py
           tests/test_baseline_integrity.py::test_scene_missing_pts_preserves_log_without_fabricating_time

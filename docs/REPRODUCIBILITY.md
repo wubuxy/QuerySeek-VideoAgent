@@ -58,3 +58,7 @@
 ## 11. 精简阅读与新来源
 
 入口 `scripts/probe_compact_reader.py` 分prepare/run/evaluate，模型推理不读标签；准备使用真实PTS的oracle缓存，明确区别于在线检索。`queryseek.eval.compact_reader.select_sources`实现冻结元数据规则。运行 `python -m pytest tests/test_compact_reader.py -q` 可用统一合成fixture无网络验证。详见[实验协议](EVAL_COMPACT_READER_V1.md)。
+
+## 12. 修正后回归
+
+`queryseek/retrieval/grounded_reader.py`保留原图到最终作答并将引用子集复读索引绑定回源帧。`scripts/probe_grounded_reader_fix.py`运行和评测分离，复用上一轮事实及原图；`python -m pytest tests/test_grounded_reader_fix.py -q`提供合成视频无网络回归。协议与成本见[修正记录](EVAL_GROUNDED_READER_FIX_V1.md)。

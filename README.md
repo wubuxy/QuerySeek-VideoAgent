@@ -7,7 +7,7 @@
 [![Core mock tests](https://github.com/wubuxy/QuerySeek-VideoAgent/actions/workflows/mock-tests.yml/badge.svg)](https://github.com/wubuxy/QuerySeek-VideoAgent/actions/workflows/mock-tests.yml)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)](pyproject.toml)
 [![Model](https://img.shields.io/badge/Qwen3--VL-8B%20%7C%20QLoRA-8B5CF6?style=flat-square)](configs/agent_sft_v1.json)
-[![Tests](https://img.shields.io/badge/Release_tests-571_passed_%C2%B7_10_skipped-16A085?style=flat-square)](docs/RELEASE_VALIDATION.md)
+[![Tests](https://img.shields.io/badge/Release_tests-585_passed_%C2%B7_11_skipped-16A085?style=flat-square)](docs/RELEASE_VALIDATION.md)
 [![License](https://img.shields.io/badge/License-MIT-0EA5E9?style=flat-square)](LICENSE)
 
 [项目亮点](#highlights) · [系统架构](#architecture) · [实验结果](#results) · [快速开始](#quickstart) · [复现指南](docs/REPRODUCIBILITY.md)
@@ -167,7 +167,7 @@ python -m pip install -e ".[dev,agent,research]"
 python -m pytest -q
 ```
 
-2026-11-07 公开版本本地实测 **571 passed / 10 skipped**；GitHub Actions 持续执行核心合成与 Mock 测试。测试环境和运行记录见 [发布验证](docs/RELEASE_VALIDATION.md)。
+2026-11-07 公开版本本地实测 **585 passed / 11 skipped**；GitHub Actions 持续执行核心合成与 Mock 测试。测试环境和运行记录见 [发布验证](docs/RELEASE_VALIDATION.md)。
 
 </details>
 

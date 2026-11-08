@@ -1,0 +1,482 @@
+{
+  "mock": false,
+  "scope": "Previously used sources, oracle evidence: repair regression only.",
+  "groups": {
+    "development": {
+      "matched": {
+        "minimal": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 8,
+          "correct": 4,
+          "wrong_accepted": 4,
+          "accuracy_on_accepted": 0.5,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 36688,
+            "output_tokens": 74,
+            "visual_tokens": 32096,
+            "elapsed_sec": 15.65459546599999,
+            "peak_allocated_bytes": 18984982528
+          }
+        },
+        "compact": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 7,
+          "correct": 3,
+          "wrong_accepted": 4,
+          "accuracy_on_accepted": 0.42857142857142855,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 38747,
+            "output_tokens": 152,
+            "visual_tokens": 32096,
+            "elapsed_sec": 25.012634185999985,
+            "peak_allocated_bytes": 19051130880
+          }
+        },
+        "fact_map": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 6,
+          "correct": 3,
+          "wrong_accepted": 3,
+          "accuracy_on_accepted": 0.5,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 128,
+            "input_tokens": 41353,
+            "output_tokens": 801,
+            "visual_tokens": 32096,
+            "elapsed_sec": 56.84727815599996,
+            "peak_allocated_bytes": 19038069760
+          }
+        },
+        "visual_remap": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 7,
+          "correct": 4,
+          "wrong_accepted": 3,
+          "accuracy_on_accepted": 0.5714285714285714,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 256,
+            "input_tokens": 80541,
+            "output_tokens": 893,
+            "visual_tokens": 64192,
+            "elapsed_sec": 80.17843803100004,
+            "peak_allocated_bytes": 19157201920
+          }
+        },
+        "citation_checked": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 5,
+          "correct": 3,
+          "wrong_accepted": 2,
+          "accuracy_on_accepted": 0.6,
+          "logical_cost_including_reused": {
+            "generation_attempted": 23,
+            "images": 276,
+            "input_tokens": 89949,
+            "output_tokens": 1027,
+            "visual_tokens": 69232,
+            "elapsed_sec": 88.28064880300005,
+            "peak_allocated_bytes": 19157201920
+          }
+        }
+      },
+      "mismatched": {
+        "minimal": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 8,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 36688,
+            "output_tokens": 77,
+            "visual_tokens": 32096,
+            "elapsed_sec": 16.06740381399996,
+            "peak_allocated_bytes": 18967255552
+          }
+        },
+        "compact": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 1,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 38747,
+            "output_tokens": 127,
+            "visual_tokens": 32096,
+            "elapsed_sec": 19.03300609200008,
+            "peak_allocated_bytes": 19030962688
+          }
+        },
+        "fact_map": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 1,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 128,
+            "input_tokens": 40827,
+            "output_tokens": 289,
+            "visual_tokens": 32096,
+            "elapsed_sec": 28.292332447000092,
+            "peak_allocated_bytes": 19026331648
+          }
+        },
+        "visual_remap": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 2,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 256,
+            "input_tokens": 80008,
+            "output_tokens": 348,
+            "visual_tokens": 64192,
+            "elapsed_sec": 44.39504489500001,
+            "peak_allocated_bytes": 19131537920
+          }
+        },
+        "citation_checked": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 1,
+          "logical_cost_including_reused": {
+            "generation_attempted": 18,
+            "images": 261,
+            "input_tokens": 82553,
+            "output_tokens": 383,
+            "visual_tokens": 65452,
+            "elapsed_sec": 46.60934087900003,
+            "peak_allocated_bytes": 19131537920
+          }
+        }
+      }
+    },
+    "new_sources": {
+      "matched": {
+        "minimal": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 8,
+          "correct": 5,
+          "wrong_accepted": 3,
+          "accuracy_on_accepted": 0.625,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 36637,
+            "output_tokens": 71,
+            "visual_tokens": 32256,
+            "elapsed_sec": 15.857089528999893,
+            "peak_allocated_bytes": 18964475904
+          }
+        },
+        "compact": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 8,
+          "correct": 5,
+          "wrong_accepted": 3,
+          "accuracy_on_accepted": 0.625,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 38684,
+            "output_tokens": 156,
+            "visual_tokens": 32256,
+            "elapsed_sec": 20.398215329999914,
+            "peak_allocated_bytes": 19028525056
+          }
+        },
+        "fact_map": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 2,
+          "correct": 1,
+          "wrong_accepted": 1,
+          "accuracy_on_accepted": 0.5,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 128,
+            "input_tokens": 41232,
+            "output_tokens": 803,
+            "visual_tokens": 32256,
+            "elapsed_sec": 56.723730058999934,
+            "peak_allocated_bytes": 19020063744
+          }
+        },
+        "visual_remap": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 6,
+          "correct": 4,
+          "wrong_accepted": 2,
+          "accuracy_on_accepted": 0.6666666666666666,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 256,
+            "input_tokens": 80429,
+            "output_tokens": 882,
+            "visual_tokens": 64512,
+            "elapsed_sec": 73.91420138399985,
+            "peak_allocated_bytes": 19133258752
+          }
+        },
+        "citation_checked": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 4,
+          "correct": 2,
+          "wrong_accepted": 2,
+          "accuracy_on_accepted": 0.5,
+          "logical_cost_including_reused": {
+            "generation_attempted": 22,
+            "images": 271,
+            "input_tokens": 87833,
+            "output_tokens": 984,
+            "visual_tokens": 68292,
+            "elapsed_sec": 80.22879792099985,
+            "peak_allocated_bytes": 19133258752
+          }
+        }
+      },
+      "mismatched": {
+        "minimal": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 8,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 36637,
+            "output_tokens": 77,
+            "visual_tokens": 32256,
+            "elapsed_sec": 16.336795411999958,
+            "peak_allocated_bytes": 18960793600
+          }
+        },
+        "compact": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 0,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 38684,
+            "output_tokens": 120,
+            "visual_tokens": 32256,
+            "elapsed_sec": 18.576453632000096,
+            "peak_allocated_bytes": 19024881664
+          }
+        },
+        "fact_map": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 0,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 128,
+            "input_tokens": 40781,
+            "output_tokens": 358,
+            "visual_tokens": 32256,
+            "elapsed_sec": 32.11643207499998,
+            "peak_allocated_bytes": 19018150912
+          }
+        },
+        "visual_remap": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 0,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 256,
+            "input_tokens": 79972,
+            "output_tokens": 406,
+            "visual_tokens": 64512,
+            "elapsed_sec": 48.01312921900001,
+            "peak_allocated_bytes": 19130063360
+          }
+        },
+        "citation_checked": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 0,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 256,
+            "input_tokens": 79972,
+            "output_tokens": 406,
+            "visual_tokens": 64512,
+            "elapsed_sec": 48.01312921900001,
+            "peak_allocated_bytes": 19130063360
+          }
+        }
+      }
+    }
+  },
+  "new_physical_cost": {
+    "generation_attempted": 47,
+    "images": 552,
+    "input_tokens": 186653,
+    "output_tokens": 819,
+    "visual_tokens": 138784,
+    "elapsed_sec": 102.27447905199995,
+    "peak_allocated_bytes": 19157201920
+  },
+  "run_summary": {
+    "mock": false,
+    "records": 64,
+    "new_physical_cost": {
+      "generation_attempted": 47,
+      "images": 552,
+      "input_tokens": 186653,
+      "output_tokens": 819,
+      "visual_tokens": 138784,
+      "elapsed_sec": 102.27447905199995,
+      "peak_allocated_bytes": 19157201920
+    },
+    "model_load_sec": 72.093720542,
+    "backend_blocked": null
+  },
+  "replay": {
+    "all_metrics_costs_and_bindings_verified": true,
+    "new_physical_calls": 47,
+    "audited_visual_inputs": 47,
+    "citation_only_checks": 15,
+    "valid_rows_decoded": 64,
+    "local_original_images_verified": 256,
+    "paired_correctness": {
+      "development": {
+        "visual_remap": {
+          "minimal": {
+            "gained": 1,
+            "lost": 1
+          },
+          "compact": {
+            "gained": 1,
+            "lost": 0
+          },
+          "fact_map": {
+            "gained": 1,
+            "lost": 0
+          }
+        },
+        "citation_checked": {
+          "minimal": {
+            "gained": 1,
+            "lost": 2
+          },
+          "compact": {
+            "gained": 0,
+            "lost": 0
+          },
+          "fact_map": {
+            "gained": 1,
+            "lost": 1
+          }
+        }
+      },
+      "new_sources": {
+        "visual_remap": {
+          "minimal": {
+            "gained": 1,
+            "lost": 2
+          },
+          "compact": {
+            "gained": 1,
+            "lost": 2
+          },
+          "fact_map": {
+            "gained": 3,
+            "lost": 0
+          }
+        },
+        "citation_checked": {
+          "minimal": {
+            "gained": 0,
+            "lost": 3
+          },
+          "compact": {
+            "gained": 0,
+            "lost": 3
+          },
+          "fact_map": {
+            "gained": 1,
+            "lost": 0
+          }
+        }
+      }
+    },
+    "citation_filtering": {
+      "development": {
+        "previously_correct_filtered": 1,
+        "previously_wrong_answers_filtered": 1
+      },
+      "new_sources": {
+        "previously_correct_filtered": 2,
+        "previously_wrong_answers_filtered": 0
+      }
+    },
+    "new_cost": {
+      "generation_attempted": 47,
+      "images": 552,
+      "input_tokens": 186653,
+      "output_tokens": 819,
+      "visual_tokens": 138784,
+      "elapsed_sec": 102.27447905199995,
+      "peak_allocated_bytes": 19157201920
+    }
+  },
+  "backup": {
+    "sha256": "723d411ca95f9b645030ebb1097e06c00d7218d40ccaafb4e2cf41eddd8d9fd0",
+    "source_files_verified": 27,
+    "prepared_images_verified": 256,
+    "new_images": 0,
+    "scope": "Private results and frozen source only, no media/model bytes.",
+    "files_verified": 44
+  },
+  "validation": {
+    "local_new_tests": {
+      "passed": 14,
+      "skipped": 1,
+      "seconds": 2.68
+    },
+    "server_related_real_parser": {
+      "passed": 31,
+      "skipped": 0,
+      "seconds": 14.63
+    },
+    "public_full_suite": {
+      "passed": 585,
+      "skipped": 11,
+      "seconds": 147.99
+    }
+  },
+  "preregistered_source": {
+    "archive_sha256": "76c109fd7fa5700380b31214639f196459c1441a52bf9d3e1b7a2f9c1030d3c4",
+    "files": {
+      "queryseek/retrieval/grounded_reader.py": "1d856ee7b7090952413262ef19c296d5855f31286354028db27c6af0cecf86db",
+      "scripts/probe_grounded_reader_fix.py": "8ad79f19bc1d8839221f14954c7f56f8b4e5fd6e447d378f468c77e2a587da94",
+      "tests/test_grounded_reader_fix.py": "14c7768d75a25d7a2ca2dfd589766056e465467d73914372697e55d86b8476a6",
+      "configs/grounded_reader_fix_v1.json": "a2d382287d4e98a09f0147492256e84a22cc82dc53ae0dabe668a69c030cf050",
+      "docs/EVAL_GROUNDED_READER_FIX_V1.md": "a196bbf0a0b844f3dd2b0a08fc6d8bfb255f815d8e0d0191c216ade84d732ced"
+    }
+  },
+  "limitations": [
+    "Previously used sources only; no independent confirmation.",
+    "Oracle evidence, not autonomous localization.",
+    "Citation rereading uses the same backbone; agreement does not prove sufficient evidence.",
+    "Logical calls and image budgets differ."
+  ]
+}

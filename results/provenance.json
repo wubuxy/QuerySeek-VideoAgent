@@ -313,7 +313,12 @@
     "scripts/probe_compact_reader.py": "e88b70134f529fae9ef7c452a7e802eb2771ded1ea7578c3a8257f1e4cd089a1",
     "tests/test_compact_reader.py": "f4e69fb77caf19bb82b7f6081c77c647d76839ee0f2acad03cbb53e9f8cf82bc",
     "configs/compact_reader_v1.json": "047bafabd5192f629150207db4358e07ee5fea824bdea39c5c1e5e29c59b2f6e",
-    "docs/EVAL_COMPACT_READER_V1.md": "ce7cc519ff3ac971a9fa7cc8bcbe8dbc84046b1a0e4d05c04a2960ac4b7b81f6"
+    "docs/EVAL_COMPACT_READER_V1.md": "ce7cc519ff3ac971a9fa7cc8bcbe8dbc84046b1a0e4d05c04a2960ac4b7b81f6",
+    "queryseek/retrieval/grounded_reader.py": "1d856ee7b7090952413262ef19c296d5855f31286354028db27c6af0cecf86db",
+    "scripts/probe_grounded_reader_fix.py": "8ad79f19bc1d8839221f14954c7f56f8b4e5fd6e447d378f468c77e2a587da94",
+    "tests/test_grounded_reader_fix.py": "14c7768d75a25d7a2ca2dfd589766056e465467d73914372697e55d86b8476a6",
+    "configs/grounded_reader_fix_v1.json": "a2d382287d4e98a09f0147492256e84a22cc82dc53ae0dabe668a69c030cf050",
+    "docs/EVAL_GROUNDED_READER_FIX_V1.md": "5ecc710f7dde4cd4d9aed487eb529f047779dcfed86b97d3a4ead6a99c438002"
   },
   "publication_changes": {
     "docs/EVAL_GROUNDED_QA_INPUT_STUDY.md": {
@@ -460,5 +465,13 @@
     "source_archive_sha256": "59dd88127ffdc67e78f748056750b3b160bf7ae448fd68392ca2eed422b20277",
     "backup_sha256": "cb7bf2c8cfe36291284e4b7c6433d4af90c5614c544db830cd114c3badc34bb5",
     "new_model_calls": 128
+  },
+  "grounded_reader_fix_extension": {
+    "date": "2026-11-08",
+    "result": "results/grounded_reader_fix_20261108.json",
+    "result_sha256": "a2a09432a463e834373b0ca9479ffd15752fe41c52b03b4e0807f7f573b8d700",
+    "source_archive_sha256": "76c109fd7fa5700380b31214639f196459c1441a52bf9d3e1b7a2f9c1030d3c4",
+    "backup_sha256": "723d411ca95f9b645030ebb1097e06c00d7218d40ccaafb4e2cf41eddd8d9fd0",
+    "new_model_calls": 47
   }
 }

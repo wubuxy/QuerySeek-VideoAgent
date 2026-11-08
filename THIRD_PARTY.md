@@ -1,5 +1,9 @@
 # Third-party components and attribution
 
+## 2026-11-08 视觉信息保留与引用复读修正
+
+复用上文登记的Qwen3-VL-8B-Instruct固定模型、Transformers 4.57.6、lm-format-enforcer 0.11.3、Torch BF16/SDPA和已有FFmpeg原图缓存；版本、URL、许可证与版权位置沿用对应登记。新增信息传递、引用子集局部/源索引绑定和修正回归运行器为本项目胶水；不复制/修改上游源码、不新增依赖或下载权重，不公开原媒体/标注。
+
 ## 2026-11-08 精简阅读与事实映射
 
 沿用已登记的Qwen3-VL-8B-Instruct固定权重、Transformers 4.57.6、lm-format-enforcer 0.11.3和PyTorch BF16/SDPA；直接调用已有真实PTS的FFmpeg抽帧器。新来源下载复用huggingface-hub 2.2.0（Apache-2.0，https://github.com/huggingface/huggingface_hub）、Python zipfile与既有Paramiko SFTP辅助工具；许可证与版权位置沿用原组件登记。无上游代码复制/修改，无新依赖/权重下载。新增显式输出契约、两阶段事实映射、同意才接受的派生策略与元数据选择/评测胶水；原媒体和标注不公开。
