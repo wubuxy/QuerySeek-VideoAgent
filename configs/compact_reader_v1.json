@@ -1,0 +1,20 @@
+{
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "model_manifest_sha256": "7c32629cb034e2618e9cbdb946fe142cc5a188f425641ec39881b53136e59268",
+  "seed": 12,
+  "max_output_tokens": 512,
+  "max_retries": 0,
+  "version": "compact-reader-v1",
+  "date": "2026-11-08",
+  "sample_count": 8,
+  "frames": 16,
+  "pixels": 262144,
+  "max_generations": 128,
+  "parent_config_sha256": "131426ef24fd0bd4eab42c818b08678cc2aaa829f7085b7c03fc7f1557b0bea8",
+  "legacy_config_sha256": "2560ac48fcb72f8626eddcd67eba26ce91c5e4f150fd7e47754558a3b8b048e8",
+  "fresh_requests_sha256": "7440163af7d0edcf406516765d466deee8f42c7334a8d60f23686c5cb56cc54b",
+  "fresh_labels_sha256": "aadc05ad5e56a0dddb09beaf1c53f44282dffc4220e032ab85577bf39fb40a7c",
+  "fresh_selection_sha256": "64d5ebb5ea1e54f1767daf39bcc7b97ff094ae787ba9b90bd6af995cf4be45da",
+  "dev_labels_sha256": "7963f3a55adb2c6cf6ad6f61376aa5c0cdc60489fd575979f857c879f0edfa18",
+  "new_training": false
+}

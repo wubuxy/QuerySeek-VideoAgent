@@ -1,5 +1,9 @@
 # Third-party components and attribution
 
+## 2026-11-08 精简阅读与事实映射
+
+沿用已登记的Qwen3-VL-8B-Instruct固定权重、Transformers 4.57.6、lm-format-enforcer 0.11.3和PyTorch BF16/SDPA；直接调用已有真实PTS的FFmpeg抽帧器。新来源下载复用huggingface-hub 2.2.0（Apache-2.0，https://github.com/huggingface/huggingface_hub）、Python zipfile与既有Paramiko SFTP辅助工具；许可证与版权位置沿用原组件登记。无上游代码复制/修改，无新依赖/权重下载。新增显式输出契约、两阶段事实映射、同意才接受的派生策略与元数据选择/评测胶水；原媒体和标注不公开。
+
 ## 2026-11-07 固定证据的模型诊断
 
 复用已登记的Qwen3-VL-8B-Instruct、Transformers 4.57.6、bitsandbytes NF4、lm-format-enforcer 0.11.3、PyTorch及Pillow。使用同权重的NF4/BF16加载、官方processor与生成接口，不复制或修改上游代码；无新依赖/模型下载。新增提示/解码/分辨率对照、图像tensor摘要审计和分离评估胶水；合成色卡仍来自仓库统一fixture生成器。版本、URL、许可证和版权位置沿用下方组件条目。

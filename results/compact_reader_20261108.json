@@ -1,0 +1,461 @@
+{
+  "mock": false,
+  "groups": {
+    "development": {
+      "matched": {
+        "minimal": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 8,
+          "correct": 4,
+          "wrong_accepted": 4,
+          "accuracy_on_accepted": 0.5,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 36688,
+            "output_tokens": 74,
+            "visual_tokens": 32096,
+            "elapsed_sec": 15.65459546599999,
+            "peak_allocated_bytes": 18984982528
+          }
+        },
+        "compact": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 7,
+          "correct": 3,
+          "wrong_accepted": 4,
+          "accuracy_on_accepted": 0.42857142857142855,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 38747,
+            "output_tokens": 152,
+            "visual_tokens": 32096,
+            "elapsed_sec": 25.012634185999985,
+            "peak_allocated_bytes": 19051130880
+          }
+        },
+        "fact_map": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 6,
+          "correct": 3,
+          "wrong_accepted": 3,
+          "accuracy_on_accepted": 0.5,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 128,
+            "input_tokens": 41353,
+            "output_tokens": 801,
+            "visual_tokens": 32096,
+            "elapsed_sec": 56.84727815599996,
+            "peak_allocated_bytes": 19038069760
+          }
+        },
+        "agreement": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 4,
+          "correct": 2,
+          "wrong_accepted": 2,
+          "accuracy_on_accepted": 0.5,
+          "logical_cost_including_reused": {
+            "generation_attempted": 24,
+            "images": 256,
+            "input_tokens": 80100,
+            "output_tokens": 953,
+            "visual_tokens": 64192,
+            "elapsed_sec": 81.85991234199994,
+            "peak_allocated_bytes": 19051130880
+          }
+        }
+      },
+      "mismatched": {
+        "minimal": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 8,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 36688,
+            "output_tokens": 77,
+            "visual_tokens": 32096,
+            "elapsed_sec": 16.06740381399996,
+            "peak_allocated_bytes": 18967255552
+          }
+        },
+        "compact": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 1,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 38747,
+            "output_tokens": 127,
+            "visual_tokens": 32096,
+            "elapsed_sec": 19.03300609200008,
+            "peak_allocated_bytes": 19030962688
+          }
+        },
+        "fact_map": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 1,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 128,
+            "input_tokens": 40827,
+            "output_tokens": 289,
+            "visual_tokens": 32096,
+            "elapsed_sec": 28.292332447000092,
+            "peak_allocated_bytes": 19026331648
+          }
+        },
+        "agreement": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 0,
+          "logical_cost_including_reused": {
+            "generation_attempted": 24,
+            "images": 256,
+            "input_tokens": 79574,
+            "output_tokens": 416,
+            "visual_tokens": 64192,
+            "elapsed_sec": 47.32533853900017,
+            "peak_allocated_bytes": 19030962688
+          }
+        }
+      },
+      "matched_vs_mismatched_answer_changes": {
+        "minimal": 8,
+        "compact": 7,
+        "fact_map": 6,
+        "agreement": 4
+      }
+    },
+    "new_sources": {
+      "matched": {
+        "minimal": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 8,
+          "correct": 5,
+          "wrong_accepted": 3,
+          "accuracy_on_accepted": 0.625,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 36637,
+            "output_tokens": 71,
+            "visual_tokens": 32256,
+            "elapsed_sec": 15.857089528999893,
+            "peak_allocated_bytes": 18964475904
+          }
+        },
+        "compact": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 8,
+          "correct": 5,
+          "wrong_accepted": 3,
+          "accuracy_on_accepted": 0.625,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 38684,
+            "output_tokens": 156,
+            "visual_tokens": 32256,
+            "elapsed_sec": 20.398215329999914,
+            "peak_allocated_bytes": 19028525056
+          }
+        },
+        "fact_map": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 2,
+          "correct": 1,
+          "wrong_accepted": 1,
+          "accuracy_on_accepted": 0.5,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 128,
+            "input_tokens": 41232,
+            "output_tokens": 803,
+            "visual_tokens": 32256,
+            "elapsed_sec": 56.723730058999934,
+            "peak_allocated_bytes": 19020063744
+          }
+        },
+        "agreement": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 2,
+          "correct": 1,
+          "wrong_accepted": 1,
+          "accuracy_on_accepted": 0.5,
+          "logical_cost_including_reused": {
+            "generation_attempted": 24,
+            "images": 256,
+            "input_tokens": 79916,
+            "output_tokens": 959,
+            "visual_tokens": 64512,
+            "elapsed_sec": 77.12194538899985,
+            "peak_allocated_bytes": 19028525056
+          }
+        }
+      },
+      "mismatched": {
+        "minimal": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 8,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 36637,
+            "output_tokens": 77,
+            "visual_tokens": 32256,
+            "elapsed_sec": 16.336795411999958,
+            "peak_allocated_bytes": 18960793600
+          }
+        },
+        "compact": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 0,
+          "logical_cost_including_reused": {
+            "generation_attempted": 8,
+            "images": 128,
+            "input_tokens": 38684,
+            "output_tokens": 120,
+            "visual_tokens": 32256,
+            "elapsed_sec": 18.576453632000096,
+            "peak_allocated_bytes": 19024881664
+          }
+        },
+        "fact_map": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 0,
+          "logical_cost_including_reused": {
+            "generation_attempted": 16,
+            "images": 128,
+            "input_tokens": 40781,
+            "output_tokens": 358,
+            "visual_tokens": 32256,
+            "elapsed_sec": 32.11643207499998,
+            "peak_allocated_bytes": 19018150912
+          }
+        },
+        "agreement": {
+          "n": 8,
+          "valid": 8,
+          "accepted": 0,
+          "logical_cost_including_reused": {
+            "generation_attempted": 24,
+            "images": 256,
+            "input_tokens": 79465,
+            "output_tokens": 478,
+            "visual_tokens": 64512,
+            "elapsed_sec": 50.69288570700007,
+            "peak_allocated_bytes": 19024881664
+          }
+        }
+      },
+      "matched_vs_mismatched_answer_changes": {
+        "minimal": 7,
+        "compact": 8,
+        "fact_map": 2,
+        "agreement": 2
+      }
+    }
+  },
+  "new_physical_cost": {
+    "generation_attempted": 128,
+    "images": 1536,
+    "input_tokens": 489456,
+    "output_tokens": 3630,
+    "visual_tokens": 386112,
+    "elapsed_sec": 356.8090229569999,
+    "peak_allocated_bytes": 19844511232
+  },
+  "run_summary": {
+    "mock": false,
+    "records": 104,
+    "new_model_calls": 128,
+    "historical_comparison_rows": 16,
+    "model_load_sec": 71.17818984800002,
+    "backend_blocked": null
+  },
+  "scope": "Privileged temporal evidence; source-disjoint small confirmation.",
+  "legacy_comparison": {
+    "reused": {
+      "n": 8,
+      "valid": 8,
+      "accepted": 1,
+      "correct": 0,
+      "wrong_accepted": 1,
+      "accuracy_on_accepted": 0.0
+    },
+    "explicit": {
+      "n": 8,
+      "valid": 8,
+      "accepted": 6,
+      "correct": 1,
+      "wrong_accepted": 5,
+      "accuracy_on_accepted": 0.16666666666666666
+    }
+  },
+  "replay": {
+    "records": 104,
+    "physical_call_records": 128,
+    "audited_inputs_including_reused": 136,
+    "historical_minimal_rows_reused": 8,
+    "text_only_mapping_steps": 32,
+    "unique_source_pixel_signatures": 16,
+    "images_verified_locally": 256,
+    "all_metrics_and_costs_replayed": true,
+    "all_prompts_and_bindings_verified": true,
+    "paired_vs_minimal": {
+      "development": {
+        "compact": {
+          "gained": 1,
+          "lost": 2
+        },
+        "fact_map": {
+          "gained": 1,
+          "lost": 2
+        },
+        "agreement": {
+          "gained": 1,
+          "lost": 3
+        }
+      },
+      "new_sources": {
+        "compact": {
+          "gained": 0,
+          "lost": 0
+        },
+        "fact_map": {
+          "gained": 0,
+          "lost": 4
+        },
+        "agreement": {
+          "gained": 0,
+          "lost": 4
+        }
+      }
+    },
+    "costs": {
+      "generation_attempted": 128,
+      "images": 1536,
+      "input_tokens": 489456,
+      "output_tokens": 3630,
+      "visual_tokens": 386112,
+      "elapsed_sec": 356.8090229569999,
+      "peak_allocated_bytes": 19844511232
+    }
+  },
+  "validation": {
+    "local_new_tests": {
+      "passed": 15,
+      "skipped": 1,
+      "seconds": 3.28
+    },
+    "server_related_real_parser": {
+      "passed": 39,
+      "skipped": 0,
+      "seconds": 14.93
+    },
+    "public_full_suite": {
+      "passed": 571,
+      "skipped": 10,
+      "seconds": 148.61
+    }
+  },
+  "backup": {
+    "sha256": "cb7bf2c8cfe36291284e4b7c6433d4af90c5614c544db830cd114c3badc34bb5",
+    "source_files_verified": 25,
+    "prepared_images_verified": 256,
+    "fresh_media_verified": 8,
+    "cache_manifests": 16,
+    "scope": "Private source/results/selection/cache metadata; no original image/video/model bytes.",
+    "files_verified": 91
+  },
+  "preregistered_source": {
+    "archive_sha256": "59dd88127ffdc67e78f748056750b3b160bf7ae448fd68392ca2eed422b20277",
+    "files": {
+      "queryseek/eval/compact_reader.py": "51455a23f28e4000591fd93ede3a45f6707c27ed0cb0c479f1e2e795145f6807",
+      "scripts/probe_compact_reader.py": "e88b70134f529fae9ef7c452a7e802eb2771ded1ea7578c3a8257f1e4cd089a1",
+      "tests/test_compact_reader.py": "f4e69fb77caf19bb82b7f6081c77c647d76839ee0f2acad03cbb53e9f8cf82bc",
+      "configs/compact_reader_v1.json": "047bafabd5192f629150207db4358e07ee5fea824bdea39c5c1e5e29c59b2f6e",
+      "docs/EVAL_COMPACT_READER_V1.md": "9232ee06701e18e9388c55809757c00a5c9ac4e15f4652b9786a8c76a2a3d0ed"
+    }
+  },
+  "posthoc_output_quality_audit": {
+    "scope": "Post-hoc descriptive audit only; no new inference, scoring changes or revised outputs.",
+    "groups": {
+      "development": {
+        "n": 8,
+        "fact_length_at_320": 6,
+        "fact_length_at_least_310": 6,
+        "fact_over_40_whitespace_words": 6,
+        "fact_contains_replacement_character": 0,
+        "nonempty_fact_evidence": 8,
+        "mapper_abstentions": 2,
+        "mapper_abstentions_with_nonempty_fact_evidence": 2,
+        "compact_minimal_identical_answers": 4,
+        "fact_step_output_tokens": [
+          209,
+          88,
+          66,
+          70,
+          90,
+          45,
+          88,
+          85
+        ]
+      },
+      "new_sources": {
+        "n": 8,
+        "fact_length_at_320": 8,
+        "fact_length_at_least_310": 8,
+        "fact_over_40_whitespace_words": 8,
+        "fact_contains_replacement_character": 0,
+        "nonempty_fact_evidence": 8,
+        "mapper_abstentions": 6,
+        "mapper_abstentions_with_nonempty_fact_evidence": 6,
+        "compact_minimal_identical_answers": 7,
+        "fact_step_output_tokens": [
+          83,
+          111,
+          89,
+          82,
+          111,
+          95,
+          86,
+          78
+        ]
+      }
+    }
+  },
+  "new_source_selection": {
+    "sources": 8,
+    "eligible_sources": 512,
+    "media_bytes": 1592050400,
+    "minimum_seconds": 120,
+    "maximum_member_mib": 384,
+    "selection_sha256": "64d5ebb5ea1e54f1767daf39bcc7b97ff094ae787ba9b90bd6af995cf4be45da",
+    "metadata_only_selection_replayed": true
+  },
+  "limitations": [
+    "Oracle temporal evidence, not autonomous localization.",
+    "Eight new sources filtered by duration/media size.",
+    "Methods differ in call/visual budgets; agreement reuses dependent outputs.",
+    "Mismatched-source acceptance is not certified false-positive rate."
+  ]
+}

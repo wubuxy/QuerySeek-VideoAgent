@@ -54,3 +54,7 @@
 `python -m pytest tests/test_model_diagnostic.py -q` 无需GPU或网络，使用统一fixture；真实研究按 `scripts/probe_model_diagnostic.py` 的prepare、两精度run、evaluate分阶段执行，详见[冻结协议](EVAL_MODEL_DIAGNOSTIC_V1.md)。推理与标签评估分开，所有实际图像、张量与提示摘要留档，完整原始媒体只保存在私有环境。
 
 复杂核验跟进入口为 `scripts/probe_verifier_diagnostic.py`，依赖已冻结首轮准备目录和配置，通过独立配置执行NF4自由解码/BF16受约束核验，evaluate重用首轮NF4结果。测试：`python -m pytest tests/test_verifier_diagnostic.py -q`。协议与原始意图统计边界见[跟进记录](EVAL_VERIFIER_DIAGNOSTIC_V1.md)。
+
+## 11. 精简阅读与新来源
+
+入口 `scripts/probe_compact_reader.py` 分prepare/run/evaluate，模型推理不读标签；准备使用真实PTS的oracle缓存，明确区别于在线检索。`queryseek.eval.compact_reader.select_sources`实现冻结元数据规则。运行 `python -m pytest tests/test_compact_reader.py -q` 可用统一合成fixture无网络验证。详见[实验协议](EVAL_COMPACT_READER_V1.md)。
