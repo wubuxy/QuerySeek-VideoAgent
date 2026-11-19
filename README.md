@@ -195,3 +195,9 @@ python -m pytest -q
 <div align="center">
 <sub>QuerySeek-VideoAgent · Retrieve. Observe. Ground.</sub>
 </div>
+
+## 本地视频工作台
+
+网页现支持视频上传保存、字幕版本、视频选择、持久定位历史、证据回放与 MP4/JSON 下载。用 `.venv/Scripts/python.exe -m streamlit run app/streamlit_app.py --server.address 127.0.0.1` 启动。
+
+上传与运行记录保存在 outputs，不提交用户媒体。当前为本机单用户应用；Mock 只验证流程，新学习控制器尚未实现。使用与验证边界见 [工作台说明](docs/WORKSPACE.md)。

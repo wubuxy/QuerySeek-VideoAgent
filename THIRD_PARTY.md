@@ -111,3 +111,9 @@ Upstream source additions require an updated URL, revision, license, modificatio
 ## 2026-11-07 原生视频输入诊断
 
 复用 Transformers 4.57.6（https://github.com/huggingface/transformers/tree/v4.57.6 ，Apache-2.0）的 Qwen3VLProcessor、Qwen3VLVideoProcessor 与 VideoMetadata；用于已抽帧视频的时域合并、像素处理和时间标签。上游源码未修改/未复制；版权头位于包内 `models/qwen3_vl/processing_qwen3_vl.py`、`video_processing_qwen3_vl.py`，许可证在对应 dist-info/licenses/LICENSE。仍复用原 FFmpeg、Pillow、NumPy、Torch 与约束解码库，版本及许可沿用本文件。源PTS的内部整数时间基适配、逐输入检查和实验运行器为本项目胶水实现。
+
+## 2026-11-19 工作台持久化
+
+- Python 标准库 [sqlite3](https://docs.python.org/3/library/sqlite3.html)：本机 CPython 3.13.13，连接的 SQLite 3.51.2；用于视频库和任务元数据事务。未复制或修改上游源码，没有新增 pip 依赖。
+- Python/CPython 许可为 PSF License（sqlite3 模块许可证按 CPython 原发行内容保留），版权与许可原文：https://github.com/python/cpython/blob/v3.13.13/LICENSE 。SQLite 核心为 public domain，官方声明：https://www.sqlite.org/copyright.html 。本项目仅调用系统提供的 sqlite3，不另行分发 SQLite 二进制。
+- 已登记的 Streamlit 与 langgraph-checkpoint-sqlite 继续用于页面、测试和任务 checkpoint，未修改其上游源码。
