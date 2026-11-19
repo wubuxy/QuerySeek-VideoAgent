@@ -118,6 +118,36 @@ def test_workspace_agent_timer_and_call_budget(workspace, demo):
     assert len(result['used_frame_ids']) <= 8
 
 
+def test_progress_snapshots_are_live_durable_and_cannot_mutate_task(workspace, demo):
+    video = save_demo(workspace, demo)
+    stages = []
+    persisted_stages = []
+
+    def receive(snapshot):
+        stages.append(snapshot['progress'][-1]['stage'])
+        persisted = workspace.run(snapshot['id'])
+        persisted_stages.append(persisted['progress'][-1]['stage'])
+        snapshot['status'] = 'tampered'
+        snapshot['progress'].clear()
+
+    run = workspace.execute(video['id'], '系统架构', strategy='subtitle', execution='检索与剪辑',
+                             on_progress=receive)
+    assert stages == ['indexing', 'searching', 'saving', 'completed']
+    assert persisted_stages == stages
+    restored = Workspace(workspace.cfg).run(run['id'])
+    assert restored['status'] == 'completed'
+    assert [p['stage'] for p in restored['progress']] == stages
+
+
+def test_disconnected_progress_display_does_not_fail_model_task(workspace, demo):
+    video = save_demo(workspace, demo)
+    def disconnected(snapshot):
+        raise RuntimeError('display disconnected')
+    run = workspace.execute(video['id'], '系统架构', strategy='subtitle', execution='检索与剪辑',
+                             on_progress=disconnected)
+    assert run['status'] == 'completed'
+
+
 def test_export_failure_keeps_localization_and_retry_uses_new_artifact(workspace, demo, monkeypatch):
     video = save_demo(workspace, demo)
     run = workspace.execute(video['id'], '系统架构', strategy='subtitle', execution='检索与剪辑')

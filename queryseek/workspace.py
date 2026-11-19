@@ -251,7 +251,7 @@ class Workspace:
             raise
 
     def execute(self, video_id, query, *, strategy='adaptive', execution='Agent',
-                budget=32, mock=True, request_id=None, parent_id=None):
+                budget=32, mock=True, request_id=None, parent_id=None, on_progress=None):
         from .retrieval.dispatch import AGENT_STRATEGIES, search_index
         from .agent.state import default_budget, initial_state
         from .agent.graph import run_agent
@@ -295,16 +295,28 @@ class Workspace:
                    'model': 'mock-vlm-1' if mock else os.environ.get('VLM_MODEL', '未指定'),
                    'subtitle_sha256': video.get('subtitle_sha256'),
                    'created_at': _now(), 'status': 'queued', 'export_status': 'not_requested',
-                   'config': self.cfg.model_dump(mode='json'), 'error': None}
+                   'config': self.cfg.model_dump(mode='json'), 'error': None, 'progress': []}
             self._put('runs', run)
+
+            def advance(stage):
+                run['progress'].append({'stage': stage, 'at': _now()})
+                self._put('runs', run)
+                if on_progress is not None:
+                    # UI callbacks receive a snapshot, never the mutable task state.
+                    try:
+                        on_progress(json.loads(json.dumps(run)))
+                    except Exception:
+                        # A disconnected display must not change model execution.
+                        pass
+
             started = time.perf_counter()
             trace = TraceWriter(folder / 'trace.jsonl')
             try:
                 run.update(status='running')
-                self._put('runs', run)
+                advance('indexing')
                 index = self._prepare(video_id, mock)
                 run['source_asset'] = index.asset.model_dump()
-                self._put('runs', run)
+                advance('searching')
                 if execution == 'Agent':
                     from langgraph.checkpoint.sqlite import SqliteSaver
                     limits = default_budget({'max_iterations': self.cfg.agent.max_iterations,
@@ -330,6 +342,7 @@ class Workspace:
                               'online_encoded_frames': found.online_encoded_frames,
                               'embedding_cache_hit': found.embedding_cache_hit,
                               'warnings': found.warnings, 'budget_exhausted': found.budget_exhausted}
+                advance('saving')
                 # Cached frames may be rebuilt by later index configurations.
                 # Freeze cited pictures with the run so old evidence stays readable.
                 for item in result.get('evidence', []):
@@ -366,7 +379,7 @@ class Workspace:
             finally:
                 trace.close()
                 run['finished_at'] = _now()
-                self._put('runs', run)
+                advance('completed' if run['status'] == 'completed' else 'failed')
             return run
 
     def result(self, run_id):
