@@ -137,3 +137,15 @@ def test_history_url_selects_its_video_when_library_has_multiple_videos(qs_env, 
     assert not at.exception
     assert at.selectbox(key='selected_video').value == first['id']
     assert len(at.chat_message) == 2
+
+
+def test_video_title_is_escaped_in_custom_source_card(qs_env, demo):
+    from queryseek.workspace import Workspace
+    from queryseek.config import Config
+
+    workspace = Workspace(Config.load())
+    workspace.save_video('<img src=x onerror=alert(1)>.mp4', demo['video'].read_bytes())
+    at = AppTest.from_file(APP_PATH, default_timeout=60).run()
+    assert not at.exception
+    card = next(m.value for m in at.markdown if 'qs-source-name' in m.value and '<style>' not in m.value)
+    assert '&lt;img' in card and '<img' not in card

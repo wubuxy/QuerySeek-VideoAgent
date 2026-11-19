@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 import hashlib
+from html import escape
 import json
 import os
 from pathlib import Path
@@ -16,16 +17,8 @@ from queryseek.tools.paths import resolved_path_is_within
 from queryseek.workspace import Workspace, WorkspaceBusy
 
 st.set_page_config(page_title='QuerySeek-VideoAgent', page_icon='◉', layout='wide')
-st.markdown('''<style>
- .block-container {max-width:1900px;padding:1.5rem 2rem 2rem}
- h1 {letter-spacing:-.04em;font-size:1.8rem!important}
- h2,h3 {letter-spacing:-.02em}
- [data-testid="stChatMessage"] {border:1px solid rgba(128,128,128,.15);border-radius:14px}
- [data-testid="stChatInput"] {border-radius:14px}
- [data-testid="stStatusWidget"] {border-radius:12px}
- .stCaption {line-height:1.65}
- @media(max-width:800px) {.block-container{padding:1rem}}
- </style>''', unsafe_allow_html=True)
+st.markdown('<style>' + Path(__file__).with_name('workspace.css').read_text(encoding='utf-8') + '</style>',
+            unsafe_allow_html=True)
 
 cfg = Config.load().resolved()
 workspace = Workspace(cfg)
@@ -65,10 +58,17 @@ def conversation(active):
 
 
 def inspect_task(run):
+    st.markdown('<div class="qs-kicker">ACTIVITY / EVIDENCE</div>', unsafe_allow_html=True)
     st.subheader('任务进程')
     if not run:
-        st.info('等待新的定位任务')
-        st.caption('提交消息后，这里显示实际处理阶段、消耗和证据。')
+        st.markdown('''<div class="qs-standby"><div class="qs-kicker">STANDBY</div>
+            <div class="qs-standby-title">等待定位任务</div>
+            <p>发送一条消息，开始探索视频中的证据。</p></div>''', unsafe_allow_html=True)
+        for i, (_, title) in enumerate(PHASES, 1):
+            st.markdown(f'<div class="qs-stage"><span class="qs-stage-number">{i:02}</span>'
+                        f'<div class="qs-stage-copy">{title}<small>等待任务</small></div></div>',
+                        unsafe_allow_html=True)
+        st.caption('真实处理阶段、预算消耗和画面证据会显示在这里。')
         return
     state = 'complete' if run['status'] == 'completed' else ('error' if run['status'] in {'failed', 'interrupted'} else 'running')
     progress = run.get('progress', [])
@@ -90,18 +90,21 @@ def inspect_task(run):
             panel.write(f'{title} · {note}')
     else:
         panel.write('旧任务仅保留最终状态，无逐阶段记录。')
-    st.caption(f"任务 {run['id']}\n\n{stamp(run['created_at'])} · {'Mock' if run['mock'] else run['model']}")
+    st.caption(f"{stamp(run['created_at'])} · {'Mock' if run['mock'] else run['model']}")
     if run.get('error'):
         st.warning(run['error'])
     metrics = run.get('metrics', {})
     if metrics:
         st.markdown('**本次消耗**')
         frames, calls = metrics.get('used_frames'), metrics.get('vlm_calls')
-        st.write(f"观察帧 ID：{frames if frames is not None else '未知'} / 上限 {run['budget_frames']}")
-        st.write(f"VLM 逻辑调用：{calls if calls is not None else '未知'}")
-        st.write(f"处理耗时：{metrics.get('elapsed_sec', 0):.2f} 秒")
-        if metrics.get('indexed_frames') is not None:
-            st.write(f"检索索引帧：{metrics['indexed_frames']}")
+        cells = [('观察帧 ID', str(frames) if frames is not None else '—', f"/ {run['budget_frames']}"),
+                 ('VLM 调用', str(calls) if calls is not None else '—', '次'),
+                 ('处理耗时', f"{metrics.get('elapsed_sec', 0):.2f}", '秒'),
+                 ('索引画面', str(metrics['indexed_frames']) if metrics.get('indexed_frames') is not None else '—', '帧')]
+        st.markdown('<div class="qs-stat-grid">' + ''.join(
+            f'<div class="qs-stat"><span class="qs-stat-label">{escape(label)}</span>'
+            f'<span class="qs-stat-value">{escape(value)}<small>{escape(unit)}</small></span></div>'
+            for label, value, unit in cells) + '</div>', unsafe_allow_html=True)
         st.caption('Token 尚未统一汇总；帧 ID 计数不等同于源时间去重。')
     if run.get('export_status') in {'completed', 'failed', 'interrupted'}:
         st.write(f"片段导出：{STATUS.get(run['export_status'], run['export_status'])}")
@@ -124,7 +127,7 @@ def inspect_task(run):
             st.json(result['observations'])
         if result.get('verifier_results'):
             st.json(result['verifier_results'])
-        st.json({'strategy': run['strategy'], 'execution': run['execution'],
+        st.json({'task_id': run['id'], 'strategy': run['strategy'], 'execution': run['execution'],
                  'budget_frames': run['budget_frames'], 'model': run['model'],
                  'parent_id': run.get('parent_id')})
         if result:
@@ -182,8 +185,13 @@ def show_answer(run, detailed=False):
                                    mime='video/mp4', key=f"clip_{run['id']}")
 
 
+mode_label = 'MOCK MODE' if st.session_state.get('mock', True) else 'MODEL MODE'
+st.markdown('<div class="qs-topline"><span class="qs-eyebrow">VIDEO EVIDENCE INTELLIGENCE</span>'
+            '<div class="qs-top-badges"><span class="qs-badge">LOCAL WORKSPACE</span>'
+            f'<span class="qs-badge qs-badge-accent">{mode_label}</span></div></div>',
+            unsafe_allow_html=True)
 st.title('QuerySeek-VideoAgent')
-st.caption('视频证据工作台 · 选择视频与预算，和 Agent 对话，查看任务进程')
+st.caption('以对话探索视频，让每一次观察都有据可循。')
 left, middle, right = st.columns([1, 2.4, 1.15], gap='large')
 videos = workspace.videos()
 active_id = st.session_state.get('active_run') or st.query_params.get('run')
@@ -192,7 +200,8 @@ try:
 except ValueError:
     active = None
 
-with left:
+with left, st.container(border=True, key='controls_panel'):
+    st.markdown('<div class="qs-kicker">WORKSPACE / CONTROLS</div>', unsafe_allow_html=True)
     st.subheader('工作区')
     if videos:
         ids = [v['id'] for v in videos]
@@ -208,7 +217,13 @@ with left:
         st.caption('上传视频开始，或选择已有 CLI 注册视频。')
     selected = workspace.video(video_id)
     if selected:
-        st.caption(f"{selected['asset']['duration_sec']:.3f} 秒 · {STATUS.get(selected['status'], selected['status'])}")
+        asset = selected['asset']
+        st.markdown('<div class="qs-source"><div class="qs-source-icon">▣</div>'
+                    '<div class="qs-source-copy">'
+                    f'<div class="qs-source-name">{escape(selected["title"])}</div>'
+                    f'<div class="qs-source-meta">{asset["duration_sec"]:.1f}s · {asset["width"]} × {asset["height"]}</div>'
+                    f'<div class="qs-source-meta">{escape(STATUS.get(selected["status"], selected["status"]))}</div>'
+                    '</div></div>', unsafe_allow_html=True)
     with st.expander('上传与保存视频'):
         with st.form('upload_form'):
             upload = st.file_uploader('视频文件', type=['mp4', 'mkv', 'mov'])
@@ -228,7 +243,7 @@ with left:
                     st.warning(str(exc))
     if st.session_state.get('notice'):
         st.success(st.session_state.pop('notice'))
-    with st.expander('预算与运行设置', expanded=True):
+    with st.expander('模型与定位设置'):
         execution = st.radio('执行方式', ['Agent', '检索与剪辑'], key='execution', horizontal=True)
         mock = st.checkbox('Mock（离线流程验证）', value=True, key='mock')
         strategies = ['adaptive', 'uniform', 'subtitle', 'semantic'] if execution == 'Agent' else ['curve', *AGENT_STRATEGIES]
@@ -236,13 +251,10 @@ with left:
             st.session_state['strategy'] = strategies[0]
             st.session_state['last_execution'] = execution
         strategy = st.selectbox('定位方式', strategies, key='strategy')
-        budget = st.select_slider('观察帧预算', options=[8, 16, 32, 64], value=32, key='budget') if execution == 'Agent' or strategy in {'uniform', 'adaptive'} else 32
         if mock:
             st.caption('Mock 仅验证流程。上传视频可用 SRT 字幕检索体验。')
         else:
             st.caption(f"模型：{os.environ.get('VLM_MODEL', '尚未配置')}；可能调用外部服务。")
-        if strategy in {'curve', 'semantic'}:
-            st.caption('使用全视频索引；帧预算不限制索引成本。')
         if selected and st.button('建立 / 更新索引', key='index_video'):
             try:
                 with st.spinner('正在建立索引…'):
@@ -250,8 +262,11 @@ with left:
                 st.success('索引已就绪')
             except Exception as exc:
                 st.warning(f'索引未完成（{type(exc).__name__}），请检查媒体与后端配置')
+    budget = st.select_slider('观察帧预算', options=[8, 16, 32, 64], value=32, key='budget') if execution == 'Agent' or strategy in {'uniform', 'adaptive'} else 32
+    if strategy in {'curve', 'semantic'}:
+        st.caption('使用全视频索引；帧预算不限制索引成本。')
     st.divider()
-    if st.button('新对话', key='new_conversation', use_container_width=True):
+    if st.button('新对话', key='new_conversation', type='primary', use_container_width=True):
         st.session_state.pop('active_run', None)
         st.query_params.clear()
         st.rerun()
@@ -279,7 +294,7 @@ with left:
 if active and active['video_id'] != video_id:
     active = None
 
-with right:
+with right, st.container(border=True, key='task_panel'):
     inspector = st.empty()
 
 
@@ -290,7 +305,8 @@ def update_inspector(run):
 
 update_inspector(active)
 
-with middle:
+with middle, st.container(border=True, key='dialogue_panel'):
+    st.markdown('<div class="qs-kicker">CONVERSATION / SEARCH</div>', unsafe_allow_html=True)
     st.subheader('与 Agent 对话')
     if selected:
         with st.expander('查看当前视频'):
@@ -298,12 +314,21 @@ with middle:
             if Path(selected['asset']['path']).is_file():
                 st.video(selected['asset']['path'])
     st.caption('每条消息发起一次独立预算的定位；追问请保留完整事件描述。')
-    messages = st.container(height=560, border=True)
+    messages = st.container(height=560, border=True, key='conversation_feed')
     with messages:
         if not active:
             with st.chat_message('assistant'):
-                st.write('你好，选择一个视频，告诉我你想寻找的事件。')
-                st.caption('例如：寻找讲解系统架构的片段。定位结果和证据会保存在这段对话中。')
+                st.markdown('''<div class="qs-welcome">
+                  <svg class="qs-lens" viewBox="0 0 96 96" aria-hidden="true">
+                    <rect x="9" y="9" width="78" height="78" rx="23" fill="#102a3a" stroke="#326379"/>
+                    <rect x="21" y="21" width="54" height="54" rx="14" fill="#0d1d30" stroke="#2b4f65"/>
+                    <path d="M30 39v-9h9M57 30h9v9M66 57v9h-9M39 66h-9v-9" fill="none" stroke="#38d6e6" stroke-width="2"/>
+                    <path d="M43 37l16 11-16 11z" fill="#70e3ec"/>
+                  </svg>
+                  <h2>定位关键事件，保留画面证据</h2>
+                  <p>选择一段视频，描述你关注的事件。<br>在有限预算内定位片段，回看每一条证据。</p>
+                  <div class="qs-example"><span>EXAMPLE QUERY</span>寻找讲解系统架构的片段</div>
+                </div>''', unsafe_allow_html=True)
         else:
             for turn in conversation(active):
                 with st.chat_message('user'):
