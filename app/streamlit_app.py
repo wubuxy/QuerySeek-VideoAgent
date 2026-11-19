@@ -104,8 +104,9 @@ def inspect_task(run):
     metrics = run.get('metrics', {})
     if metrics:
         st.markdown('**本次消耗**')
-        frames, calls = metrics.get('used_frames'), metrics.get('vlm_calls')
-        cells = [('观察帧 ID', str(frames) if frames is not None else '—', f"/ {run['budget_frames']}"),
+        frames = metrics.get('unique_source_frames', metrics.get('used_frames'))
+        calls = metrics.get('model_calls', metrics.get('vlm_calls'))
+        cells = [('源画面提交' if 'unique_source_frames' in metrics else '观察帧 ID', str(frames) if frames is not None else '—', f"/ {run['budget_frames']}"),
                  ('VLM 调用', str(calls) if calls is not None else '—', '次'),
                  ('处理耗时', f"{metrics.get('elapsed_sec', 0):.2f}", '秒'),
                  ('索引画面', str(metrics['indexed_frames']) if metrics.get('indexed_frames') is not None else '—', '帧')]
@@ -113,7 +114,13 @@ def inspect_task(run):
             f'<div class="qs-stat"><span class="qs-stat-label">{escape(label)}</span>'
             f'<span class="qs-stat-value">{escape(value)}<small>{escape(unit)}</small></span></div>'
             for label, value, unit in cells) + '</div>', unsafe_allow_html=True)
-        st.caption('Token 尚未统一汇总；帧 ID 计数不等同于源时间去重。')
+        if 'unique_source_frames' in metrics:
+            attempts = metrics.get('http_attempts')
+            st.caption(f"图片累计提交 {metrics.get('image_presentations', '未知')} 次 · HTTP 尝试 {attempts if attempts is not None else '未知'} 次")
+            incoming, outgoing = metrics.get('input_tokens'), metrics.get('output_tokens')
+            st.caption(f"Token 输入 {incoming if incoming is not None else '未知'} / 输出 {outgoing if outgoing is not None else '未知'}")
+        else:
+            st.caption('旧记录未统一汇总 token；帧 ID 不等同于源时间去重。')
     if run.get('export_status') in {'completed', 'failed', 'interrupted'}:
         st.write(f"片段导出：{STATUS.get(run['export_status'], run['export_status'])}")
     result = workspace.result(run['id']) or {}
@@ -143,6 +150,15 @@ def inspect_task(run):
 
 
 def show_answer(run, detailed=False):
+    if detailed:
+        details = [(name, label, workspace.artifact(run['id'], name)) for name, label in
+                   [('costs.json', '下载请求级成本'), ('observations.json', '下载带标签观察')]]
+        if any(path.is_file() for _, _, path in details):
+            with st.expander('成本与观察记录'):
+                for name, label, path in details:
+                    if path.is_file():
+                        st.download_button(label, path.read_bytes(), file_name=f"{run['id']}_{name}",
+                                           mime='application/json', key=f"detail_{run['id']}_{name}")
     if run['status'] in {'queued', 'running'}:
         st.write('正在处理，请在右侧查看任务进度。')
         return

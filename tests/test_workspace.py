@@ -1,5 +1,6 @@
 """Persistent uploads, cache identity, execution and immutable export regressions."""
 from pathlib import Path
+import json
 
 import pytest
 
@@ -86,7 +87,7 @@ def test_run_is_idempotent_and_parent_link_is_durable(workspace, demo, monkeypat
                              parent_id=first['id'])
     assert child['id'] != first['id'] and child['parent_id'] == first['id']
     assert len(reloaded.runs(video['id'])) == 2
-    assert child['metrics']['input_tokens'] is None
+    assert child['metrics']['input_tokens'] == 0  # Subtitle-only run makes no VLM request.
 
 
 def test_backend_failure_is_saved_without_secret(workspace, demo, monkeypatch):
@@ -116,6 +117,51 @@ def test_workspace_agent_timer_and_call_budget(workspace, demo):
     assert 0 <= result['elapsed_sec'] < 60
     assert result['vlm_calls'] <= workspace.cfg.agent.max_vlm_calls
     assert len(result['used_frame_ids']) <= 8
+    costs = json.loads(workspace.artifact(run['id'], 'costs.json').read_text())
+    assert costs['summary']['model_calls'] == run['metrics']['model_calls']
+    assert 0 < costs['summary']['model_calls'] <= workspace.cfg.agent.max_vlm_calls
+    assert any(c['method'] == 'verify_window_text' for c in costs['calls'])
+    assert all(not c['frame_ids'] for c in costs['calls'] if c['method'] == 'verify_window_text')
+
+
+def test_workspace_enforces_shared_cost_budget_and_saves_provenance(workspace, demo):
+    video = save_demo(workspace, demo)
+    run = workspace.execute(video['id'], '系统架构', strategy='uniform', execution='检索与剪辑',
+                             budget=16, budget_options={'max_model_calls': 1})
+    assert run['status'] == 'completed'
+    costs = json.loads(workspace.artifact(run['id'], 'costs.json').read_text())
+    assert costs['summary']['model_calls'] == 1
+    assert costs['summary']['image_presentations'] <= workspace.cfg.vlm.max_frames_per_call
+    assert costs['summary']['budget_rejections'] == ['max_model_calls']
+    assert workspace.result(run['id'])['budget_exhausted']
+    records = json.loads(workspace.artifact(run['id'], 'observations.json').read_text(encoding='utf-8'))
+    assert records == workspace.result(run['id'])['observation_records']
+    assert all(r['semantic_verified'] is False for r in records)
+    assert any(r['source'] == 'mock' for r in records)
+
+
+def test_changed_budget_limits_cannot_reuse_request_id(workspace, demo):
+    video = save_demo(workspace, demo)
+    args = dict(strategy='subtitle', execution='检索与剪辑', request_id='frozen-limits')
+    workspace.execute(video['id'], '系统架构', **args)
+    with pytest.raises(ValueError, match='标识'):
+        workspace.execute(video['id'], '系统架构', budget_options={'max_model_calls': 1}, **args)
+
+
+def test_costs_and_observations_survive_failure_after_observation(workspace, demo, monkeypatch):
+    video = save_demo(workspace, demo)
+    def fail(index, video_id, query, strategy, execution, budget, mock, folder, trace, session):
+        from queryseek.models.factory import build_vlm
+        with session.activate():
+            build_vlm(workspace.cfg, use_mock=True).inspect_frames(query, index.frames[:1])
+            raise RuntimeError('private-failure-details')
+    monkeypatch.setattr(workspace, '_locate', fail)
+    run = workspace.execute(video['id'], 'query', strategy='uniform')
+    assert run['status'] == 'failed' and run['metrics']['model_calls'] == 1
+    costs = json.loads(workspace.artifact(run['id'], 'costs.json').read_text())
+    records = json.loads(workspace.artifact(run['id'], 'observations.json').read_text(encoding='utf-8'))
+    assert costs['summary']['unique_observed_source_frames'] == 1
+    assert records and 'private-failure-details' not in str(run)
 
 
 def test_progress_snapshots_are_live_durable_and_cannot_mutate_task(workspace, demo):

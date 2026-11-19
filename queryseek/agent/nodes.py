@@ -47,7 +47,9 @@ def _runtime(state: dict, config: RunnableConfig) -> tuple[Config, Any, Any, Any
     cfg = Config.model_validate(config["configurable"]["cfg"])
     index = load_index(state["video_id"], cfg)
     mock = bool(config["configurable"].get("mock", False))
-    vlm = config["configurable"].get("vlm") or build_vlm(cfg, use_mock=mock, hints=index.content_hints)
+    vlm = config["configurable"].get("vlm") or build_vlm(
+        cfg, use_mock=mock, hints=index.content_hints,
+        observation_session=config["configurable"].get('observation_session'))
     embedder = config["configurable"].get("embedder", "unset")
     if embedder == "unset":
         embedder = build_embedder(cfg, use_mock=mock, hints=index.content_hints, frames=index.frames)

@@ -246,6 +246,9 @@ class CompatibleAPIVLM:
         body_bytes = len(json.dumps(payload))
         last_exc: Exception | None = None
         for attempt in range(retries + 1):
+            from ..observation_budget import ACTIVE_CALL
+            current = ACTIVE_CALL.get()
+            ticket = current[0].submit(current[1], n_images, http=True) if current else None
             request_id = uuid.uuid4().hex[:12]
             events: list[dict[str, Any]] = []
             _trace_collector.events = events
@@ -253,6 +256,7 @@ class CompatibleAPIVLM:
             status: int | None = None
             exc_type: str | None = None
             resp_types: dict[str, str] | None = None
+            measured_usage = None
             try:
                 resp = self._client.post(url, json=payload, headers=headers)
                 status = resp.status_code
@@ -264,6 +268,7 @@ class CompatibleAPIVLM:
                 if not isinstance(data, dict):
                     raise VLMError(f"VLM 响应结构异常：顶层为 {type(data).__name__}")
                 resp_types = _response_types(data)
+                measured_usage = data.get('usage')
                 usage = data.get("usage") or {}
                 if not isinstance(usage, dict):
                     usage = {}
@@ -293,6 +298,9 @@ class CompatibleAPIVLM:
                 exc_type = "VLMError"
                 raise
             finally:
+                if ticket is not None:
+                    current[0].finish_attempt(ticket, status=status, error_type=exc_type,
+                                              usage=measured_usage, elapsed_sec=time.monotonic() - t0)
                 _trace_collector.events = None
                 self._log_request(request_id=request_id, attempt=attempt, events=events,
                                   t0=t0, status=status, exc_type=exc_type,

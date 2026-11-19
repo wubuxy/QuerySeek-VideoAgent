@@ -118,3 +118,7 @@ Upstream source additions require an updated URL, revision, license, modificatio
 - Python/CPython 许可为 PSF License（sqlite3 模块许可证按 CPython 原发行内容保留），版权与许可原文：https://github.com/python/cpython/blob/v3.13.13/LICENSE 。SQLite 核心为 public domain，官方声明：https://www.sqlite.org/copyright.html 。本项目仅调用系统提供的 sqlite3，不另行分发 SQLite 二进制。
 - 已登记的 Streamlit 与 langgraph-checkpoint-sqlite 继续用于页面、测试和任务 checkpoint，未修改其上游源码。
 - 科技视觉版使用已登记 Streamlit 的原生主题及稳定容器 key/CSS 类接口；最低版本调整为 1.39，本机仍为 1.65.0，未安装升级。配色、CSS 和装饰 SVG 为本项目编写，没有复制上游组件源码或引入外部字体/图片服务。
+
+## 2026-11-19 观察状态与成本计量
+
+直接使用已安装的 [Pydantic](https://github.com/pydantic/pydantic) 2.14.0（MIT）实现不可变来源记录和预算验证，使用 [HTTPX](https://github.com/encode/httpx) 0.28.1（BSD-3-Clause）的既有客户端与 MockTransport 验证逐尝试用量；LangGraph 1.2.14（MIT，https://github.com/langchain-ai/langgraph）沿用现有节点配置传递会话。版权/许可证保留在各发行包的 dist-info/licenses/LICENSE。未复制或修改上游源码，没有新增依赖、模型或权重下载；源时间去重、用量账本、状态修订与单视频矩阵为本项目胶水。合成素材仍由原 FFmpeg fixture 生成器创建。

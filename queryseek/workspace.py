@@ -250,11 +250,51 @@ class Workspace:
             self._put('videos', video)
             raise
 
-    def execute(self, video_id, query, *, strategy='adaptive', execution='Agent',
-                budget=32, mock=True, request_id=None, parent_id=None, on_progress=None):
-        from .retrieval.dispatch import AGENT_STRATEGIES, search_index
+    def _locate(self, index, video_id, query, strategy, execution, budget, mock, folder, trace, session):
+        from .retrieval.dispatch import search_index
         from .agent.state import default_budget, initial_state
         from .agent.graph import run_agent
+
+        with session.activate():
+            if execution == 'Agent':
+                from langgraph.checkpoint.sqlite import SqliteSaver
+                limits = default_budget({'max_iterations': self.cfg.agent.max_iterations,
+                                         'max_vlm_calls': session.ledger.limits.max_model_calls,
+                                         'max_frames': budget,
+                                         'wall_time_limit_sec': session.ledger.limits.query_deadline_sec})
+                state = initial_state(video_id, query, strategy=strategy, budget=limits)
+                state['started_at'] = time.time()
+                with SqliteSaver.from_conn_string(str(folder / 'checkpoint.sqlite')) as saver:
+                    return run_agent(state,
+                                     {'thread_id': folder.name, 'cfg': self.cfg.model_dump(),
+                                      'mock': mock, 'trace_path': str(folder / 'trace.jsonl'),
+                                      'observation_session': session}, checkpointer=saver)
+            found = search_index(self.cfg, index, video_id, query, strategy,
+                                 budget if strategy in {'uniform', 'adaptive'} else None, mock, trace)
+            return {'status': 'ok' if found.windows else 'no_result',
+                    'selected_windows': [w.model_dump() for w in found.windows],
+                    'evidence': [e.model_dump() for e in found.evidence],
+                    'used_frame_ids': found.used_frame_ids, 'vlm_calls': found.vlm_calls,
+                    'indexed_frames': found.indexed_frames,
+                    'online_encoded_frames': found.online_encoded_frames,
+                    'embedding_cache_hit': found.embedding_cache_hit,
+                    'warnings': found.warnings, 'budget_exhausted': found.budget_exhausted}
+
+    def execute(self, video_id, query, *, strategy='adaptive', execution='Agent',
+                budget=32, mock=True, request_id=None, parent_id=None, on_progress=None,
+                budget_options=None):
+        from .retrieval.dispatch import AGENT_STRATEGIES
+        from .observation_budget import ObservationBudget
+        from .models.metered import ObservationSession
+
+        options = {'max_unique_frames': budget, 'max_model_calls': self.cfg.agent.max_vlm_calls,
+                   'max_http_attempts': self.cfg.agent.max_vlm_calls * (self.cfg.vlm.max_retries + 1),
+                   'max_output_tokens_per_call': self.cfg.vlm.max_output_tokens,
+                   'query_deadline_sec': self.cfg.agent.wall_time_limit_sec}
+        options.update(budget_options or {})
+        limits = ObservationBudget.model_validate(options)
+        if limits.max_unique_frames != budget:
+            raise ValueError('帧预算参数冲突')
 
         query = query.strip()
         if not query or len(query) > 2000:
@@ -276,6 +316,7 @@ class Workspace:
                             'execution': execution, 'budget_frames': budget,
                             'mock': mock, 'parent_id': parent_id,
                             'config': self.cfg.model_dump(mode='json'),
+                            'budget_limits': limits.model_dump(),
                             'subtitle_sha256': (current_video or {}).get('subtitle_sha256')}
                 if any(existing.get(k) != v for k, v in expected.items()):
                     raise ValueError('请求标识已用于其他参数，请新建任务')
@@ -295,6 +336,7 @@ class Workspace:
                    'model': 'mock-vlm-1' if mock else os.environ.get('VLM_MODEL', '未指定'),
                    'subtitle_sha256': video.get('subtitle_sha256'),
                    'created_at': _now(), 'status': 'queued', 'export_status': 'not_requested',
+                   'budget_limits': limits.model_dump(),
                    'config': self.cfg.model_dump(mode='json'), 'error': None, 'progress': []}
             self._put('runs', run)
 
@@ -310,38 +352,31 @@ class Workspace:
                         pass
 
             started = time.perf_counter()
+            session = None
             trace = TraceWriter(folder / 'trace.jsonl')
             try:
                 run.update(status='running')
                 advance('indexing')
                 index = self._prepare(video_id, mock)
                 run['source_asset'] = index.asset.model_dump()
+                preparation_sec = time.perf_counter() - started
+                session = ObservationSession(limits, index.asset)
                 advance('searching')
-                if execution == 'Agent':
-                    from langgraph.checkpoint.sqlite import SqliteSaver
-                    limits = default_budget({'max_iterations': self.cfg.agent.max_iterations,
-                                             'max_vlm_calls': self.cfg.agent.max_vlm_calls,
-                                             'max_frames': budget,
-                                             'wall_time_limit_sec': self.cfg.agent.wall_time_limit_sec})
-                    state = initial_state(video_id, query, strategy=strategy, budget=limits)
-                    state['started_at'] = time.time()
-                    with SqliteSaver.from_conn_string(str(folder / 'checkpoint.sqlite')) as saver:
-                        result = run_agent(state,
-                                           {'thread_id': run_id, 'cfg': self.cfg.model_dump(),
-                                            'mock': mock, 'trace_path': str(folder / 'trace.jsonl')},
-                                           checkpointer=saver)
-                else:
-                    found = search_index(self.cfg, index, video_id, query, strategy,
-                                         budget if strategy in {'uniform', 'adaptive'} else None,
-                                         mock, trace)
-                    result = {'status': 'ok' if found.windows else 'no_result',
-                              'selected_windows': [w.model_dump() for w in found.windows],
-                              'evidence': [e.model_dump() for e in found.evidence],
-                              'used_frame_ids': found.used_frame_ids, 'vlm_calls': found.vlm_calls,
-                              'indexed_frames': found.indexed_frames,
-                              'online_encoded_frames': found.online_encoded_frames,
-                              'embedding_cache_hit': found.embedding_cache_hit,
-                              'warnings': found.warnings, 'budget_exhausted': found.budget_exhausted}
+                result = self._locate(index, video_id, query, strategy, execution, budget, mock, folder, trace, session)
+                for evidence in result.get('evidence', []):
+                    if evidence.get('type') == 'asr':
+                        session.state.add(source='subtitle', kind='observation', status='observed',
+                                          content=evidence.get('content') or '', turn=len(session.ledger.calls))
+                    elif evidence.get('type') == 'frame' and (
+                            strategy in {'curve', 'semantic'} or 'embedding' in (evidence.get('model_id') or '')
+                            or 'openclip' in (evidence.get('model_id') or '')):
+                        session.state.add(source='retrieval', kind='retrieval_hint', status='tentative',
+                                          content=f"候选帧 {evidence['evidence_id']} @ {evidence.get('timestamp_sec')}s: "
+                                                  + (evidence.get('content') or ''), turn=len(session.ledger.calls))
+                if session.ledger.rejections:
+                    result['budget_exhausted'] = True
+                    result.setdefault('warnings', []).append('观察预算限制：' + ', '.join(session.ledger.rejections))
+                result['observation_records'] = session.state.snapshot()
                 advance('saving')
                 # Cached frames may be rebuilt by later index configurations.
                 # Freeze cited pictures with the run so old evidence stays readable.
@@ -365,7 +400,7 @@ class Workspace:
                            'embedding_cache_hit': result.get('embedding_cache_hit'),
                            'elapsed_sec': round(time.perf_counter() - started, 3),
                            'input_tokens': None, 'output_tokens': None}
-                # Keep unknown usage unknown. Per-call values remain in the trace.
+                metrics.update(session.ledger.summary(), preparation_sec=round(preparation_sec, 6))
                 write_json_atomic(folder / 'metrics.json', metrics)
                 run.update(status='failed' if result.get('status') == 'failed' else 'completed',
                            outcome=result.get('status'), metrics=metrics)
@@ -377,6 +412,12 @@ class Workspace:
                 write_json_atomic(folder / 'metrics.json', run['metrics'])
                 trace.event('workspace_error', error_type=type(exc).__name__)
             finally:
+                if session is not None:
+                    write_json_atomic(folder / 'costs.json', session.ledger.snapshot())
+                    write_json_atomic(folder / 'observations.json', session.state.snapshot())
+                    if run['status'] == 'failed':
+                        run.setdefault('metrics', {}).update(session.ledger.summary())
+                        write_json_atomic(folder / 'metrics.json', run['metrics'])
                 trace.close()
                 run['finished_at'] = _now()
                 advance('completed' if run['status'] == 'completed' else 'failed')
@@ -429,6 +470,6 @@ class Workspace:
             if run.get('export_status') != 'completed':
                 raise ValueError('尚无完成的导出')
             return self.path(run['export_id'], name)
-        if name not in {'result.json', 'metrics.json'}:
+        if name not in {'result.json', 'metrics.json', 'costs.json', 'observations.json'}:
             raise ValueError('未知下载文件')
         return self.path(run_id, name)

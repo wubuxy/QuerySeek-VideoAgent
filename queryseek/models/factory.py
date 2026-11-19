@@ -14,11 +14,16 @@ def build_vlm(
     config: Config,
     use_mock: bool = False,
     hints: list[ContentHint] | None = None,
+    observation_session=None,
 ) -> VLMAdapter:
+    from ..observation_budget import ACTIVE_SESSION
+    session = observation_session or ACTIVE_SESSION.get()
     key = os.environ.get("VLM_API_KEY", "")
     if use_mock or not key:
-        return MockVLM(hints)
-    return CompatibleAPIVLM(
+        model = MockVLM(hints)
+        model.max_frames_per_call = config.vlm.max_frames_per_call
+        return session.wrap(model) if session else model
+    model = CompatibleAPIVLM(
         api_key=key,
         base_url=os.environ.get("VLM_BASE_URL", "https://api.openai.com/v1"),
         model=os.environ.get("VLM_MODEL", ""),
@@ -38,3 +43,4 @@ def build_vlm(
         max_connections=config.vlm.max_connections,
         req_log_dir=config.vlm.req_log_dir,
     )
+    return session.wrap(model) if session else model
