@@ -57,39 +57,47 @@ def conversation(active):
     return list(reversed(turns))
 
 
-def inspect_task(run):
-    st.markdown('<div class="qs-kicker">ACTIVITY / EVIDENCE</div>', unsafe_allow_html=True)
-    st.subheader('任务进程')
-    if not run:
-        st.markdown('''<div class="qs-standby"><div class="qs-kicker">STANDBY</div>
-            <div class="qs-standby-title">等待定位任务</div>
-            <p>发送一条消息，开始探索视频中的证据。</p></div>''', unsafe_allow_html=True)
-        for i, (_, title) in enumerate(PHASES, 1):
-            st.markdown(f'<div class="qs-stage"><span class="qs-stage-number">{i:02}</span>'
-                        f'<div class="qs-stage-copy">{title}<small>等待任务</small></div></div>',
-                        unsafe_allow_html=True)
-        st.caption('真实处理阶段、预算消耗和画面证据会显示在这里。')
-        return
-    state = 'complete' if run['status'] == 'completed' else ('error' if run['status'] in {'failed', 'interrupted'} else 'running')
-    progress = run.get('progress', [])
+def task_activity(run):
+    status = run['status'] if run else 'idle'
+    progress = run.get('progress', []) if run else []
+    exporting = bool(run and run.get('export_status') == 'running')
+    running = status in {'running', 'queued'} or exporting
+    state = 'running' if running else ('complete' if status == 'completed' else
+                                      'error' if status in {'failed', 'interrupted'} else 'idle')
     phase = progress[-1]['stage'] if progress else None
-    label = dict(PHASES).get(phase, STATUS.get(run['status'], run['status']))
-    if run.get('export_status') == 'running':
-        label, state = '正在生成视频片段', 'running'
-    panel = st.status(label, state=state, expanded=True)
-    if progress:
+    label = ('正在生成视频片段' if exporting else dict(PHASES).get(phase, STATUS.get(status, '等待任务')))
+    icon = '✓' if state == 'complete' else '!' if state == 'error' else '•'
+    bars = '<span></span>' * 5 if running else ''
+    st.markdown(f'<div class="qs-activity is-{state}" role="status" aria-live="polite">'
+                f'<div class="qs-activity-icon"><span>{icon}</span></div>'
+                f'<div class="qs-activity-label">{escape(label)}</div>'
+                f'<div class="qs-activity-bars" aria-hidden="true">{bars}</div></div>',
+                unsafe_allow_html=True)
+    if not run or progress:
         entered = [i for i, (name, _) in enumerate(PHASES) if any(p['stage'] == name for p in progress)]
         latest = max(entered, default=-1)
+        stages = []
         for i, (_, title) in enumerate(PHASES):
-            if i < latest or (i == latest and run['status'] == 'completed'):
-                note = '已完成'
+            if i < latest or (i == latest and status == 'completed'):
+                step_state, note, marker = 'complete', '已完成', '✓'
             elif i == latest:
-                note = '进行中' if run['status'] == 'running' else '未完成'
+                step_state = 'running' if status == 'running' else 'error'
+                note, marker = ('进行中', str(i + 1)) if step_state == 'running' else ('已停止', '!')
             else:
-                note = '待处理'
-            panel.write(f'{title} · {note}')
+                step_state, note, marker = 'pending', '等待任务' if not run else '待处理', str(i + 1)
+            stages.append(f'<div class="qs-step is-{step_state}"><span class="qs-step-node">{marker}</span>'
+                          f'<div class="qs-step-copy">{title}<small>{note}</small></div></div>')
+        st.markdown('<div class="qs-timeline">' + ''.join(stages) + '</div>', unsafe_allow_html=True)
     else:
-        panel.write('旧任务仅保留最终状态，无逐阶段记录。')
+        st.caption('旧任务仅保留最终状态，无逐阶段记录。')
+
+
+def inspect_task(run):
+    st.subheader('任务进程')
+    task_activity(run)
+    if not run:
+        return
+    progress = run.get('progress', [])
     st.caption(f"{stamp(run['created_at'])} · {'Mock' if run['mock'] else run['model']}")
     if run.get('error'):
         st.warning(run['error'])
@@ -135,6 +143,9 @@ def inspect_task(run):
 
 
 def show_answer(run, detailed=False):
+    if run['status'] in {'queued', 'running'}:
+        st.write('正在处理，请在右侧查看任务进度。')
+        return
     if run['status'] in {'failed', 'interrupted'}:
         st.write(run.get('error') or '任务未完成，可以重新提交定位请求。')
         return
@@ -306,29 +317,12 @@ def update_inspector(run):
 update_inspector(active)
 
 with middle, st.container(border=True, key='dialogue_panel'):
-    st.markdown('<div class="qs-kicker">CONVERSATION / SEARCH</div>', unsafe_allow_html=True)
     st.subheader('与 Agent 对话')
-    if selected:
-        with st.expander('查看当前视频'):
-            st.text(selected['title'])
-            if Path(selected['asset']['path']).is_file():
-                st.video(selected['asset']['path'])
-    st.caption('每条消息发起一次独立预算的定位；追问请保留完整事件描述。')
-    messages = st.container(height=560, border=True, key='conversation_feed')
+    messages = st.container(height=480, border=False, key='conversation_feed')
     with messages:
         if not active:
             with st.chat_message('assistant'):
-                st.markdown('''<div class="qs-welcome">
-                  <svg class="qs-lens" viewBox="0 0 96 96" aria-hidden="true">
-                    <rect x="9" y="9" width="78" height="78" rx="23" fill="#102a3a" stroke="#326379"/>
-                    <rect x="21" y="21" width="54" height="54" rx="14" fill="#0d1d30" stroke="#2b4f65"/>
-                    <path d="M30 39v-9h9M57 30h9v9M66 57v9h-9M39 66h-9v-9" fill="none" stroke="#38d6e6" stroke-width="2"/>
-                    <path d="M43 37l16 11-16 11z" fill="#70e3ec"/>
-                  </svg>
-                  <h2>定位关键事件，保留画面证据</h2>
-                  <p>选择一段视频，描述你关注的事件。<br>在有限预算内定位片段，回看每一条证据。</p>
-                  <div class="qs-example"><span>EXAMPLE QUERY</span>寻找讲解系统架构的片段</div>
-                </div>''', unsafe_allow_html=True)
+                st.write('选择视频后，告诉我你想定位的事件。')
         else:
             for turn in conversation(active):
                 with st.chat_message('user'):
@@ -359,3 +353,11 @@ with middle, st.container(border=True, key='dialogue_panel'):
                     st.rerun()
                 except (ValueError, WorkspaceBusy) as exc:
                     st.warning(str(exc))
+    if selected:
+        with st.container(border=True, key='video_preview'):
+            with st.expander('当前视频'):
+                st.text(selected['title'])
+                asset = selected['asset']
+                st.caption(f"{asset['duration_sec']:.1f} 秒 · {asset['width']} × {asset['height']}")
+                if Path(asset['path']).is_file():
+                    st.video(asset['path'])

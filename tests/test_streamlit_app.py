@@ -44,6 +44,7 @@ def test_curve_mode_does_not_offer_vlm_frame_budget(app_test):
 
 
 def test_chat_result_survives_widget_rerun_and_url_restore(qs_env, monkeypatch, demo):
+    import streamlit as st
     from queryseek.ingest import pipeline
     from queryseek.retrieval import dispatch
     from queryseek.ingest.registry import register_video
@@ -57,6 +58,15 @@ def test_chat_result_survives_widget_rerun_and_url_restore(qs_env, monkeypatch, 
     register_video(cfg.data_root, asset)
     monkeypatch.setattr(pipeline, 'load_index', lambda *a: SimpleNamespace(asset=asset))
     calls = []
+    activities = []
+    original_markdown = st.markdown
+
+    def capture_activity(body, *args, **kwargs):
+        if 'class="qs-activity ' in str(body):
+            activities.append(str(body))
+        return original_markdown(body, *args, **kwargs)
+
+    monkeypatch.setattr(st, 'markdown', capture_activity)
 
     def search(cfg, index, vid, query, strategy, budget, mock, trace):
         assert strategy == 'curve' and budget is None and mock
@@ -73,6 +83,8 @@ def test_chat_result_survives_widget_rerun_and_url_restore(qs_env, monkeypatch, 
     workspace = Workspace(cfg)
     run = workspace.runs('sample')[0]
     assert run['status'] == 'completed' and calls == ['寻找系统架构']
+    assert any('is-running' in body and '<span></span>' in body for body in activities)
+    assert 'is-complete' in activities[-1] and '<span></span>' not in activities[-1]
     assert len(at.chat_message) == 2
     assert any(s.value == '定位结果' for s in at.subheader)
     assert run['metrics']['indexed_frames'] == 100
@@ -149,3 +161,32 @@ def test_video_title_is_escaped_in_custom_source_card(qs_env, demo):
     assert not at.exception
     card = next(m.value for m in at.markdown if 'qs-source-name' in m.value and '<style>' not in m.value)
     assert '&lt;img' in card and '<img' not in card
+    middle = at.get('column')[1]
+    elements = list(middle)
+    prompt_position = next(i for i, e in enumerate(elements) if e.type == 'chat_input')
+    preview_position = next(i for i, e in enumerate(elements) if e.type == 'expander' and e.label == '当前视频')
+    assert preview_position > prompt_position
+    assert middle.expander[-1].label == '当前视频'
+    assert all('EXAMPLE QUERY' not in m.value and 'qs-welcome' not in m.value for m in middle.markdown)
+
+
+def test_failed_task_activity_is_static(qs_env, monkeypatch, demo):
+    from queryseek.workspace import Workspace
+    from queryseek.config import Config
+    from queryseek.retrieval import dispatch
+
+    workspace = Workspace(Config.load())
+    workspace.save_video('sample.mp4', demo['video'].read_bytes(), subtitle=demo['srt'].read_bytes())
+
+    def fail(*args, **kwargs):
+        raise RuntimeError('controlled failure')
+
+    monkeypatch.setattr(dispatch, 'search_index', fail)
+    at = AppTest.from_file(APP_PATH, default_timeout=60).run()
+    at.radio(key='execution').set_value('检索与剪辑').run()
+    at.selectbox(key='strategy').set_value('subtitle').run()
+    at.chat_input(key='chat_prompt').set_value('寻找系统架构').run()
+    assert not at.exception
+    activity = next(m.value for m in at.markdown if 'class="qs-activity ' in m.value)
+    assert 'is-error' in activity and 'is-running' not in activity
+    assert '<span></span>' not in activity

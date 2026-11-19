@@ -117,4 +117,4 @@ Upstream source additions require an updated URL, revision, license, modificatio
 - Python 标准库 [sqlite3](https://docs.python.org/3/library/sqlite3.html)：本机 CPython 3.13.13，连接的 SQLite 3.51.2；用于视频库和任务元数据事务。未复制或修改上游源码，没有新增 pip 依赖。
 - Python/CPython 许可为 PSF License（sqlite3 模块许可证按 CPython 原发行内容保留），版权与许可原文：https://github.com/python/cpython/blob/v3.13.13/LICENSE 。SQLite 核心为 public domain，官方声明：https://www.sqlite.org/copyright.html 。本项目仅调用系统提供的 sqlite3，不另行分发 SQLite 二进制。
 - 已登记的 Streamlit 与 langgraph-checkpoint-sqlite 继续用于页面、测试和任务 checkpoint，未修改其上游源码。
-- 科技视觉版使用已登记 Streamlit 的原生深色主题及稳定容器 key/CSS 类接口；最低版本调整为 1.39，本机仍为 1.65.0，未安装升级。配色、CSS 和装饰 SVG 为本项目编写，没有复制上游组件源码或引入外部字体/图片服务。
+- 科技视觉版使用已登记 Streamlit 的原生主题及稳定容器 key/CSS 类接口；最低版本调整为 1.39，本机仍为 1.65.0，未安装升级。配色、CSS 和装饰 SVG 为本项目编写，没有复制上游组件源码或引入外部字体/图片服务。
